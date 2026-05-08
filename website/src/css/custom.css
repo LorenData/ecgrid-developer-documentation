@@ -1,64 +1,88 @@
-/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: ECGrid brand color overrides replacing Docusaurus defaults - Greg Kolinski */
+/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: ECGrid brand color overrides replacing Docusaurus defaults - Greg Kolinski
+   | 2026-05-08: Apply ECGrid UI Standards — Roboto Condensed font, official palette colors - Greg Kolinski */
+
+/* ---------------------------------------------------------------
+   Roboto Condensed — ECGrid standard typeface (UI Standards §1)
+   --------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,400&display=swap');
 
 /**
  * ECGrid Developer Documentation Portal — global CSS overrides.
  *
- * Infima (Docusaurus default CSS framework) variables are overridden here
- * to apply the Loren Data / ECGrid brand palette.
+ * Official ECGrid brand palette (ECGrid-UI-Standards-Guide.md):
+ *   Dark Navy:    #233746   Silver Blue: #a3bcc4
+ *   Teal:         #014f6e   Blue:        #0080bc
+ *   Red:          #e31d1a   Olive:       #999500
+ *   Yellow-Green: #b9bc10
  *
- * ECGrid brand color palette:
- *   Primary:   #005B99  (ECGrid blue)
- *   Secondary: #00AEEF  (ECGrid light blue)
- *   Accent:    #F26522  (Loren Data orange)
+ * Text colors:
+ *   Primary text:  #4a4a4a   Links/emphasis: #014f6e
+ *   Secondary:     #7a7a7a   Reverse (dark): #ffffff
  */
 
 /* ---------------------------------------------------------------
    Root (light mode) variables
    --------------------------------------------------------------- */
 :root {
-  --ifm-color-primary: #005B99;
-  --ifm-color-primary-dark: #004f87;
-  --ifm-color-primary-darker: #004a7f;
-  --ifm-color-primary-darkest: #003d6a;
-  --ifm-color-primary-light: #0067ad;
-  --ifm-color-primary-lighter: #006cb5;
-  --ifm-color-primary-lightest: #0079ca;
+  /* Teal is the link/emphasis color per UI Standards §3 */
+  --ifm-color-primary:         #014f6e;
+  --ifm-color-primary-dark:    #013f58;
+  --ifm-color-primary-darker:  #013750;
+  --ifm-color-primary-darkest: #012536;
+  --ifm-color-primary-light:   #015f84;
+  --ifm-color-primary-lighter: #01678e;
+  --ifm-color-primary-lightest: #017aaa;
+
+  --ifm-font-family-base: 'Roboto Condensed', 'Roboto', sans-serif;
+  --ifm-heading-font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+  --ifm-font-weight-bold: 700;
 
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 91, 153, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(1, 79, 110, 0.1);
 
-  /* ECGrid accent — used for callouts, badges, and highlight elements */
-  --ecgrid-accent: #F26522;
+  /* ECGrid palette tokens */
+  --ecgrid-navy:        #233746;
+  --ecgrid-silver-blue: #a3bcc4;
+  --ecgrid-teal:        #014f6e;
+  --ecgrid-blue:        #0080bc;
+  --ecgrid-red:         #e31d1a;
+  --ecgrid-olive:       #999500;
+  --ecgrid-yellow:      #b9bc10;
 }
 
 /* ---------------------------------------------------------------
-   Dark mode variable overrides
-   Use the lighter secondary blue (#00AEEF) as the primary hue so
-   links and interactive elements remain legible on dark backgrounds.
+   Dark mode
    --------------------------------------------------------------- */
 html[data-theme='dark'] {
-  --ifm-color-primary: #00AEEF;
-  --ifm-color-primary-dark: #009dd8;
-  --ifm-color-primary-darker: #0095ce;
-  --ifm-color-primary-darkest: #007aab;
-  --ifm-color-primary-light: #0fbff6;
-  --ifm-color-primary-lighter: #19c2f7;
-  --ifm-color-primary-lightest: #38cbf8;
+  --ifm-color-primary:          #a3bcc4;
+  --ifm-color-primary-dark:     #8dadb7;
+  --ifm-color-primary-darker:   #84a7b2;
+  --ifm-color-primary-darkest:  #6a96a2;
+  --ifm-color-primary-light:    #b5c9d0;
+  --ifm-color-primary-lighter:  #bccfd5;
+  --ifm-color-primary-lightest: #d0dde1;
 
-  --docusaurus-highlighted-code-line-bg: rgba(0, 174, 239, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(163, 188, 196, 0.15);
 }
 
 /* ---------------------------------------------------------------
-   Navbar — add a subtle shadow so it visually separates from page
-   content, especially on white/light backgrounds.
+   Global body — Roboto Condensed, ECGrid text color
+   --------------------------------------------------------------- */
+body {
+  font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+  color: #4a4a4a;
+}
+
+/* ---------------------------------------------------------------
+   Navbar
    --------------------------------------------------------------- */
 .navbar {
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  border-bottom: 3px solid var(--ecgrid-teal);
 }
 
 /* ---------------------------------------------------------------
-   Code blocks — slightly rounded corners to soften the default
-   sharp edges and improve visual consistency with the card style.
+   Code blocks
    --------------------------------------------------------------- */
 .prism-code {
   border-radius: 6px;

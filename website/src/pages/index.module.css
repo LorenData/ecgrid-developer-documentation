@@ -1,61 +1,76 @@
+/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: ECGrid branded homepage styles - Greg Kolinski
+   | 2026-05-08: Apply ECGrid UI Standards palette, logo-forward hero, section accents - Greg Kolinski */
+
+/* ---------------------------------------------------------------
+   ECGrid palette — local aliases
+   --------------------------------------------------------------- */
+:local {
+  --navy:        #233746;
+  --teal:        #014f6e;
+  --blue:        #0080bc;
+  --silver:      #a3bcc4;
+  --yellow:      #b9bc10;
+  --olive:       #999500;
+  --red:         #e31d1a;
+}
+
 /* ---------------------------------------------------------------
    Hero
    --------------------------------------------------------------- */
 .hero {
-  padding: 4rem 0 3.5rem;
-  background: linear-gradient(140deg, #002540 0%, #004a7f 50%, #005B99 100%);
+  background: #233746; /* ECGrid Dark Navy */
   color: white;
   overflow: hidden;
 }
 
 .heroInner {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 3rem;
+  text-align: center;
+  padding: 2.5rem 1rem 3rem;
 }
 
-.heroText {
-  flex: 1;
-  min-width: 0;
-}
-
-.heroLogo {
-  flex: 0 0 340px;
+/* Logo — white oval so native SVG colors show on Dark Navy */
+.heroLogoWrap {
+  margin-bottom: 1.75rem;
+  background: white;
+  border-radius: 8px;
+  padding: 3rem 4.5rem;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .heroLogoImg {
   width: 100%;
-  max-width: 340px;
-  /* Invert the dark-blue paths to white for visibility on the dark hero */
-  filter: brightness(0) invert(1);
-  opacity: 0.92;
+  max-width: 320px;
+  display: block;
 }
 
 .heroEyebrow {
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 0.5rem;
+  color: #a3bcc4; /* Silver Blue */
+  margin-bottom: 0.6rem;
 }
 
 .heroTitle {
-  font-size: 3rem;
-  font-weight: 800;
+  font-size: 2.8rem;
+  font-weight: 700;
   color: white !important;
   line-height: 1.15;
   margin-bottom: 1rem;
 }
 
 .heroSubtitle {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.65;
-  max-width: 560px;
+  max-width: 620px;
   margin-bottom: 2rem;
 }
 
@@ -63,22 +78,24 @@
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 1.5rem;
 }
 
 .heroButtons .button--outline {
   color: white;
-  border-color: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 .heroButtons .button--outline:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: white;
+  border-color: #a3bcc4;
 }
 
 .heroBadge {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  justify-content: center;
   margin: 0;
 }
 
@@ -88,29 +105,41 @@
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  padding: 0.25em 0.75em;
+  padding: 0.25em 0.8em;
   border-radius: 99px;
 }
 
 .activePill {
-  background: rgba(0, 174, 239, 0.25);
-  color: #7dd8f8;
-  border: 1px solid rgba(0, 174, 239, 0.4);
+  background: rgba(0, 128, 188, 0.3); /* ECGrid Blue tint */
+  color: #a3bcc4;
+  border: 1px solid rgba(0, 128, 188, 0.5);
 }
 
 .legacyPill {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* ---------------------------------------------------------------
-   Shared section heading
+   Shared section heading + accent underline
    --------------------------------------------------------------- */
 .sectionHeading {
   font-size: 1.6rem !important;
   font-weight: 700;
   margin-bottom: 0.5rem;
+  display: inline-block; /* so ::after width matches text width */
+}
+
+/* Yellow-Green accent underline on headings */
+.sectionHeading::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 3px;
+  background: #b9bc10; /* ECGrid Yellow-Green */
+  margin-top: 0.4rem;
+  border-radius: 2px;
 }
 
 .sectionSub {
@@ -124,6 +153,7 @@
    --------------------------------------------------------------- */
 .apiSection {
   padding: 3.5rem 0 2rem;
+  border-top: 4px solid #014f6e; /* ECGrid Teal top border */
 }
 
 .cardCol {
@@ -132,7 +162,8 @@
 
 .card {
   border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 10px;
+  border-left-width: 4px;
+  border-radius: 0 10px 10px 0;
   padding: 1.75rem;
   height: 100%;
   display: flex;
@@ -142,9 +173,27 @@
   transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
+/* REST card — ECGrid Blue accent */
+.cardActive {
+  border-left-color: #0080bc;
+}
+
+/* SOAP card — ECGrid Olive accent */
+.cardLegacy {
+  border-left-color: #999500;
+}
+
 .card:hover {
-  box-shadow: 0 4px 18px rgba(0, 91, 153, 0.1);
-  border-color: var(--ifm-color-primary-light);
+  box-shadow: 0 4px 20px rgba(35, 55, 70, 0.12);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+.cardActive:hover {
+  border-left-color: #0080bc;
+}
+
+.cardLegacy:hover {
+  border-left-color: #999500;
 }
 
 .badge {
@@ -155,14 +204,17 @@
   letter-spacing: 0.06em;
   padding: 0.25em 0.7em;
   border-radius: 4px;
-  background: #005B99;
   color: white;
   width: fit-content;
   margin-bottom: 0.25rem;
 }
 
+.badge:not(.badgeLegacy) {
+  background: #0080bc; /* ECGrid Blue */
+}
+
 .badgeLegacy {
-  background: #6b7280;
+  background: #999500; /* ECGrid Olive */
 }
 
 .cardTitle {
@@ -192,13 +244,32 @@
 }
 
 /* ---------------------------------------------------------------
-   Platform capabilities grid
+   Platform capabilities — Dark Navy panel
    --------------------------------------------------------------- */
 .capSection {
-  padding: 2rem 0 3rem;
-  background: var(--ifm-color-emphasis-100);
-  border-top: 1px solid var(--ifm-color-emphasis-200);
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  padding: 3rem 0 3.5rem;
+  background: #233746; /* ECGrid Dark Navy */
+  position: relative;
+}
+
+/* Silver Blue top border */
+.capSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0080bc 0%, #a3bcc4 50%, #0080bc 100%);
+}
+
+/* Heading + sub on dark bg */
+.capSection .sectionHeading {
+  color: white;
+}
+
+.capSection .sectionSub {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .capCol {
@@ -211,26 +282,40 @@
   gap: 0.35rem;
   padding: 1.25rem;
   border-radius: 8px;
-  background: var(--ifm-background-color);
-  border: 1px solid var(--ifm-color-emphasis-200);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(163, 188, 196, 0.25); /* Silver Blue at low opacity */
   height: 100%;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.capCard:hover {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(163, 188, 196, 0.5);
 }
 
 .capIcon {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   line-height: 1;
-  margin-bottom: 0.25rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(0, 128, 188, 0.25); /* Blue tint */
+  border: 1px solid rgba(0, 128, 188, 0.35);
+  margin-bottom: 0.4rem;
 }
 
 .capTitle {
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--ifm-color-content);
+  color: #a3bcc4; /* ECGrid Silver Blue */
 }
 
 .capDesc {
   font-size: 0.875rem;
-  color: var(--ifm-color-emphasis-700);
+  color: rgba(255, 255, 255, 0.7);
   margin: 0;
   line-height: 1.55;
 }
@@ -240,6 +325,7 @@
    --------------------------------------------------------------- */
 .navSection {
   padding: 2.5rem 0;
+  border-top: 4px solid #a3bcc4; /* Silver Blue top border */
 }
 
 .navCardCol {
@@ -252,22 +338,23 @@
   gap: 0.3rem;
   padding: 1.25rem 1.5rem;
   border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 8px;
-  background: var(--ifm-color-emphasis-100);
+  border-top: 4px solid #014f6e; /* Teal top accent per card */
+  border-radius: 0 0 8px 8px;
+  background: var(--ifm-background-color);
   color: var(--ifm-color-content) !important;
   text-decoration: none !important;
   height: 100%;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: box-shadow 0.15s ease, border-top-color 0.15s ease;
 }
 
 .navCard:hover {
-  background: var(--ifm-color-emphasis-200);
-  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 16px rgba(35, 55, 70, 0.1);
+  border-top-color: #0080bc;
 }
 
 .navCard strong {
   font-size: 1rem;
-  color: var(--ifm-color-primary);
+  color: #014f6e; /* ECGrid Teal */
 }
 
 .navCard span {
@@ -276,17 +363,28 @@
 }
 
 /* ---------------------------------------------------------------
-   Quick links
+   Quick links — Dark Navy band
    --------------------------------------------------------------- */
 .quickSection {
-  background: var(--ifm-color-emphasis-100);
-  border-top: 1px solid var(--ifm-color-emphasis-200);
+  background: #233746; /* ECGrid Dark Navy */
   padding: 2.5rem 0;
+  position: relative;
+}
+
+.quickSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #b9bc10 0%, #999500 50%, #b9bc10 100%);
 }
 
 .quickHeading {
   font-size: 1.2rem !important;
   font-weight: 700;
+  color: white;
   margin-bottom: 1rem;
 }
 
@@ -299,45 +397,28 @@
 .quickLink {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--ifm-color-primary) !important;
+  color: #a3bcc4 !important; /* Silver Blue on Dark Navy */
   text-decoration: none !important;
   padding: 0.25rem 0;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.1s ease;
+  border-bottom: 1px solid rgba(163, 188, 196, 0.2);
+  transition: color 0.1s ease, border-color 0.1s ease;
 }
 
 .quickLink:hover {
-  border-bottom-color: var(--ifm-color-primary);
+  color: white !important;
+  border-bottom-color: #b9bc10; /* Yellow-Green on hover */
 }
 
 /* ---------------------------------------------------------------
    Responsive
    --------------------------------------------------------------- */
 @media screen and (max-width: 996px) {
-  .heroInner {
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-
-  .heroLogo {
-    flex: none;
-    justify-content: center;
-  }
-
   .heroLogoImg {
     max-width: 260px;
   }
 
   .heroSubtitle {
     max-width: 100%;
-  }
-
-  .heroButtons {
-    justify-content: center;
-  }
-
-  .heroBadge {
-    justify-content: center;
   }
 }
 

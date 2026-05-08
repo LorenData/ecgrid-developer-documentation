@@ -1,52 +1,58 @@
 // AI Attribution — Loren Data AI Use Policy §8.2
 // Tool:        Claude Code (Anthropic)
 // 2026-05-07: ECGrid branded homepage — replaces Docusaurus default - Greg Kolinski
+// 2026-05-08: Logo-forward hero, ECGrid palette accents, Roboto Condensed - Greg Kolinski
 
 import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 /* ------------------------------------------------------------------ */
-/* Hero                                                                  */
+/* Hero — logo as the focal point                                        */
 /* ------------------------------------------------------------------ */
 
 function Hero() {
+  const logoSrc = useBaseUrl('/img/ecgrid-network.svg');
   return (
     <header className={styles.hero}>
       <div className={clsx('container', styles.heroInner)}>
-        <div className={styles.heroText}>
-          <p className={styles.heroEyebrow}>ECGrid B2B Integration Platform</p>
-          <Heading as="h1" className={styles.heroTitle}>
-            API-first EDI.<br />Build without limits.
-          </Heading>
-          <p className={styles.heroSubtitle}>
-            Connect your application to the global ECGrid B2B network — provision mailboxes,
-            route any-to-any documents, and embed enterprise EDI directly into your platform.
-            Available as a JSON REST API and a full-featured SOAP API.
-          </p>
-          <div className={styles.heroButtons}>
-            <Link className="button button--primary button--lg" to="/docs/getting-started/platform-overview">
-              Get Started
-            </Link>
-            <Link className="button button--outline button--lg" to="/docs/rest-api/overview">
-              REST API Reference
-            </Link>
-            <Link className="button button--outline button--lg" to="/docs/soap-api/overview">
-              SOAP API Reference
-            </Link>
-          </div>
-          <p className={styles.heroBadge}>
-            <span className={styles.activePill}>REST API v2.6 — Active</span>
-            <span className={styles.legacyPill}>ECGridOS SOAP v4.1 — Established</span>
-          </p>
+        <div className={styles.heroLogoWrap}>
+          <img src={logoSrc} alt="ECGrid" className={styles.heroLogoImg} />
         </div>
-        <div className={styles.heroLogo}>
-          <img src="/img/ecgrid-network.svg" alt="ECGrid" className={styles.heroLogoImg} />
+        <p className={styles.heroEyebrow}>ECGrid B2B Integration Platform</p>
+
+        <Heading as="h1" className={styles.heroTitle}>
+          API-first EDI.<br />Build without limits.
+        </Heading>
+
+        <p className={styles.heroSubtitle}>
+          Connect your application to the global ECGrid B2B network — provision mailboxes,
+          route any-to-any documents, and embed enterprise EDI directly into your platform.
+          Available as a JSON REST API and a full-featured SOAP API.
+        </p>
+
+        <div className={styles.heroButtons}>
+          <Link className="button button--primary button--lg" to="/docs/getting-started/platform-overview">
+            Get Started
+          </Link>
+          <Link className="button button--outline button--lg" to="/docs/rest-api/overview">
+            REST API Reference
+          </Link>
+          <Link className="button button--outline button--lg" to="/docs/soap-api/overview">
+            SOAP API Reference
+          </Link>
         </div>
+
+        <p className={styles.heroBadge}>
+          <span className={styles.activePill}>REST API v2.6 — Active</span>
+          <span className={styles.legacyPill}>ECGridOS SOAP v4.1 — Established</span>
+        </p>
       </div>
+
     </header>
   );
 }
@@ -68,8 +74,13 @@ type ApiCardProps = {
 function ApiCard({ badge, badgeVariant, title, description, bullets, to, linkLabel }: ApiCardProps): ReactNode {
   return (
     <div className={clsx('col col--6', styles.cardCol)}>
-      <div className={styles.card}>
-        <span className={clsx(styles.badge, badgeVariant === 'legacy' && styles.badgeLegacy)}>{badge}</span>
+      <div className={clsx(
+        styles.card,
+        badgeVariant === 'active' ? styles.cardActive : styles.cardLegacy,
+      )}>
+        <span className={clsx(styles.badge, badgeVariant === 'legacy' && styles.badgeLegacy)}>
+          {badge}
+        </span>
         <Heading as="h3" className={styles.cardTitle}>{title}</Heading>
         <p className={styles.cardDesc}>{description}</p>
         <ul className={styles.cardBullets}>
@@ -227,7 +238,7 @@ export default function Home(): ReactNode {
           </div>
         </section>
 
-        {/* Platform capabilities */}
+        {/* Platform capabilities — Dark Navy panel */}
         <section className={styles.capSection}>
           <div className="container">
             <Heading as="h2" className={styles.sectionHeading}>Platform Capabilities</Heading>
@@ -249,7 +260,7 @@ export default function Home(): ReactNode {
           </div>
         </section>
 
-        {/* Quick links */}
+        {/* Quick links — Dark Navy band */}
         <section className={styles.quickSection}>
           <div className="container">
             <Heading as="h2" className={styles.quickHeading}>Quick Links</Heading>
