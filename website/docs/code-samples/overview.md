@@ -69,4 +69,4 @@ The double underscore (`__`) in the environment variable name is the .NET config
 
 If you are starting a new integration, use the REST samples. The SOAP samples are provided for teams maintaining or migrating existing SOAP-based integrations.
 
-See [REST vs SOAP](../guides/rest-vs-soap.md) for a full comparison.
+See [REST vs SOAP](../getting-started/rest-vs-soap.md) for a full comparison.

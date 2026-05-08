@@ -51,7 +51,7 @@ All REST API errors return a consistent JSON envelope with `success: false`.
 | API key authentication | `X-API-Key: <your-api-key>` |
 | JWT Bearer authentication | `Authorization: Bearer <token>` |
 
-See [Authentication & API Keys](../getting-started/authentication-api-keys) for how to obtain and use credentials.
+See [Authentication & API Keys](../getting-started/authentication) for how to obtain and use credentials.
 
 ---
 
@@ -134,7 +134,7 @@ catch (FaultException ex)
 
 ## See Also
 
-- [Authentication & API Keys](../getting-started/authentication-api-keys)
-- [Authentication & Session Management](../guides/authentication-session-management)
-- [Error Handling & Troubleshooting](../guides/error-handling-troubleshooting)
+- [Authentication & API Keys](../getting-started/authentication)
+- [Authentication & Session Management](../getting-started/authentication)
+- [Error Handling & Troubleshooting](../getting-started/error-handling-troubleshooting)
 - [ENUMs Reference](./enums) — `AuthLevel` enum for permission levels

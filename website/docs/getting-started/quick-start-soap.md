@@ -1,6 +1,6 @@
 ---
 title: Quick Start — SOAP API
-sidebar_position: 4
+sidebar_position: 7
 ---
 {/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Create SOAP API quick start page - Greg Kolinski
     2026-05-07: Rewrote to be language-agnostic with tabbed examples (C#, Java, Node.js, Python) - Greg Kolinski
@@ -286,6 +286,6 @@ To avoid constructing XML envelopes by hand, use a SOAP library that consumes th
 ## Next Steps
 
 - [SOAP API Reference](../soap-api/overview.md) — full method documentation
-- [SOAP Connecting Guide](../guides/connecting-via-soap.md) — binding options, error handling, proxy configuration
+- [SOAP Connecting Guide](./connecting-via-soap.md) — binding options, error handling, proxy configuration
 - [Quick Start — REST API](./quick-start-rest.md) — the modern REST alternative
-- [Migrating SOAP to REST](../guides/migrating-soap-to-rest.md) — step-by-step migration guide
+- [Migrating SOAP to REST](./migrating-soap-to-rest.md) — step-by-step migration guide

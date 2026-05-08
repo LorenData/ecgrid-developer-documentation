@@ -3,6 +3,7 @@
 // 2026-05-07: Initial ECGrid Developer Documentation Portal config - Greg Kolinski
 // 2026-05-08: Add Guides navbar item and footer link - Greg Kolinski
 // 2026-05-08: Switch to GitHub Pages default domain (lorendata.github.io) - Greg Kolinski
+// 2026-05-08: Fix footer Getting Started link; remove intro.md reference - Greg Kolinski
 
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
@@ -102,12 +103,6 @@ const config: Config = {
         },
         {
           type: "docSidebar",
-          sidebarId: "guidesSidebar",
-          position: "left",
-          label: "Guides",
-        },
-        {
-          type: "docSidebar",
           sidebarId: "restApiSidebar",
           position: "left",
           label: "REST API",
@@ -148,8 +143,7 @@ const config: Config = {
         {
           title: "Documentation",
           items: [
-            { label: "Getting Started", to: "/docs/intro" },
-            { label: "Guides", to: "/docs/guides/rest-vs-soap" },
+            { label: "Getting Started", to: "/docs/getting-started/platform-overview" },
             { label: "REST API", to: "/docs/rest-api/overview" },
             { label: "SOAP API", to: "/docs/soap-api/overview" },
             {

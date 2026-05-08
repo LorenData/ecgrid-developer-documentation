@@ -176,4 +176,4 @@ print(response.json())
 - [Refresh Token](./refresh-token.md) — extend a token before it expires
 - [Logout](./logout.md) — invalidate the current session
 - [Session](./session.md) — inspect the current authenticated session
-- [Authentication & Session Management](../../guides/authentication-session-management.md)
+- [Authentication & Session Management](../../getting-started/authentication.md)

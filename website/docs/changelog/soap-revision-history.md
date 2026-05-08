@@ -9,7 +9,7 @@ sidebar_position: 2
 Version history for the ECGridOS SOAP API. The current maintenance release is **v4.1**.
 
 :::caution Established API
-The SOAP API is in maintenance mode. No new features are planned. Only security patches and critical bug fixes will be applied. For new integrations, use the [ECGrid REST API](../rest-api/overview) instead. See the [migration guide](../guides/migrating-soap-to-rest) for assistance moving existing integrations.
+The SOAP API is in maintenance mode. No new features are planned. Only security patches and critical bug fixes will be applied. For new integrations, use the [ECGrid REST API](../rest-api/overview) instead. See the [migration guide](../getting-started/migrating-soap-to-rest) for assistance moving existing integrations.
 :::
 
 ---
@@ -83,7 +83,7 @@ The ECGrid REST API (v2.6) covers all functionality available in ECGridOS SOAP v
 | XML SOAP envelope | JSON over HTTPS |
 | WSDL-defined schema | OpenAPI 3.0 Swagger |
 
-See the [Migrating SOAP to REST](../guides/migrating-soap-to-rest) guide for a full method-to-endpoint mapping and C# migration examples.
+See the [Migrating SOAP to REST](../getting-started/migrating-soap-to-rest) guide for a full method-to-endpoint mapping and C# migration examples.
 
 ---
 
@@ -91,5 +91,5 @@ See the [Migrating SOAP to REST](../guides/migrating-soap-to-rest) guide for a f
 
 - [SOAP API Overview](../soap-api/overview)
 - [REST API Changelog](./rest-changelog)
-- [Migrating SOAP to REST](../guides/migrating-soap-to-rest)
-- [REST vs SOAP Guide](../guides/rest-vs-soap)
+- [Migrating SOAP to REST](../getting-started/migrating-soap-to-rest)
+- [REST vs SOAP Guide](../getting-started/rest-vs-soap)

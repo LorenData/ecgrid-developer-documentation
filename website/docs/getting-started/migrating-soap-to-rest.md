@@ -537,7 +537,7 @@ See [Error Handling & Troubleshooting](./error-handling-troubleshooting.md) for 
 ## Related
 
 - [REST vs SOAP — Choosing the Right API](./rest-vs-soap.md)
-- [Authentication & Session Management](./authentication-session-management.md)
+- [Authentication & Session Management](./authentication.md)
 - [Error Handling & Troubleshooting](./error-handling-troubleshooting.md)
 - [REST API Overview](../rest-api/overview.md)
 - [Common Operations — Poll Inbound Files](../common-operations/poll-inbound-files.md)

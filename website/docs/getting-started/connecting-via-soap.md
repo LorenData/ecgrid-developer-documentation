@@ -1,6 +1,6 @@
 ---
 title: Connecting via SOAP
-sidebar_position: 3
+sidebar_position: 4
 ---
 {/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Created connecting via SOAP guide - Greg Kolinski 
 | 2026-05-08: Add multi-language code tabs to SOAP connection options - Greg Kolinski
@@ -551,7 +551,7 @@ CoreWCF is best suited for migrating existing WCF code. For greenfield projects,
 ## Related
 
 - [REST vs SOAP — Choosing the Right API](./rest-vs-soap.md)
-- [Authentication & Session Management](./authentication-session-management.md)
+- [Authentication & Session Management](./authentication.md)
 - [SOAP API Overview](../soap-api/overview.md)
 - [Code Samples — SOAP HttpClient](../code-samples/soap-httpclient.md)
 - [Code Samples — SOAP SvcUtil](../code-samples/soap-svcutil.md)

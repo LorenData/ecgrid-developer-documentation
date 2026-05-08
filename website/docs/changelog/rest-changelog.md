@@ -67,7 +67,7 @@ v2.6 is the current production release of the ECGrid REST API. It provides 121 e
 
 ## Migration from SOAP
 
-If you are moving from the ECGridOS SOAP API (v4.1) to the REST API, see the [Migrating SOAP to REST](../guides/migrating-soap-to-rest) guide for a method-by-method mapping.
+If you are moving from the ECGridOS SOAP API (v4.1) to the REST API, see the [Migrating SOAP to REST](../getting-started/migrating-soap-to-rest) guide for a method-by-method mapping.
 
 ---
 

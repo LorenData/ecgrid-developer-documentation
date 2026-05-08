@@ -489,5 +489,5 @@ dotnet run
 - [SOAP Auth — Login](../soap-api/auth/login.md)
 - [SOAP Parcels — ParcelInBox](../soap-api/parcels/parcel-inbox.md)
 - [SOAP Parcels — ParcelDownload](../soap-api/parcels/parcel-download.md)
-- [Connecting via SOAP](../guides/connecting-via-soap.md)
+- [Connecting via SOAP](../getting-started/connecting-via-soap.md)
 - [SOAP SvcUtil Sample](./soap-svcutil.md)

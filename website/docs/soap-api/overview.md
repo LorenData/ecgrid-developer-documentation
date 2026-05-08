@@ -90,4 +90,4 @@ Use the [REST API](../rest-api/overview.md), which offers:
 - Standard HTTP status codes
 - 121 endpoints across 16 resource groups (v2.6)
 
-See the [REST vs SOAP guide](../guides/rest-vs-soap.md) for a full comparison.
+See the [REST vs SOAP guide](../getting-started/rest-vs-soap.md) for a full comparison.

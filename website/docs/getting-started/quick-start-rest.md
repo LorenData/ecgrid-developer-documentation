@@ -1,6 +1,6 @@
 ---
 title: Quick Start — REST API
-sidebar_position: 3
+sidebar_position: 6
 ---
 {/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Create REST API quick start page - Greg Kolinski */}
 {/* 2026-05-07: Rewrote with multi-language tabbed examples (cURL, C#, Java, Node.js, Python) - Greg Kolinski */}
@@ -14,7 +14,7 @@ This guide walks you through the most common ECGrid workflow — checking your i
 
 ## Prerequisites
 
-- An ECGrid API key (see [Authentication & API Keys](./authentication-api-keys.md))
+- An ECGrid API key (see [Authentication & API Keys](./authentication.md))
 - Base URL: `https://rest.ecgrid.io`
 
 ## Step 1 — Verify Connectivity
@@ -152,7 +152,7 @@ HEADERS = {'X-API-Key': os.environ['ECGRID_API_KEY']}
 </Tabs>
 
 :::tip Bearer JWT
-You can also authenticate with a short-lived JWT via `POST /v2/auth/login`. API Key auth is simpler for server-to-server workflows. See [Authentication & API Keys](./authentication-api-keys.md) for details.
+You can also authenticate with a short-lived JWT via `POST /v2/auth/login`. API Key auth is simpler for server-to-server workflows. See [Authentication & API Keys](./authentication.md) for details.
 :::
 
 ## Step 3 — Check Your Inbox
@@ -621,7 +621,7 @@ for parcel in parcels:
 
 ## Next Steps
 
-- [Authentication & API Keys](./authentication-api-keys.md) — manage credentials and auth methods
+- [Authentication & API Keys](./authentication.md) — manage credentials and auth methods
 - [REST API Reference](../rest-api/overview.md) — full endpoint documentation for all 121 endpoints
 - [Common Operations](../common-operations/overview.md) — end-to-end workflow guides
 - [Code Samples](../code-samples/overview.md) — complete .NET 10 sample projects

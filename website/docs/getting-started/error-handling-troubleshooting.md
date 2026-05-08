@@ -1,6 +1,6 @@
 ---
 title: Error Handling & Troubleshooting
-sidebar_position: 4
+sidebar_position: 8
 ---
 {/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Created error handling and troubleshooting guide - Greg Kolinski 
 | 2026-05-08: Add multi-language code tabs to error handling and retry examples - Greg Kolinski
@@ -640,5 +640,5 @@ Not `http://` — the service requires TLS.
 
 - [Error Codes](../appendix/error-codes.md)
 - [Enums — AuthLevel](../appendix/enums.md)
-- [Authentication & Session Management](./authentication-session-management.md)
+- [Authentication & Session Management](./authentication.md)
 - [Connecting via SOAP](./connecting-via-soap.md)

@@ -137,4 +137,4 @@ print(response.json())
 
 - [Get User](./get-user) — retrieve a specific user by ID
 - [Get API Key](./get-api-key) — retrieve the API key for a user
-- [Authentication](../../guides/authentication-session-management) — details on API key and JWT authentication
+- [Authentication](../../getting-started/authentication) — details on API key and JWT authentication

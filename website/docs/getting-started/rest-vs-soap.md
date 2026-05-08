@@ -1,6 +1,6 @@
 ---
 title: REST vs SOAP — Choosing the Right API
-sidebar_position: 1
+sidebar_position: 3
 ---
 {/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Created REST vs SOAP comparison guide - Greg Kolinski */}
 
@@ -84,7 +84,7 @@ var parcelList = await client.ParcelInBoxAsync(sessionID, mailboxID, ...);
 
 Sessions must be explicitly created (`Login()`) and destroyed (`Logout()`). They expire after inactivity.
 
-See [Authentication & Session Management](./authentication-session-management.md) for a full deep-dive.
+See [Authentication & Session Management](./authentication.md) for a full deep-dive.
 
 ## Migrating from SOAP to REST
 
@@ -92,7 +92,7 @@ If you have an existing SOAP integration and want to move to REST, see the [Migr
 
 ## Related
 
-- [Authentication & Session Management](./authentication-session-management.md)
+- [Authentication & Session Management](./authentication.md)
 - [Connecting via SOAP](./connecting-via-soap.md)
 - [Migrating from SOAP to REST](./migrating-soap-to-rest.md)
 - [REST API Overview](../rest-api/overview.md)

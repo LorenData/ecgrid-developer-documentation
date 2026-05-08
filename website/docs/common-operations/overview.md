@@ -49,7 +49,7 @@ Poll inbox  →  Download parcel  →  Confirm download  →  Process EDI
 | File bytes | Base64-encoded JSON field | Base64-encoded XML element |
 | Recommended for new work | Yes | No — maintenance mode only |
 
-See [REST vs. SOAP Guide](../guides/rest-vs-soap) for a full comparison.
+See [REST vs. SOAP Guide](../getting-started/rest-vs-soap) for a full comparison.
 
 ## Prerequisites
 

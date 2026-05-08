@@ -206,13 +206,13 @@ const navCards: NavCardProps[] = [
 const quickLinks = [
   { label: 'Quick Start — REST', to: '/docs/getting-started/quick-start-rest' },
   { label: 'Quick Start — SOAP', to: '/docs/getting-started/quick-start-soap' },
-  { label: 'Authentication & API Keys', to: '/docs/getting-started/authentication-api-keys' },
+  { label: 'Authentication & API Keys', to: '/docs/getting-started/authentication' },
   { label: 'Poll Inbound Files', to: '/docs/common-operations/poll-inbound-files' },
   { label: 'Upload EDI Files', to: '/docs/common-operations/upload-a-file' },
   { label: 'Onboard a Trading Partner', to: '/docs/common-operations/onboard-trading-partner' },
   { label: 'ENUMs Reference', to: '/docs/appendix/enums' },
   { label: 'Error Codes', to: '/docs/appendix/error-codes' },
-  { label: 'Migrate SOAP → REST', to: '/docs/guides/migrating-soap-to-rest' },
+  { label: 'Migrate SOAP → REST', to: '/docs/getting-started/migrating-soap-to-rest' },
   { label: 'Swagger UI ↗', href: 'https://rest.ecgrid.io/swagger/index.html' },
 ];
 

@@ -23,7 +23,7 @@ All endpoints (except `GET /v2/auth/version`) require authentication via one of 
 | API Key | `X-API-Key: <key>` | Recommended for server-to-server integrations |
 | Bearer JWT | `Authorization: Bearer <token>` | Obtained from `POST /v2/auth/login` |
 
-See [Authentication & Session Management](../guides/authentication-session-management.md) for full details.
+See [Authentication & Session Management](../getting-started/authentication.md) for full details.
 
 ## Request / Response Format
 
@@ -78,6 +78,6 @@ The full OpenAPI 3 spec is available at:
 ## See Also
 
 - [Quick Start — REST](../getting-started/quick-start-rest.md)
-- [REST vs SOAP](../guides/rest-vs-soap.md)
-- [Error Handling & Troubleshooting](../guides/error-handling-troubleshooting.md)
+- [REST vs SOAP](../getting-started/rest-vs-soap.md)
+- [Error Handling & Troubleshooting](../getting-started/error-handling-troubleshooting.md)
 - [Appendix — Error Codes](../appendix/error-codes.md)

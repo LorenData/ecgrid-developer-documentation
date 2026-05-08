@@ -131,4 +131,4 @@ print(response.json())
 
 - [Generate API Key](./generate-api-key) — rotate the user's API key in addition to revoking sessions
 - [Terminate User](./terminate-user) — permanently disable the account if the security concern is severe
-- [Authentication](../../guides/authentication-session-management) — details on JWT session lifecycle
+- [Authentication](../../getting-started/authentication) — details on JWT session lifecycle

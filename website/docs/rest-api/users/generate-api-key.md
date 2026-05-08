@@ -133,4 +133,4 @@ print(response.json())
 
 - [Get API Key](./get-api-key) — retrieve the current API key for a user without rotating it
 - [Reset Sessions](./reset-sessions) — invalidate JWT sessions without rotating the API key
-- [Authentication](../../guides/authentication-session-management) — how API keys are used in requests
+- [Authentication](../../getting-started/authentication) — how API keys are used in requests

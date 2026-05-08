@@ -3,7 +3,9 @@
     "allow": [
       "Bash(git config *)",
       "Bash(npm install *)",
-      "WebFetch(domain:os.ecgrid.io)"
+      "WebFetch(domain:os.ecgrid.io)",
+      "Bash(powershell -Command ' *)",
+      "Bash(npm run *)"
     ]
   }
 }

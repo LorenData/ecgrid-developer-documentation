@@ -130,4 +130,4 @@ print(response.json())
 
 - [Generate API Key](./generate-api-key) — generate a new API key, invalidating the current one
 - [Get Me](./get-me) — retrieve your own user context and confirm which key is active
-- [Authentication](../../guides/authentication-session-management) — how to use API keys in requests
+- [Authentication](../../getting-started/authentication) — how to use API keys in requests

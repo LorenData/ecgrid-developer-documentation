@@ -81,6 +81,6 @@ ECGrid routes any of the following standards without transformation:
 
 ## Next Steps
 
-- [Authentication & API Keys](./authentication-api-keys.md) — how to get credentials and authenticate
+- [Authentication & API Keys](./authentication.md) — how to get credentials and authenticate
 - [Quick Start — REST API](./quick-start-rest.md) — make your first REST call in minutes
 - [Quick Start — SOAP API](./quick-start-soap.md) — connect with the established SOAP API

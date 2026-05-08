@@ -1,45 +1,171 @@
 ---
-title: Authentication & Session Management
+title: Authentication & API Keys
 sidebar_position: 2
 ---
-{/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Created authentication and session management guide - Greg Kolinski 
-| 2026-05-08: Add multi-language code tabs to REST and SOAP auth examples - Greg Kolinski
-*/}
+{/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Create authentication and API keys page - Greg Kolinski
+    | 2026-05-07: Add multi-language code tabs (cURL, C#, Java, Node.js, Python) - Greg Kolinski
+    | 2026-05-08: Merge authentication-api-keys and authentication-session-management into one page - Greg Kolinski */}
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# Authentication & API Keys
 
-# Authentication & Session Management
-
-ECGrid supports two separate authentication models — one for the REST API and one for the SOAP API. This guide covers both in depth, including C# examples for each pattern.
+ECGrid supports two separate authentication models — one for the REST API and one for the SOAP API. This page covers both in depth, including credential types, session lifecycle, and code examples for each pattern.
 
 ## REST Authentication
 
 The REST API (v2.6) supports two credential types. You can use either within the same integration.
 
-### API Key (Recommended for Server-to-Server)
+### Method 1 — API Key (Recommended)
 
-An API key is a persistent credential that does not expire unless explicitly revoked. It is the best choice for automated, server-to-server workflows such as scheduled file polling or batch processing.
+An API key is a persistent credential tied to a specific ECGrid User account. It does not expire unless explicitly revoked and is the best choice for automated, server-to-server workflows such as scheduled file polling or batch processing.
 
 Pass the key in the `X-API-Key` request header on every call:
 
 ```http
-GET /v2/mailboxes/12345 HTTP/1.1
+GET /v2/parcels/inbox-list HTTP/1.1
 Host: rest.ecgrid.io
 X-API-Key: your-api-key-here
 ```
 
 :::tip
-API keys are long-lived and should be stored in environment variables or a secrets manager — never in source code. See `IConfiguration` usage in the C# examples below.
+API keys are long-lived. Store them in environment variables or a secrets manager — never in source code or client-side code. See `IConfiguration` usage in the C# examples below.
 :::
 
-To retrieve or generate your API key, use:
+**Obtaining an API key:**
 
-- `GET /v2/users/{userID}/api-key` — retrieve an existing key
-- `POST /v2/users/{userID}/generate-api-key` — generate a new key
+1. **ECGrid Portal** — Log in and navigate to your user profile to generate or retrieve your key.
+2. **REST API** — Call `GET /v2/users/key/{userID}` with an existing authenticated session. See [Get API Key](../rest-api/users/get-api-key.md).
 
-### Bearer JWT (Short-Lived Token)
+<Tabs groupId="lang">
+<TabItem value="curl" label="cURL">
+
+```bash
+# Pass X-API-Key on every request
+curl -X POST "https://rest.ecgrid.io/v2/parcels/pending-inbox-list" \
+  -H "X-API-Key: $ECGRID_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"mailboxId": 0}'
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+// Load the API key from configuration — never hardcode credentials
+// IHttpClientFactory is injected; do not use new HttpClient() in production code
+public class EcGridRestClient
+{
+    private readonly HttpClient _http;
+
+    public EcGridRestClient(IHttpClientFactory httpClientFactory, IConfiguration config)
+    {
+        _http = httpClientFactory.CreateClient("ecgrid");
+
+        var apiKey = config["ECGrid:ApiKey"]
+            ?? throw new InvalidOperationException("ECGrid:ApiKey is not configured.");
+
+        _http.DefaultRequestHeaders.Add("X-API-Key", apiKey);
+        _http.BaseAddress = new Uri("https://rest.ecgrid.io");
+    }
+
+    public async Task<HttpResponseMessage> GetAsync(string path)
+        => await _http.GetAsync(path);
+}
+```
+
+Register the named client in `Program.cs`:
+
+```csharp
+builder.Services.AddHttpClient("ecgrid", client =>
+{
+    client.BaseAddress = new Uri("https://rest.ecgrid.io");
+});
+```
+
+Set the key in `appsettings.json` (or override via environment variable):
+
+```json
+{
+  "ECGrid": {
+    "ApiKey": ""
+  }
+}
+```
+
+```bash
+# .NET environment variable override
+export ECGrid__ApiKey="your-api-key-here"
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+import java.net.URI;
+import java.net.http.*;
+
+// Apply the API key to every request via a shared client helper
+String apiKey = System.getenv("ECGRID_API_KEY");
+
+HttpClient client = HttpClient.newHttpClient();
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("https://rest.ecgrid.io/v2/parcels/pending-inbox-list"))
+    .header("X-API-Key", apiKey)
+    .header("Content-Type", "application/json")
+    .POST(HttpRequest.BodyPublishers.ofString("{\"mailboxId\": 0}"))
+    .build();
+
+HttpResponse<String> response = client.send(
+    request, HttpResponse.BodyHandlers.ofString());
+System.out.println(response.body());
+```
+
+</TabItem>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript
+const apiKey = process.env.ECGRID_API_KEY;
+
+const response = await fetch('https://rest.ecgrid.io/v2/parcels/pending-inbox-list', {
+  method: 'POST',
+  headers: {
+    'X-API-Key': apiKey,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ mailboxId: 0 }),
+});
+
+const data = await response.json();
+console.log(data);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import os, requests
+
+api_key = os.environ["ECGRID_API_KEY"]
+
+session = requests.Session()
+session.headers.update({"X-API-Key": api_key})
+
+response = session.post(
+    "https://rest.ecgrid.io/v2/parcels/pending-inbox-list",
+    json={"mailboxId": 0},
+)
+response.raise_for_status()
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### Method 2 — Bearer JWT (Short-Lived Token)
 
 A Bearer JWT is issued in exchange for credentials via `POST /v2/auth/login`. Tokens are short-lived and must be refreshed. This pattern is appropriate for user-facing flows where you need a time-bounded credential.
 
@@ -72,7 +198,7 @@ Response:
 **Step 2 — Use the token in subsequent requests:**
 
 ```http
-GET /v2/mailboxes/12345 HTTP/1.1
+GET /v2/parcels/inbox-list HTTP/1.1
 Host: rest.ecgrid.io
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
@@ -107,119 +233,25 @@ Host: rest.ecgrid.io
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
 
-### REST C# Example — API Key
-
 <Tabs groupId="lang">
 <TabItem value="curl" label="cURL">
 
 ```bash
-# API key in X-API-Key header — set once, reuse on every request
-curl -s \
-  -H "X-API-Key: $ECGRID_API_KEY" \
-  https://rest.ecgrid.io/v2/mailboxes/12345 | jq .
-```
-
-</TabItem>
-<TabItem value="csharp" label="C#" default>
-
-```csharp
-// .NET 10 — IHttpClientFactory with API key loaded from IConfiguration
-// API key is never hardcoded; it is read from environment or appsettings.json
-
-using Microsoft.Extensions.Configuration;
-using System.Net.Http.Json;
-
-var config = new ConfigurationBuilder()
-    .AddEnvironmentVariables()
-    .AddJsonFile("appsettings.json", optional: true)
-    .Build();
-
-var apiKey = config["ECGrid:ApiKey"]
-    ?? throw new InvalidOperationException("ECGrid:ApiKey is not configured.");
-
-// In a real app, inject IHttpClientFactory via DI instead
-var factory = /* injected IHttpClientFactory */;
-var http = factory.CreateClient("ECGrid");
-http.DefaultRequestHeaders.Add("X-API-Key", apiKey);
-http.BaseAddress = new Uri("https://rest.ecgrid.io");
-
-var mailbox = await http.GetFromJsonAsync<ApiResponse<MailboxInfo>>("/v2/mailboxes/12345");
-```
-
-</TabItem>
-<TabItem value="java" label="Java">
-
-```java
-// Java 11+ — X-API-Key header on every request
-import java.net.URI;
-import java.net.http.*;
-import java.net.http.HttpResponse.BodyHandlers;
-
-var client = HttpClient.newHttpClient();
-String apiKey = System.getenv("ECGRID_API_KEY");
-
-var request = HttpRequest.newBuilder()
-    .uri(URI.create("https://rest.ecgrid.io/v2/mailboxes/12345"))
-    .header("X-API-Key", apiKey)
-    .GET()
-    .build();
-
-var response = client.send(request, BodyHandlers.ofString());
-System.out.println(response.body());
-```
-
-</TabItem>
-<TabItem value="nodejs" label="Node.js">
-
-```javascript
-// Node.js 18+ — X-API-Key header on every request
-const apiKey = process.env.ECGRID_API_KEY;
-
-const response = await fetch('https://rest.ecgrid.io/v2/mailboxes/12345', {
-  headers: { 'X-API-Key': apiKey }
-});
-
-const data = await response.json();
-console.log(data);
-```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-import os, requests
-
-api_key = os.environ["ECGRID_API_KEY"]
-session = requests.Session()
-session.headers.update({"X-API-Key": api_key})
-
-resp = session.get("https://rest.ecgrid.io/v2/mailboxes/12345")
-resp.raise_for_status()
-print(resp.json())
-```
-
-</TabItem>
-</Tabs>
-
-### REST C# Example — Bearer JWT
-
-<Tabs groupId="lang">
-<TabItem value="curl" label="cURL">
-
-```bash
-# Step 1 — login to obtain a Bearer token
-TOKEN=$(curl -s -X POST https://rest.ecgrid.io/v2/auth/login \
+# Step 1 — obtain a token
+TOKEN=$(curl -s -X POST "https://rest.ecgrid.io/v2/auth/login" \
   -H "Content-Type: application/json" \
   -d '{"email":"user@example.com","password":"YourPassword1!"}' \
   | jq -r '.data.token')
 
-# Step 2 — use the token in subsequent requests
-curl -s -H "Authorization: Bearer $TOKEN" \
-  -X POST https://rest.ecgrid.io/v2/auth/session | jq .
+# Step 2 — use the token on subsequent calls
+curl -X POST "https://rest.ecgrid.io/v2/parcels/pending-inbox-list" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"mailboxId": 0}'
 ```
 
 </TabItem>
-<TabItem value="csharp" label="C#" default>
+<TabItem value="csharp" label="C#">
 
 ```csharp
 // .NET 10 — obtain a JWT, use it, then refresh
@@ -254,7 +286,6 @@ var session = await http.PostAsync("/v2/auth/session", null);
 <TabItem value="java" label="Java">
 
 ```java
-// Java 11+ — login then use Bearer token
 import java.net.URI;
 import java.net.http.*;
 import java.net.http.HttpRequest.BodyPublishers;
@@ -288,7 +319,6 @@ System.out.println(resp.body());
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript
-// Node.js 18+ — login then use Bearer token
 // Step 1 — login
 const loginResp = await fetch('https://rest.ecgrid.io/v2/auth/login', {
   method: 'POST',
@@ -313,7 +343,6 @@ console.log(await resp.json());
 import requests
 
 session = requests.Session()
-session.headers.update({"Content-Type": "application/json"})
 
 # Step 1 — login
 login = session.post(
@@ -323,7 +352,7 @@ login = session.post(
 login.raise_for_status()
 token = login.json()["data"]["token"]
 
-# Step 2 — use the token
+# Step 2 — use the token on subsequent calls
 session.headers.update({"Authorization": f"Bearer {token}"})
 resp = session.post("https://rest.ecgrid.io/v2/auth/session")
 print(resp.json())
@@ -336,7 +365,7 @@ print(resp.json())
 
 ## SOAP Authentication
 
-The SOAP API uses a stateful session model. Every method call requires a `SessionID` string obtained from `Login()`. Your API Key can be use in place of the `SessionID` for automated, server-to-server workflows. You do not need to `Login()` if you use your API Key you can make the calls dircetly.
+The SOAP API uses a stateful session model. Every method call requires a `SessionID` string obtained from `Login()`. Your API Key can be used in place of the `SessionID` for automated, server-to-server workflows — you do not need to call `Login()` when using your API Key directly.
 
 ### Login
 
@@ -350,7 +379,7 @@ string sessionID = await client.LoginAsync(email, password);
 // sessionID is now valid for subsequent calls
 ```
 
-The `SessionID` is a short alphanumeric string. Pass it as the first argument to every subsequent method:
+Pass the `SessionID` as the first argument to every subsequent method:
 
 ```csharp
 var parcelList = await client.ParcelInBoxAsync(sessionID, mailboxID, beginDate, endDate);
@@ -361,19 +390,19 @@ var networkInfo = await client.NetworkInfoAsync(sessionID, networkID);
 
 SOAP sessions expire after a period of inactivity. For long-running processes, either:
 
-- Reuse a persistent API key (available via `UserGetAPIKeyAsync()`)
-- Re-login if a session-expired SOAP fault is received
+- Use a persistent API key (available via `UserGetAPIKeyAsync()`)
+- Re-login when a session-expired SOAP fault is received
 
 ### SessionInfo and SessionLog
 
-You can inspect the current session with `SessionInfo()`:
+Inspect the current session with `SessionInfo()`:
 
 ```csharp
 var info = await client.SessionInfoAsync(sessionID);
 // Returns user, mailbox, network, auth level, and expiry time
 ```
 
-Review recent session activity with `SessionLog()`:
+Review recent activity with `SessionLog()`:
 
 ```csharp
 var log = await client.SessionLogAsync(sessionID, beginDate, endDate);
@@ -381,16 +410,16 @@ var log = await client.SessionLogAsync(sessionID, beginDate, endDate);
 
 ### Logout
 
-Always call `Logout()` when the session is no longer needed to release server-side resources:
+Always call `Logout()` when the session is no longer needed:
 
 ```csharp
 await client.LogoutAsync(sessionID);
 ```
 
-### SOAP C# Example — Full Session Lifecycle
+### SOAP Full Session Lifecycle
 
 <Tabs groupId="lang">
-<TabItem value="csharp" label="C#" default>
+<TabItem value="csharp" label="C#">
 
 ```csharp
 // .NET 10 — dotnet-svcutil generated proxy, full session lifecycle
@@ -420,7 +449,6 @@ finally
 <TabItem value="java" label="Java">
 
 ```java
-// Java 11+ — SOAP Login → MailboxInfo → Logout
 import java.net.URI;
 import java.net.http.*;
 import java.net.http.HttpRequest.BodyPublishers;
@@ -448,11 +476,12 @@ var loginResp = http.send(HttpRequest.newBuilder()
 // Extract sessionId from loginResp.body() using an XML parser
 String sessionId = "...extracted...";
 
-// Use sessionId for subsequent calls (e.g., MailboxInfo), then Logout
+// Use sessionId for subsequent calls, then Logout
 String logoutEnv = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
     + "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ecg=\""
     + ns + "\">"
-    + "<soap:Body><ecg:Logout><ecg:SessionID>" + sessionId + "</ecg:SessionID></ecg:Logout></soap:Body></soap:Envelope>";
+    + "<soap:Body><ecg:Logout><ecg:SessionID>" + sessionId
+    + "</ecg:SessionID></ecg:Logout></soap:Body></soap:Envelope>";
 
 http.send(HttpRequest.newBuilder()
     .uri(URI.create(endpoint))
@@ -465,7 +494,6 @@ http.send(HttpRequest.newBuilder()
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript
-// Node.js 18+ — SOAP Login → MailboxInfo → Logout
 const endpoint = 'https://os.ecgrid.io/v4.1/prod/ECGridOS.asmx';
 const ns = 'http://www.ecgridos.net/';
 
@@ -482,13 +510,11 @@ async function soapCall(action, body) {
   return r.text();
 }
 
-// Login — extract SessionID from the XML response
 const loginXml = await soapCall('Login',
   '<ecg:Login><ecg:Email>user@example.com</ecg:Email><ecg:Password>YourPassword1!</ecg:Password></ecg:Login>');
 
 const sessionId = '...extracted from loginXml...';
 
-// Use sessionId for subsequent calls, then Logout
 await soapCall('Logout', `<ecg:Logout><ecg:SessionID>${sessionId}</ecg:SessionID></ecg:Logout>`);
 ```
 
@@ -496,7 +522,6 @@ await soapCall('Logout', `<ecg:Logout><ecg:SessionID>${sessionId}</ecg:SessionID
 <TabItem value="python" label="Python">
 
 ```python
-# Python — SOAP Login → MailboxInfo → Logout
 import requests
 
 endpoint = "https://os.ecgrid.io/v4.1/prod/ECGridOS.asmx"
@@ -514,18 +539,28 @@ def soap_call(action, body):
         "SOAPAction": f'"{ns}{action}"'
     })
 
-# Login — extract session_id from XML response
 login_resp = soap_call("Login",
     "<ecg:Login><ecg:Email>user@example.com</ecg:Email>"
     "<ecg:Password>YourPassword1!</ecg:Password></ecg:Login>")
 session_id = "...extracted from login_resp.text..."
 
-# Use session_id for subsequent calls, then Logout
 soap_call("Logout", f"<ecg:Logout><ecg:SessionID>{session_id}</ecg:SessionID></ecg:Logout>")
 ```
 
 </TabItem>
 </Tabs>
+
+---
+
+## Password Requirements
+
+All ECGrid passwords must satisfy:
+
+```
+^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).+$
+```
+
+At least one lowercase letter, one uppercase letter, one digit, and one special character. No maximum length.
 
 ---
 
@@ -539,15 +574,23 @@ soap_call("Logout", f"<ecg:Logout><ecg:SessionID>{session_id}</ecg:SessionID></e
 | Existing SOAP integration | SOAP SessionID — minimize changes until migration |
 | Migrating SOAP to REST | Swap `Login()` / `SessionID` for `X-API-Key` header |
 
-:::note Password Requirements
-Both APIs enforce the same password pattern: at least one uppercase letter, one lowercase letter, one digit, and one special character.
+## Environment Variable Reference
+
+| Variable | Description |
+|---|---|
+| `ECGrid__ApiKey` | API key for `X-API-Key` header authentication |
+| `ECGrid__Email` | User email for Bearer JWT or SOAP login |
+| `ECGrid__Password` | User password for Bearer JWT or SOAP login |
+
+:::note
+The double-underscore (`__`) is the standard .NET environment variable delimiter for nested configuration keys (equivalent to `ECGrid:ApiKey` in JSON).
 :::
 
-## Related
+## See Also
 
-- [REST vs SOAP — Choosing the Right API](./rest-vs-soap.md)
-- [REST Auth — Login](../rest-api/auth/login.md)
-- [REST Auth — Refresh Token](../rest-api/auth/refresh-token.md)
-- [REST Auth — Session](../rest-api/auth/session.md)
-- [SOAP Auth — Login](../soap-api/auth/login.md)
-- [SOAP Auth — Session Info](../soap-api/auth/session-info.md)
+- [Login](../rest-api/auth/login.md) — `POST /v2/auth/login`
+- [Refresh Token](../rest-api/auth/refresh-token.md) — extend a Bearer session
+- [Get API Key](../rest-api/users/get-api-key.md) — retrieve your API key via REST
+- [Generate API Key](../rest-api/users/generate-api-key.md) — rotate your API key
+- [SOAP Auth — Login](../soap-api/auth/login.md) — `Login()` / `Logout()` for SOAP
+- [REST vs SOAP](./rest-vs-soap.md) — choosing the right API

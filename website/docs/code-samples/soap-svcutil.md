@@ -185,5 +185,5 @@ See [SOAP HttpClient Sample](./soap-httpclient.md) for the manual approach.
 - [SOAP Auth — Login](../soap-api/auth/login.md)
 - [SOAP Parcels — ParcelInBox](../soap-api/parcels/parcel-inbox.md)
 - [SOAP Parcels — ParcelDownload](../soap-api/parcels/parcel-download.md)
-- [Connecting via SOAP](../guides/connecting-via-soap.md)
-- [Migrating SOAP to REST](../guides/migrating-soap-to-rest.md)
+- [Connecting via SOAP](../getting-started/connecting-via-soap.md)
+- [Migrating SOAP to REST](../getting-started/migrating-soap-to-rest.md)
