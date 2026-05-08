@@ -1,0 +1,65 @@
+# AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Initial .gitignore for Node.js/Docusaurus, .NET, and secrets - Greg Kolinski
+
+# ---------------------------------------------------------------
+# Node.js / Docusaurus
+# ---------------------------------------------------------------
+node_modules/
+.docusaurus/
+build/
+dist/
+.cache/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---------------------------------------------------------------
+# Generated OpenAPI / plugin output
+# ---------------------------------------------------------------
+website/docs/rest-api/generated/
+
+# ---------------------------------------------------------------
+# Environment files
+# ---------------------------------------------------------------
+.env
+.env.local
+.env.*.local
+
+# ---------------------------------------------------------------
+# .NET build output
+# ---------------------------------------------------------------
+bin/
+obj/
+
+# ---------------------------------------------------------------
+# Visual Studio / Rider IDE artifacts
+# ---------------------------------------------------------------
+*.user
+*.suo
+.vs/
+.vscode/
+*.DotSettings.user
+TestResults/
+
+# ---------------------------------------------------------------
+# Secrets and credentials (per CLAUDE.md security guardrails)
+# ---------------------------------------------------------------
+secrets.json
+appsettings.secrets.json
+*.pfx
+*.pem
+*.key
+*.p12
+.azure/
+local.settings.json
+
+# ---------------------------------------------------------------
+# macOS
+# ---------------------------------------------------------------
+.DS_Store
+
+# ---------------------------------------------------------------
+# Windows
+# ---------------------------------------------------------------
+Thumbs.db
+desktop.ini

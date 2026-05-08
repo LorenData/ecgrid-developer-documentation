@@ -1,0 +1,189 @@
+---
+title: Event List
+sidebar_position: 5
+---
+{/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Initial creation of event-list REST API doc - Greg Kolinski
+    2026-05-07: Add multi-language code tabs (cURL, C#, Java, Node.js, Python) - Greg Kolinski */}
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Event List
+
+Retrieve a paginated list of callback events for a mailbox within a specified date range and event type filter.
+
+## Endpoint
+
+```http
+POST /v2/callbacks/event-list
+```
+
+## Request Body
+
+| Field | Type | Required | Constraints | Description |
+|---|---|---|---|---|
+| `mailboxId` | int | No | — | Filter events to a specific mailbox. |
+| `event` | Objects | No | See ENUMs | Filter by event type. Omit to return all event types. |
+| `beginDate` | datetime | No | ISO 8601 | Start of the date range to query. |
+| `endDate` | datetime | No | ISO 8601 | End of the date range to query. |
+| `pageNo` | int | No | Minimum: 1 | Page number for paginated results. Defaults to 1. |
+| `recordsPerPage` | int | No | Maximum: 500 | Number of records per page. Defaults to 100. |
+
+```json
+{
+  "mailboxId": 12345,
+  "event": "Parcel",
+  "beginDate": "2026-05-01T00:00:00Z",
+  "endDate": "2026-05-07T23:59:59Z",
+  "pageNo": 1,
+  "recordsPerPage": 100
+}
+```
+
+## Response
+
+Returns a paginated array of callback event records matching the query criteria.
+
+```json
+{
+  "success": true,
+  "data": {
+    "totalRecords": 12,
+    "pageNo": 1,
+    "recordsPerPage": 100,
+    "events": [
+      {
+        "callbackEventId": 88001,
+        "callbackId": 7001,
+        "event": "Parcel",
+        "mailboxId": 12345,
+        "objectId": 5550001,
+        "status": "Active",
+        "created": "2026-05-03T08:22:00Z",
+        "delivered": "2026-05-03T08:22:05Z",
+        "httpStatus": 200
+      }
+    ]
+  }
+}
+```
+
+## ENUMs
+
+### Objects
+
+See [Enums Reference](../../appendix/enums) for the complete `Objects` ENUM.
+
+## Code Examples
+
+<Tabs groupId="lang">
+<TabItem value="curl" label="cURL">
+
+```bash
+curl -X POST "https://rest.ecgrid.io/v2/callbacks/event-list" \
+  -H "X-API-Key: $ECGRID_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ "mailboxId": 12345, "event": "Parcel", "beginDate": "2026-05-01T00:00:00Z", "endDate": "2026-05-07T23:59:59Z", "pageNo": 1, "recordsPerPage": 100 }'
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+// .NET 10 — list callback events for a mailbox filtered by type and date
+using var client = httpClientFactory.CreateClient("ECGrid");
+
+var requestBody = new
+{
+    mailboxId = 12345,
+    @event = "Parcel",
+    beginDate = DateTime.UtcNow.AddDays(-7),
+    endDate = DateTime.UtcNow,
+    pageNo = 1,
+    recordsPerPage = 100
+};
+
+var response = await client.PostAsJsonAsync("/v2/callbacks/event-list", requestBody);
+response.EnsureSuccessStatusCode();
+
+var result = await response.Content.ReadFromJsonAsync<ApiResponse<PagedResult<CallbackEventInfo>>>();
+Console.WriteLine($"Found {result.Data.TotalRecords} callback events.");
+foreach (var evt in result.Data.Events)
+{
+    Console.WriteLine($"  Event {evt.CallbackEventId}: {evt.Event} | HTTP {evt.HttpStatus} | {evt.Created:u}");
+}
+```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+import java.net.URI;
+import java.net.http.*;
+
+String apiKey = System.getenv("ECGRID_API_KEY");
+
+String body = "{ \"mailboxId\": 12345, \"event\": \"Parcel\", \"beginDate\": \"2026-05-01T00:00:00Z\", \"endDate\": \"2026-05-07T23:59:59Z\", \"pageNo\": 1, \"recordsPerPage\": 100 }";
+
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("https://rest.ecgrid.io/v2/callbacks/event-list"))
+    .header("X-API-Key", apiKey)
+    .header("Content-Type", "application/json")
+    .POST(HttpRequest.BodyPublishers.ofString(body))
+    .build();
+
+HttpClient client = HttpClient.newHttpClient();
+HttpResponse<String> response = client.send(
+    request, HttpResponse.BodyHandlers.ofString());
+
+System.out.println(response.body());
+```
+
+</TabItem>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript
+const apiKey = process.env.ECGRID_API_KEY;
+const url = 'https://rest.ecgrid.io/v2/callbacks/event-list';
+
+const response = await fetch(url, {
+  method: 'POST',
+  headers: {
+    'X-API-Key': apiKey,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ "mailboxId": 12345, "event": "Parcel", "beginDate": "2026-05-01T00:00:00Z", "endDate": "2026-05-07T23:59:59Z", "pageNo": 1, "recordsPerPage": 100 }),
+});
+
+const data = await response.json();
+console.log(data);
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import os, requests
+
+api_key = os.environ["ECGRID_API_KEY"]
+headers = {"X-API-Key": api_key}
+url = "https://rest.ecgrid.io/v2/callbacks/event-list"
+
+response = requests.post(
+    url,
+    json={ "mailboxId": 12345, "event": "Parcel", "beginDate": "2026-05-01T00:00:00Z", "endDate": "2026-05-07T23:59:59Z", "pageNo": 1, "recordsPerPage": 100 },
+    headers=headers,
+)
+
+response.raise_for_status()
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## See Also
+
+- [Get Event by ID](./get-event-by-id)
+- [Queue List](./queue-list)
+- [Create Callback](./create-callback)

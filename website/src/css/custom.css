@@ -1,0 +1,65 @@
+/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: ECGrid brand color overrides replacing Docusaurus defaults - Greg Kolinski */
+
+/**
+ * ECGrid Developer Documentation Portal — global CSS overrides.
+ *
+ * Infima (Docusaurus default CSS framework) variables are overridden here
+ * to apply the Loren Data / ECGrid brand palette.
+ *
+ * ECGrid brand color palette:
+ *   Primary:   #005B99  (ECGrid blue)
+ *   Secondary: #00AEEF  (ECGrid light blue)
+ *   Accent:    #F26522  (Loren Data orange)
+ */
+
+/* ---------------------------------------------------------------
+   Root (light mode) variables
+   --------------------------------------------------------------- */
+:root {
+  --ifm-color-primary: #005B99;
+  --ifm-color-primary-dark: #004f87;
+  --ifm-color-primary-darker: #004a7f;
+  --ifm-color-primary-darkest: #003d6a;
+  --ifm-color-primary-light: #0067ad;
+  --ifm-color-primary-lighter: #006cb5;
+  --ifm-color-primary-lightest: #0079ca;
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 91, 153, 0.1);
+
+  /* ECGrid accent — used for callouts, badges, and highlight elements */
+  --ecgrid-accent: #F26522;
+}
+
+/* ---------------------------------------------------------------
+   Dark mode variable overrides
+   Use the lighter secondary blue (#00AEEF) as the primary hue so
+   links and interactive elements remain legible on dark backgrounds.
+   --------------------------------------------------------------- */
+html[data-theme='dark'] {
+  --ifm-color-primary: #00AEEF;
+  --ifm-color-primary-dark: #009dd8;
+  --ifm-color-primary-darker: #0095ce;
+  --ifm-color-primary-darkest: #007aab;
+  --ifm-color-primary-light: #0fbff6;
+  --ifm-color-primary-lighter: #19c2f7;
+  --ifm-color-primary-lightest: #38cbf8;
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 174, 239, 0.1);
+}
+
+/* ---------------------------------------------------------------
+   Navbar — add a subtle shadow so it visually separates from page
+   content, especially on white/light backgrounds.
+   --------------------------------------------------------------- */
+.navbar {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------------------------------------------------------------
+   Code blocks — slightly rounded corners to soften the default
+   sharp edges and improve visual consistency with the card style.
+   --------------------------------------------------------------- */
+.prism-code {
+  border-radius: 6px;
+}

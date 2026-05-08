@@ -1,0 +1,8 @@
+{
+  "label": "SOAP API",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "ECGridOS SOAP API v4.1 — legacy API in maintenance mode."
+  }
+}

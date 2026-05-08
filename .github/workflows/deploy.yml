@@ -1,0 +1,80 @@
+# AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: GitHub Actions deploy workflow for Docusaurus site to gh-pages - Greg Kolinski
+
+name: Deploy ECGrid Developer Portal to GitHub Pages
+
+on:
+  # Deploy on every push to the main branch
+  push:
+    branches:
+      - main
+
+  # Allow a manual trigger from the Actions tab
+  workflow_dispatch:
+
+# Grant write access so peaceiris/actions-gh-pages can push to gh-pages
+permissions:
+  contents: write
+
+jobs:
+  # ------------------------------------------------------------------
+  # deploy — Build the Docusaurus site and publish to GitHub Pages.
+  # Runs only on push/dispatch to main (not on pull_request events).
+  # ------------------------------------------------------------------
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install dependencies
+        working-directory: website
+        run: npm ci
+
+      - name: Build Docusaurus site
+        working-directory: website
+        run: npm run build
+
+      - name: Deploy to GitHub Pages (gh-pages branch)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./website/build
+
+  # ------------------------------------------------------------------
+  # build-check — Verify that pull requests targeting main build
+  # cleanly before they are eligible to merge. No deployment occurs.
+  # ------------------------------------------------------------------
+  build-check:
+    name: PR Build Check
+    runs-on: ubuntu-latest
+
+    # Only run this job for pull_request events targeting main
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install dependencies
+        working-directory: website
+        run: npm ci
+
+      - name: Build Docusaurus site
+        working-directory: website
+        run: npm run build
