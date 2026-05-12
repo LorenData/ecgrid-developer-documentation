@@ -4,6 +4,8 @@
 // 2026-05-08: Add Guides navbar item and footer link - Greg Kolinski
 // 2026-05-08: Switch to GitHub Pages default domain (lorendata.github.io) - Greg Kolinski
 // 2026-05-08: Fix footer Getting Started link; remove intro.md reference - Greg Kolinski
+// 2026-05-12: Add Transformation API navbar link and footer Live Reference - Greg Kolinski
+// 2026-05-12: Add Catalog API navbar link and footer Live Reference - Greg Kolinski
 
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
@@ -125,11 +127,16 @@ const config: Config = {
           position: "left",
           label: "Code Samples",
         },
-        {
-          href: "https://rest.ecgrid.io/swagger/index.html",
-          label: "Swagger UI",
-          position: "right",
-        },
+          {
+              href: "https://simplify.ecgrid.com/swagger/index.html",
+              label: "Transformation API",
+              position: "left",
+          },
+          {
+              href: "https://globalproductaccess.com/swagger/index.html",
+              label: "Data Sync and Catalog API",
+              position: "left",
+          },
         {
           href: "https://github.com/LorenData/ecgrid-developer-documention",
           label: "GitHub",
@@ -155,14 +162,22 @@ const config: Config = {
         },
         {
           title: "Live References",
-          items: [
+            items: [
+                {
+                    label: "SOAP Web Service",
+                    href: "https://os.ecgrid.io/v4.1/prod/ECGridOS.asmx",
+                },
             {
-              label: "Swagger UI",
+              label: "REST Swagger UI",
               href: "https://rest.ecgrid.io/swagger/index.html",
             },
             {
-              label: "SOAP Service",
-              href: "https://os.ecgrid.io/v4.1/prod/ECGridOS.asmx",
+              label: "Transformation Swagger UI",
+              href: "https://simplify.ecgrid.com/swagger/index.html",
+            },
+            {
+                label: "Data Sync and Catalog Swagger UI",
+              href: "https://globalproductaccess.com/swagger/index.html",
             },
           ],
         },

@@ -2,6 +2,8 @@
 // Tool:        Claude Code (Anthropic)
 // 2026-05-07: ECGrid branded homepage — replaces Docusaurus default - Greg Kolinski
 // 2026-05-08: Logo-forward hero, ECGrid palette accents, Roboto Condensed - Greg Kolinski
+// 2026-05-12: Add Transformation API card, hero badge/button, quick link - Greg Kolinski
+// 2026-05-12: Add Catalog API card, hero badge/button, quick link - Greg Kolinski
 
 import type { ReactNode } from 'react';
 import clsx from 'clsx';
@@ -31,8 +33,8 @@ function Hero() {
 
         <p className={styles.heroSubtitle}>
           Connect your application to the global ECGrid B2B network — provision mailboxes,
-          route any-to-any documents, and embed enterprise EDI directly into your platform.
-          Available as a JSON REST API and a full-featured SOAP API.
+          route any-to-any documents, transform and map EDI between standards, and embed
+          enterprise integration directly into your platform.
         </p>
 
         <div className={styles.heroButtons}>
@@ -45,11 +47,19 @@ function Hero() {
           <Link className="button button--outline button--lg" to="/docs/soap-api/overview">
             SOAP API Reference
           </Link>
+          <a className="button button--outline button--lg" href="https://simplify.ecgrid.com/swagger/index.html" target="_blank" rel="noopener noreferrer">
+            Transformation API
+          </a>
+          <a className="button button--outline button--lg" href="https://globalproductaccess.com/swagger/index.html" target="_blank" rel="noopener noreferrer">
+            Data Sync & Catalog API
+          </a>
         </div>
 
         <p className={styles.heroBadge}>
-          <span className={styles.activePill}>REST API v2.6 — Active</span>
-          <span className={styles.legacyPill}>ECGridOS SOAP v4.1 — Established</span>
+          <span className={styles.restPill}>REST API v2.6 — Active</span>
+          <span className={styles.soapPill}>ECGridOS SOAP v4.1 — Established</span>
+          <span className={styles.transformPill}>Simplify v1 — Active</span>
+          <span className={styles.catalogPill}>Catalog v1 — New</span>
         </p>
       </div>
 
@@ -63,22 +73,32 @@ function Hero() {
 
 type ApiCardProps = {
   badge: string;
-  badgeVariant: 'active' | 'legacy';
+  badgeVariant: 'active' | 'legacy' | 'new' | 'catalog';
   title: string;
   description: string;
   bullets: string[];
-  to: string;
+  to?: string;
+  href?: string;
   linkLabel: string;
 };
 
-function ApiCard({ badge, badgeVariant, title, description, bullets, to, linkLabel }: ApiCardProps): ReactNode {
+function ApiCard({ badge, badgeVariant, title, description, bullets, to, href, linkLabel }: ApiCardProps): ReactNode {
+  const cardVariantClass =
+    badgeVariant === 'active'  ? styles.cardActive :
+    badgeVariant === 'new'     ? styles.cardNew :
+    badgeVariant === 'catalog' ? styles.cardCatalog :
+    styles.cardLegacy;
+
+  const badgeVariantClass =
+    badgeVariant === 'legacy'  ? styles.badgeLegacy :
+    badgeVariant === 'new'     ? styles.badgeNew :
+    badgeVariant === 'catalog' ? styles.badgeCatalog :
+    undefined;
+
   return (
-    <div className={clsx('col col--6', styles.cardCol)}>
-      <div className={clsx(
-        styles.card,
-        badgeVariant === 'active' ? styles.cardActive : styles.cardLegacy,
-      )}>
-        <span className={clsx(styles.badge, badgeVariant === 'legacy' && styles.badgeLegacy)}>
+    <div className={clsx('col col--3', styles.cardCol)}>
+      <div className={clsx(styles.card, cardVariantClass)}>
+        <span className={clsx(styles.badge, badgeVariantClass)}>
           {badge}
         </span>
         <Heading as="h3" className={styles.cardTitle}>{title}</Heading>
@@ -87,7 +107,11 @@ function ApiCard({ badge, badgeVariant, title, description, bullets, to, linkLab
           {bullets.map((b, i) => <li key={i}>{b}</li>)}
         </ul>
         <div className={styles.cardFooter}>
-          <Link className="button button--primary button--sm" to={to}>{linkLabel}</Link>
+          {href ? (
+            <a className="button button--primary button--sm" href={href} target="_blank" rel="noopener noreferrer">{linkLabel}</a>
+          ) : (
+            <Link className="button button--primary button--sm" to={to!}>{linkLabel}</Link>
+          )}
         </div>
       </div>
     </div>
@@ -122,6 +146,34 @@ const apiCards: ApiCardProps[] = [
     ],
     to: '/docs/soap-api/overview',
     linkLabel: 'SOAP API Reference →',
+  },
+  {
+    badge: 'v1 — Active',
+    badgeVariant: 'new',
+    title: 'Transformation API',
+    description: 'AI-powered EDI transformation, mapping, and business process automation. Connect ERPs, automate document flows, and manage trading partner certifications.',
+    bullets: [
+      '289 operations across 151 resource paths',
+      'AI-assisted mapping and code generation',
+      'ERP connections: SAP, Business Central, Infor, Zoho',
+      'Base URL: simplify.ecgrid.com',
+    ],
+    href: 'https://simplify.ecgrid.com/swagger/index.html',
+    linkLabel: 'Transformation API Reference →',
+  },
+  {
+    badge: 'v1 — New',
+    badgeVariant: 'catalog',
+    title: 'Data Sync & Catalog API',
+    description: 'Product catalog management and B2B data sharing. Publish product catalogs, manage subscriptions, and synchronize product data with trading partners.',
+    bullets: [
+      '186 operations across 8 resource groups',
+      'Catalog publish, subscribe, and invitation flows',
+      'Chat, company management, and dashboard reporting',
+      'Base URL: globalproductaccess.com',
+    ],
+    href: 'https://globalproductaccess.com/swagger/index.html',
+    linkLabel: 'Catalog API Reference →',
   },
 ];
 
@@ -210,10 +262,7 @@ const quickLinks = [
   { label: 'Poll Inbound Files', to: '/docs/common-operations/poll-inbound-files' },
   { label: 'Upload EDI Files', to: '/docs/common-operations/upload-a-file' },
   { label: 'Onboard a Trading Partner', to: '/docs/common-operations/onboard-trading-partner' },
-  { label: 'ENUMs Reference', to: '/docs/appendix/enums' },
   { label: 'Error Codes', to: '/docs/appendix/error-codes' },
-  { label: 'Migrate SOAP → REST', to: '/docs/getting-started/migrating-soap-to-rest' },
-  { label: 'Swagger UI ↗', href: 'https://rest.ecgrid.io/swagger/index.html' },
 ];
 
 /* ------------------------------------------------------------------ */

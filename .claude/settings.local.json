@@ -5,7 +5,11 @@
       "Bash(npm install *)",
       "WebFetch(domain:os.ecgrid.io)",
       "Bash(powershell -Command ' *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "WebFetch(domain:simplify.ecgrid.com)",
+      "WebFetch(domain:ecgrid.com)",
+      "WebFetch(domain:globalproductaccess.com)",
+      "Bash(taskkill /F /IM node.exe)"
     ]
   }
 }

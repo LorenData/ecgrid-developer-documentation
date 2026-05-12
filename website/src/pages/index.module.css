@@ -1,5 +1,7 @@
 /* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: ECGrid branded homepage styles - Greg Kolinski
-   | 2026-05-08: Apply ECGrid UI Standards palette, logo-forward hero, section accents - Greg Kolinski */
+   | 2026-05-08: Apply ECGrid UI Standards palette, logo-forward hero, section accents - Greg Kolinski
+   | 2026-05-12: Add Transformation API card variant (cardNew/badgeNew/newPill) - Greg Kolinski
+   | 2026-05-12: Add Catalog API card variant (cardCatalog/badgeCatalog/catalogPill) - Greg Kolinski */
 
 /* ---------------------------------------------------------------
    ECGrid palette — local aliases
@@ -99,8 +101,10 @@
   margin: 0;
 }
 
-.activePill,
-.legacyPill {
+.restPill,
+.soapPill,
+.transformPill,
+.catalogPill {
   display: inline-block;
   font-size: 0.7rem;
   font-weight: 700;
@@ -109,16 +113,28 @@
   border-radius: 99px;
 }
 
-.activePill {
+.restPill {
   background: rgba(0, 128, 188, 0.3); /* ECGrid Blue tint */
   color: #a3bcc4;
   border: 1px solid rgba(0, 128, 188, 0.5);
 }
 
-.legacyPill {
+.soapPill {
   background: rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.transformPill {
+  background: rgba(185, 188, 16, 0.2); /* Yellow-Green tint */
+  color: #b9bc10;
+  border: 1px solid rgba(185, 188, 16, 0.45);
+}
+
+.catalogPill {
+  background: rgba(1, 79, 110, 0.3); /* Teal tint */
+  color: #a3bcc4;
+  border: 1px solid rgba(1, 79, 110, 0.6);
 }
 
 /* ---------------------------------------------------------------
@@ -183,6 +199,16 @@
   border-left-color: #999500;
 }
 
+/* Transformation card — ECGrid Yellow-Green accent */
+.cardNew {
+  border-left-color: #b9bc10;
+}
+
+/* Catalog card — ECGrid Teal accent */
+.cardCatalog {
+  border-left-color: #014f6e;
+}
+
 .card:hover {
   box-shadow: 0 4px 20px rgba(35, 55, 70, 0.12);
   border-color: var(--ifm-color-emphasis-300);
@@ -194,6 +220,14 @@
 
 .cardLegacy:hover {
   border-left-color: #999500;
+}
+
+.cardNew:hover {
+  border-left-color: #b9bc10;
+}
+
+.cardCatalog:hover {
+  border-left-color: #014f6e;
 }
 
 .badge {
@@ -215,6 +249,16 @@
 
 .badgeLegacy {
   background: #999500; /* ECGrid Olive */
+}
+
+.badge.badgeNew {
+  background: #b9bc10; /* ECGrid Yellow-Green */
+  color: #233746;      /* Dark navy for contrast */
+}
+
+.badge.badgeCatalog {
+  background: #014f6e; /* ECGrid Teal */
+  color: white;
 }
 
 .cardTitle {
