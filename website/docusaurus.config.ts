@@ -6,6 +6,8 @@
 // 2026-05-08: Fix footer Getting Started link; remove intro.md reference - Greg Kolinski
 // 2026-05-12: Add Transformation API navbar link and footer Live Reference - Greg Kolinski
 // 2026-05-12: Add Catalog API navbar link and footer Live Reference - Greg Kolinski
+// 2026-05-13: Fix typo in repo name — documention → documentation (baseUrl, editUrl, GitHub links) - Greg Kolinski
+// 2026-05-13: Revert url/baseUrl to GitHub Pages with corrected repo name spelling - Greg Kolinski
 
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
@@ -21,7 +23,7 @@ const config: Config = {
   },
 
   url: "https://lorendata.github.io",
-  baseUrl: "/ecgrid-developer-documention/",
+  baseUrl: "/ecgrid-developer-documentation/",
 
   organizationName: "LorenData",
   projectName: "ecgrid-developer-portal",
@@ -69,7 +71,7 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           editUrl:
-            "https://github.com/LorenData/ecgrid-developer-documention/tree/main/website/",
+            "https://github.com/LorenData/ecgrid-developer-documentation/tree/main/website/",
           // docItemComponent: "@theme/ApiItem",  // re-enable with openapi theme
         },
         blog: false,
@@ -138,7 +140,7 @@ const config: Config = {
               position: "left",
           },
         {
-          href: "https://github.com/LorenData/ecgrid-developer-documention",
+          href: "https://github.com/LorenData/ecgrid-developer-documentation",
           label: "GitHub",
           position: "right",
         },
@@ -194,7 +196,7 @@ const config: Config = {
             },
             {
               label: "ECGrid Developer Documentation",
-              href: "https://github.com/LorenData/ecgrid-developer-documention",
+              href: "https://github.com/LorenData/ecgrid-developer-documentation",
             },
           ],
         },
