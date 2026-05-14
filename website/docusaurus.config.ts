@@ -8,6 +8,7 @@
 // 2026-05-12: Add Catalog API navbar link and footer Live Reference - Greg Kolinski
 // 2026-05-13: Fix typo in repo name — documention → documentation (baseUrl, editUrl, GitHub links) - Greg Kolinski
 // 2026-05-13: Revert url/baseUrl to GitHub Pages with corrected repo name spelling - Greg Kolinski
+// 2026-05-14: Switch to custom domain api.ecgridos.io; add CNAME; set baseUrl to / - Greg Kolinski
 
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
@@ -22,8 +23,8 @@ const config: Config = {
     v4: true,
   },
 
-  url: "https://lorendata.github.io",
-  baseUrl: "/ecgrid-developer-documentation/",
+  url: "https://api.ecgridos.io",
+  baseUrl: "/",
 
   organizationName: "LorenData",
   projectName: "ecgrid-developer-portal",
