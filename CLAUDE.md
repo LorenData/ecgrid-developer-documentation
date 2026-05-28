@@ -4,6 +4,17 @@
 
 This repo is the ECGrid Developer Documentation Portal — a unified public-facing documentation site covering the ECGrid REST API (v2.6, active) and ECGridOS SOAP API (v4.1, legacy). It is built with Docusaurus 3 and hosted on GitHub Pages under the LorenData GitHub organization. The repo also contains .NET sample projects for REST and SOAP integration under `/samples`.
 
+**For human developer onboarding** (clone, pull, push, local dev, CI/CD flow), see `README.md`. This file (`CLAUDE.md`) is the instruction set for Claude Code sessions only.
+
+### Repository URLs
+
+| Remote | URL | Role |
+|---|---|---|
+| Azure DevOps (primary) | `https://lorendata-dev.visualstudio.com/ECGrid%20Developer%20Documentation%20Portal/_git/ECGrid%20Developer%20Documentation%20Portal` | Fetch + push — source of truth |
+| GitHub | `https://github.com/LorenData/ecgrid-developer-documentation` | Push-only — triggers GitHub Pages deploy |
+
+The repo uses a dual-push `origin` remote. `git push origin main` sends to both simultaneously. The GitHub push triggers the GitHub Actions deploy pipeline (`.github/workflows/deploy.yml`) which publishes the built site to the `gh-pages` branch and serves it at `https://api.ecgridos.io`.
+
 ---
 
 ## Stack
@@ -762,19 +773,23 @@ These ENUMs appear across many endpoints. Define them in `docs/appendix/enums.md
 ## Build & Deploy Notes
 
 ```bash
-# Install dependencies
+# Install dependencies (run from repo root)
 cd website
 npm install
 
-# Local dev server
-npm run start
+# Local dev server — hot-reloads on Markdown changes
+npm run start        # opens http://localhost:3000
 
-# Production build
+# Production build — run this before pushing to catch config errors
 npm run build
 
-# GitHub Actions deploys automatically on push to main
-# Target: gh-pages branch → developers.ecgrid.com
+# Pushing to origin main triggers deploy to both:
+#   - Azure DevOps (source of truth)
+#   - GitHub → GitHub Actions → gh-pages branch → https://api.ecgridos.io
+# Never edit the gh-pages branch manually.
 ```
+
+Node.js **20.x LTS** is required (matches the GitHub Actions runner). Do not use Node 18 or 22 — the lockfile is pinned to Node 20.
 
 ---
 
@@ -854,3 +869,4 @@ If the developer says "skip attribution for this one," respect it without argume
 | Date | Change | Author |
 |---|---|---|
 | 2026-05-07 | Initial CLAUDE.md created. Full site plan, nav structure, page templates, ENUMs, coding conventions, and attribution automation merged from Loren Data Developer Handbook template. | Greg |
+| 2026-05-28 | Added repository URLs (Azure DevOps + GitHub dual-remote), developer onboarding pointer to README, Node.js version pin to Build & Deploy Notes. | Greg |
