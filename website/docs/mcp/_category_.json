@@ -1,0 +1,8 @@
+{
+  "label": "MCP",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Connect any MCP-compatible AI tool to your ECGrid account. Natural language access to your network, mailboxes, trading partners, and transactions."
+  }
+}
