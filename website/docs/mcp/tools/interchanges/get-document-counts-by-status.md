@@ -38,9 +38,9 @@ The backend report requires a mailbox. Use Mode B with a specific `(networkId, m
 |---|---|---|---|
 | `request.ecgridId` | integer \| null | Conditional (Mode A) | Internal numeric ECGrid ID. Takes precedence over `networkId` / `mailboxId` when supplied. Example: 6928311. The tool resolves `(networkId, mailboxId)` from this ID and filters report rows to this ECGrid ID only. NOT_FOUND when the ID does not exist or is not visible to the caller's APIKey. Values &lt;= 0 are rejected as VALIDATION_ERROR. |
 | `request.networkId` | integer \| null | Conditional (Mode B) | Network (VAN) ID. Required together with `mailboxId` when `ecgridId` is not supplied. Example: 1101. Ignored when `ecgridId` is supplied. |
-| `request.mailboxId` | integer \| null | Conditional (Mode B) | Mailbox ID. Required together with `networkId` when `ecgridId` is not supplied. Example: 2202401. A mailbox with multiple ECGrid IDs yields multiple entries in `customers[]`. Ignored when `ecgridId` is supplied. |
+| `request.mailboxId` | integer \| null | Conditional (Mode B) | Mailbox ID. Required together with `networkId` when `ecgridId` is not supplied. Example: 2202401. Minimum value 0 (mailbox ID 0 is a valid sentinel). A mailbox with multiple ECGrid IDs yields multiple entries in `customers[]`. Ignored when `ecgridId` is supplied. |
 | `request.startDate` | string | Yes | Inclusive start of the reporting window, ISO 8601 UTC. Example: `2026-07-01T00:00:00Z`. The window must not exceed 30 days — longer ranges are rejected as VALIDATION_ERROR. Narrow the range or issue multiple calls for longer periods. |
-| `request.endDate` | string | Yes | Inclusive end of the reporting window, ISO 8601 UTC. Example: `2026-07-31T23:59:59Z`. Must be on or after `startDate` and within 30 days of it. |
+| `request.endDate` | string | Yes | Inclusive end of the reporting window, ISO 8601 UTC. Example: `2026-07-06T23:59:59Z`. Must be on or after `startDate` and within 30 days of it. |
 
 ## Response
 
@@ -158,3 +158,4 @@ Status codes in `byStatus` are raw numeric `InterchangeStatus` codes as string k
 ## See Also
 
 - [get-interchange-by-id](./get-interchange-by-id.md) — look up a single interchange by its numeric ID
+- [search-transactions](../transactions/search-transactions.md) — list individual interchanges by date range, direction, and view (pending, blocked, no-route)
