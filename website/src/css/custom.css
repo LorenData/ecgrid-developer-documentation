@@ -1,5 +1,6 @@
 /* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: ECGrid brand color overrides replacing Docusaurus defaults - Greg Kolinski
-   | 2026-05-08: Apply ECGrid UI Standards — Roboto Condensed font, official palette colors - Greg Kolinski */
+   | 2026-05-08: Apply ECGrid UI Standards — Roboto Condensed font, official palette colors - Greg Kolinski
+   | 2026-07-06: Add mcpPill class for ECGrid MCP hero badge strip - Greg Kolinski */
 
 /* ---------------------------------------------------------------
    Roboto Condensed — ECGrid standard typeface (UI Standards §1)
@@ -86,4 +87,18 @@ body {
    --------------------------------------------------------------- */
 .prism-code {
   border-radius: 6px;
+}
+
+/* ---------------------------------------------------------------
+   API badge pills — hero strip (global, shared across pages)
+   --------------------------------------------------------------- */
+.mcpPill {
+  background: #F26522;
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin: 0 4px;
+  white-space: nowrap;
 }
