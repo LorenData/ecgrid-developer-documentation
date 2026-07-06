@@ -100,4 +100,4 @@ Returns the calling user's full profile and current session metadata.
 ## See Also
 
 - [get-user-by-id](./get-user-by-id.md)
-- [Authentication & API Keys](../../../getting-started/authentication-api-keys.md)
+- [Authentication & API Keys](../../authentication.md)
