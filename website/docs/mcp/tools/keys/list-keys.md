@@ -25,7 +25,7 @@ Any (scoped to caller's APIKey)
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `request.systemObject` | string | Yes | The ECGrid system-object class whose keys to list. See enum table below. For (S)FTP setup keys this is usually `Mailbox` or `Network`. Pair with `objectId` to identify the specific object. |
-| `request.objectId` | integer | Yes | The numeric ID of the object named by `systemObject`, e.g. the mailbox ID when systemObject=Mailbox. Positive integer &gt;= 1. Example: 142. The root ID 0 is rejected as VALIDATION_ERROR. |
+| `request.objectId` | integer | Yes | The numeric ID of the object named by `systemObject`, e.g. the mailbox ID when systemObject=Mailbox. Range 1–9223372036854775807 (int64). Example: 142. The root ID 0 is rejected as VALIDATION_ERROR. |
 
 ### systemObject Enum
 

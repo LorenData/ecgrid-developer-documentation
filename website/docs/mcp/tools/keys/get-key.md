@@ -25,7 +25,7 @@ Any (scoped to caller's APIKey)
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `request.systemObject` | string | Yes | The ECGrid system-object class the key is attached to. See enum table below. For (S)FTP setup keys this is usually `Mailbox` or `Network`. Pair with `objectId` to identify the specific object. |
-| `request.objectId` | integer | Yes | The numeric ID of the object named by `systemObject`, e.g. the mailbox ID when systemObject=Mailbox. Positive integer &gt;= 1. Example: 142. The root ID 0 is rejected as VALIDATION_ERROR. |
+| `request.objectId` | integer | Yes | The numeric ID of the object named by `systemObject`, e.g. the mailbox ID when systemObject=Mailbox. Range 1–9223372036854775807 (int64). Example: 142. The root ID 0 is rejected as VALIDATION_ERROR. |
 | `request.key` | string | Yes | The exact key name to fetch — typically a dotted/namespaced string, e.g. `ftp:status`. 1–512 characters. Use `list-keys` to discover which keys exist on an object before guessing this value. |
 | `request.visibility` | string | Yes | The visibility scope to read the key from. One of: `Private`, `Shared`, `Public`, `Session`. The backend looks the key up within a single visibility scope — it must match the key's actual visibility. Use `list-keys` first to see each key's visibility. |
 

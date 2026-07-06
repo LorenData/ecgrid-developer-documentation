@@ -128,3 +128,4 @@ Returns the carbon copy rule's IDs, the four endpoint summaries (originalFrom, o
 - [Tools Overview](../overview.md) — full list of available MCP tools
 - [Authentication](../../authentication.md) — how to authenticate with the ECGrid MCP Server
 - [list-carbon-copies](./list-carbon-copies.md) — enumerate all carbon copy rules under a mailbox or APIKey
+- [get-ecgrid-id-by-id](../ecgrid-ids/get-ecgrid-id-by-id.md) — fetch the full ECGrid ID record for an endpoint (owner, config, X12 delimiters)

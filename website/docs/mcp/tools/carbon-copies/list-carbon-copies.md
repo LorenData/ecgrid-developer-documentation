@@ -130,3 +130,4 @@ Returns a `count` and a `carbonCopies` array; each element carries the rule's ID
 - [Tools Overview](../overview.md) — full list of available MCP tools
 - [Authentication](../../authentication.md) — how to authenticate with the ECGrid MCP Server
 - [get-carbon-copy-by-id](./get-carbon-copy-by-id.md) — fetch a single carbon copy rule by its numeric ID
+- [get-ecgrid-id-by-id](../ecgrid-ids/get-ecgrid-id-by-id.md) — fetch the full ECGrid ID record for an endpoint (owner, config, X12 delimiters)
