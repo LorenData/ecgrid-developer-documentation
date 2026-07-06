@@ -1,6 +1,6 @@
 {
   "label": "Common Operations",
-  "position": 5,
+  "position": 6,
   "link": {
     "type": "generated-index",
     "description": "Step-by-step guides for the most common ECGrid integration tasks."
