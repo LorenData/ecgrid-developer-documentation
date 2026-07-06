@@ -2,6 +2,7 @@
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: Building agents guide - Greg Kolinski
+2026-07-06: Fix tool names (connectivity_ prefix), add IHttpClientFactory note, fix model to claude-sonnet-4-6 - Greg Kolinski
 */}
 ---
 title: Building Agents
@@ -111,7 +112,7 @@ A subset of ECGrid MCP tools additionally render an **interactive UI component**
 
 **This does not affect developer integrations.** The tool call, parameters, and structured JSON response are identical regardless of whether a UI component renders in the end-user's AI client. The UI component is a presentation layer; your agent code receives and handles the same structured JSON in all environments.
 
-Tools that render interactive UI components include: `mailbox_list-mailboxes`, `mailbox_get-mailbox-by-id`, `ecgrid-id_list-ecgrid-ids-by-mailbox`, `ecgrid-id_get-ecgrid-id-by-id`, `ecgrid-id_find-edi-ids`, `partner_list-partners`, `partner_get-partner-by-id`, `transaction_search-transactions`, `interchange_get-interchange-by-id`, and `parcel_get-parcel-by-id`.
+Tools that render interactive UI components include: `connectivity_mailbox_list-mailboxes`, `connectivity_mailbox_get-mailbox-by-id`, `connectivity_ecgrid-id_list-ecgrid-ids-by-mailbox`, `connectivity_ecgrid-id_get-ecgrid-id-by-id`, `connectivity_ecgrid-id_find-edi-ids`, `connectivity_partner_list-partners`, `connectivity_partner_get-partner-by-id`, `connectivity_transaction_search-transactions`, `connectivity_interchange_get-interchange-by-id`, and `connectivity_parcel_get-parcel-by-id`.
 
 ## Request Lifecycle
 
@@ -285,24 +286,28 @@ The server currently provides tools across these categories:
 
 | Category | Tools | Interactive UI Component |
 |---|---|---|
-| System | `get-version`, `get-status-list`, `hello-world` | None |
-| User | `user_get-user-me`, `user_get-user-by-id`, `user_get-user-by-login`, `user_list-users` | None |
-| Network | `network_get-network-by-id` | None |
-| Mailbox | `mailbox_get-mailbox-by-id`, `mailbox_list-mailboxes`, `mailbox_get-mailbox-by-name` | `mailbox_get-mailbox-by-id`, `mailbox_list-mailboxes` |
-| ECGrid IDs | `ecgrid-id_get-ecgrid-id-by-id`, `ecgrid-id_find-edi-ids`, `ecgrid-id_list-ecgrid-ids-by-mailbox` | All three |
-| Trading Partners | `partner_get-partner-by-id`, `partner_list-partners`, `partner_check-partner-config`, `partner_test-partner-delivery`, `partner_get-partner-document-counts` | `partner_get-partner-by-id`, `partner_list-partners` |
-| Communication Channels | `comm_get-comm-by-id`, `comm_list-comms`, `comm_find-comms`, `comm_test-comm`, `comm_check-ftp-access` | None |
-| Parcels | `parcel_get-parcel-by-id`, `parcel_list-inbox-parcels`, `parcel_list-outbox-parcels`, `parcel_list-pending-inbox-parcels` | `parcel_get-parcel-by-id` |
-| Interchanges | `interchange_get-interchange-by-id`, `interchange_get-document-counts-by-status` | `interchange_get-interchange-by-id` |
-| Transactions | `transaction_search-transactions` | `transaction_search-transactions` |
-| Callbacks | `callback_get-callback-event-by-id`, `callback_get-callback-queue-by-id`, `callback_list-callback-events`, `callback_list-callback-queue` | None |
-| Carbon Copy | `carbon-copy_get-carbon-copy-by-id`, `carbon-copy_list-carbon-copies` | None |
-| Keys | `key_get-key`, `key_list-keys` | None |
+| System | `connectivity_system_get-version`, `connectivity_system_get-status-list`, `connectivity_system_hello-world` | None |
+| User | `connectivity_user_get-user-me`, `connectivity_user_get-user-by-id`, `connectivity_user_get-user-by-login`, `connectivity_user_list-users` | None |
+| Network | `connectivity_network_get-network-by-id` | None |
+| Mailbox | `connectivity_mailbox_get-mailbox-by-id`, `connectivity_mailbox_list-mailboxes`, `connectivity_mailbox_get-mailbox-by-name` | `connectivity_mailbox_get-mailbox-by-id`, `connectivity_mailbox_list-mailboxes` |
+| ECGrid IDs | `connectivity_ecgrid-id_get-ecgrid-id-by-id`, `connectivity_ecgrid-id_find-edi-ids`, `connectivity_ecgrid-id_list-ecgrid-ids-by-mailbox` | All three |
+| Trading Partners | `connectivity_partner_get-partner-by-id`, `connectivity_partner_list-partners`, `connectivity_partner_check-partner-config`, `connectivity_partner_test-partner-delivery`, `connectivity_partner_get-partner-document-counts` | `connectivity_partner_get-partner-by-id`, `connectivity_partner_list-partners` |
+| Communication Channels | `connectivity_comm_get-comm-by-id`, `connectivity_comm_list-comms`, `connectivity_comm_find-comms`, `connectivity_comm_test-comm`, `connectivity_comm_check-ftp-access` | None |
+| Parcels | `connectivity_parcel_get-parcel-by-id`, `connectivity_parcel_list-inbox-parcels`, `connectivity_parcel_list-outbox-parcels`, `connectivity_parcel_list-pending-inbox-parcels` | `connectivity_parcel_get-parcel-by-id` |
+| Interchanges | `connectivity_interchange_get-interchange-by-id`, `connectivity_interchange_get-document-counts-by-status` | `connectivity_interchange_get-interchange-by-id` |
+| Transactions | `connectivity_transaction_search-transactions` | `connectivity_transaction_search-transactions` |
+| Callbacks | `connectivity_callback_get-callback-event-by-id`, `connectivity_callback_get-callback-queue-by-id`, `connectivity_callback_list-callback-events`, `connectivity_callback_list-callback-queue` | None |
+| Carbon Copy | `connectivity_carbon-copy_get-carbon-copy-by-id`, `connectivity_carbon-copy_list-carbon-copies` | None |
+| Keys | `connectivity_key_get-key`, `connectivity_key_list-keys` | None |
 | Resources & Prompts | Glossary, InterchangeStatus, ParcelStatus resources; InvestigatePartner, TriageStuckInterchange prompts | N/A — not tools |
 
 All tools return structured JSON data. The interactive UI component column identifies which tools additionally render a visual widget in compatible AI clients — this does not affect agent code or HTTP integrations.
 
 ## Complete Example — C#
+
+:::note Production Pattern
+This example uses `new HttpClient()` for clarity. In production .NET applications, inject `HttpClient` via `IHttpClientFactory` to avoid socket exhaustion under load.
+:::
 
 ```csharp
 using System.Net.Http;
@@ -370,7 +375,7 @@ public class EcGridMcpClient
 var client = new EcGridMcpClient("YOUR_API_KEY_HERE");
 await client.InitializeAsync();
 var tools = await client.ListToolsAsync();
-var result = await client.CallToolAsync("hello-world",
+var result = await client.CallToolAsync("connectivity_system_hello-world",
     new { request = new { name = "My Agent" } });
 Console.WriteLine(result);
 ```
@@ -435,7 +440,7 @@ class EcGridMcpClient {
 const client = new EcGridMcpClient("YOUR_API_KEY_HERE");
 await client.initialize();
 const tools = await client.listTools();
-const result = await client.callTool("hello-world",
+const result = await client.callTool("connectivity_system_hello-world",
   { request: { name: "My Agent" } });
 console.log(result);
 ```
@@ -497,7 +502,7 @@ class EcGridMcpClient:
 client = EcGridMcpClient("YOUR_API_KEY_HERE")
 client.initialize()
 tools = client.list_tools()
-result = client.call_tool("hello-world", {"request": {"name": "My Agent"}})
+result = client.call_tool("connectivity_system_hello-world", {"request": {"name": "My Agent"}})
 print(result)
 ```
 
@@ -533,19 +538,19 @@ A representative starting prompt for an ECGrid support agent:
 You are an ECGrid assistant. You help users interact with their ECGrid B2B connectivity account.
 
 You have access to ECGrid tools across the following categories:
-- System: get-version, get-status-list, hello-world
-- User: user_get-user-me, user_get-user-by-id, user_get-user-by-login, user_list-users
-- Network: network_get-network-by-id
-- Mailbox: mailbox_get-mailbox-by-id, mailbox_list-mailboxes, mailbox_get-mailbox-by-name
-- ECGrid IDs: ecgrid-id_get-ecgrid-id-by-id, ecgrid-id_find-edi-ids, ecgrid-id_list-ecgrid-ids-by-mailbox
-- Trading Partners: partner_get-partner-by-id, partner_list-partners, partner_check-partner-config, partner_test-partner-delivery, partner_get-partner-document-counts
-- Communication Channels: comm_get-comm-by-id, comm_list-comms, comm_find-comms, comm_test-comm, comm_check-ftp-access
-- Parcels: parcel_get-parcel-by-id, parcel_list-inbox-parcels, parcel_list-outbox-parcels, parcel_list-pending-inbox-parcels
-- Interchanges: interchange_get-interchange-by-id, interchange_get-document-counts-by-status
-- Transactions: transaction_search-transactions
-- Callbacks: callback_get-callback-event-by-id, callback_get-callback-queue-by-id, callback_list-callback-events, callback_list-callback-queue
-- Carbon Copy: carbon-copy_get-carbon-copy-by-id, carbon-copy_list-carbon-copies
-- Keys: key_get-key, key_list-keys
+- System: connectivity_system_get-version, connectivity_system_get-status-list, connectivity_system_hello-world
+- User: connectivity_user_get-user-me, connectivity_user_get-user-by-id, connectivity_user_get-user-by-login, connectivity_user_list-users
+- Network: connectivity_network_get-network-by-id
+- Mailbox: connectivity_mailbox_get-mailbox-by-id, connectivity_mailbox_list-mailboxes, connectivity_mailbox_get-mailbox-by-name
+- ECGrid IDs: connectivity_ecgrid-id_get-ecgrid-id-by-id, connectivity_ecgrid-id_find-edi-ids, connectivity_ecgrid-id_list-ecgrid-ids-by-mailbox
+- Trading Partners: connectivity_partner_get-partner-by-id, connectivity_partner_list-partners, connectivity_partner_check-partner-config, connectivity_partner_test-partner-delivery, connectivity_partner_get-partner-document-counts
+- Communication Channels: connectivity_comm_get-comm-by-id, connectivity_comm_list-comms, connectivity_comm_find-comms, connectivity_comm_test-comm, connectivity_comm_check-ftp-access
+- Parcels: connectivity_parcel_get-parcel-by-id, connectivity_parcel_list-inbox-parcels, connectivity_parcel_list-outbox-parcels, connectivity_parcel_list-pending-inbox-parcels
+- Interchanges: connectivity_interchange_get-interchange-by-id, connectivity_interchange_get-document-counts-by-status
+- Transactions: connectivity_transaction_search-transactions
+- Callbacks: connectivity_callback_get-callback-event-by-id, connectivity_callback_get-callback-queue-by-id, connectivity_callback_list-callback-events, connectivity_callback_list-callback-queue
+- Carbon Copy: connectivity_carbon-copy_get-carbon-copy-by-id, connectivity_carbon-copy_list-carbon-copies
+- Keys: connectivity_key_get-key, connectivity_key_list-keys
 
 When a user asks about their ECGrid account, select the most appropriate tool and call it.
 Chain multiple tools when needed — for example, list mailboxes first, then look up a specific mailbox, then check its trading partners.
@@ -566,7 +571,7 @@ const ecgrid = new EcGridMcpClient(process.env.ECGRID_API_KEY); // from earlier 
 // in compatible AI clients (Claude Desktop, Claude.ai) — agent code is identical either way
 const ECGRID_TOOLS = [
   {
-    name: "hello-world",
+    name: "connectivity_system_hello-world",
     description: "Verifies the ECGrid connection and returns the user's identity, auth level, network ID, and mailbox ID. Returns structured JSON.",
     input_schema: {
       type: "object",
@@ -574,12 +579,12 @@ const ECGRID_TOOLS = [
     }
   },
   {
-    name: "user_get-user-me",
+    name: "connectivity_user_get-user-me",
     description: "Returns the identity, auth level, network, and mailbox of the current API key holder. Returns structured JSON.",
     input_schema: { type: "object", properties: {} }
   },
   {
-    name: "mailbox_list-mailboxes",
+    name: "connectivity_mailbox_list-mailboxes",
     description: "Lists all mailboxes on a network. Omit networkId to list the caller's own network. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
     input_schema: {
       type: "object",
@@ -587,7 +592,7 @@ const ECGRID_TOOLS = [
     }
   },
   {
-    name: "mailbox_get-mailbox-by-id",
+    name: "connectivity_mailbox_get-mailbox-by-id",
     description: "Returns the full profile for a mailbox including contacts, config, and AS2 ID. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
     input_schema: {
       type: "object",
@@ -596,7 +601,7 @@ const ECGRID_TOOLS = [
     }
   },
   {
-    name: "partner_list-partners",
+    name: "connectivity_partner_list-partners",
     description: "Lists trading-partner interconnects for a mailbox or network. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
     input_schema: {
       type: "object",
@@ -608,7 +613,7 @@ const ECGRID_TOOLS = [
     }
   },
   {
-    name: "partner_check-partner-config",
+    name: "connectivity_partner_check-partner-config",
     description: "Health-checks a trading-partner interconnect for setup completeness, traffic history, active IDs, and scheduled moves. Returns structured JSON with isHealthy and issues list.",
     input_schema: {
       type: "object",
@@ -617,7 +622,7 @@ const ECGRID_TOOLS = [
     }
   },
   {
-    name: "transaction_search-transactions",
+    name: "connectivity_transaction_search-transactions",
     description: "Searches EDI transactions by direction, type, date range, ECGrid ID, and view (Archive, Pending, Blocked, DeliveryError, etc.). Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
     input_schema: {
       type: "object",
@@ -634,7 +639,7 @@ const ECGRID_TOOLS = [
     }
   },
   {
-    name: "parcel_get-parcel-by-id",
+    name: "connectivity_parcel_get-parcel-by-id",
     description: "Returns the full detail of a parcel including status, routing, and the interchange manifest. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
     input_schema: {
       type: "object",
@@ -643,7 +648,7 @@ const ECGRID_TOOLS = [
     }
   },
   {
-    name: "interchange_get-interchange-by-id",
+    name: "connectivity_interchange_get-interchange-by-id",
     description: "Returns the full detail of an EDI interchange including routing, status, raw ISA header, and carrying parcel IDs. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
     input_schema: {
       type: "object",
@@ -652,7 +657,7 @@ const ECGRID_TOOLS = [
     }
   },
   {
-    name: "ecgrid-id_find-edi-ids",
+    name: "connectivity_ecgrid-id_find-edi-ids",
     description: "Finds ECGrid trading-partner ID records by wire EDI identifier string or description substring. Use to resolve an EDI ID to its owning mailbox. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
     input_schema: {
       type: "object",
@@ -740,7 +745,7 @@ ecgrid = EcGridMcpClient(os.environ["ECGRID_API_KEY"])  # from earlier in this g
 # in compatible AI clients (Claude Desktop, Claude.ai) — agent code is identical either way
 ECGRID_TOOLS = [
     {
-        "name": "hello-world",
+        "name": "connectivity_system_hello-world",
         "description": "Verifies the ECGrid connection and returns the user's identity, auth level, network ID, and mailbox ID. Returns structured JSON.",
         "input_schema": {
             "type": "object",
@@ -748,12 +753,12 @@ ECGRID_TOOLS = [
         }
     },
     {
-        "name": "user_get-user-me",
+        "name": "connectivity_user_get-user-me",
         "description": "Returns the identity, auth level, network, and mailbox of the current API key holder. Returns structured JSON.",
         "input_schema": {"type": "object", "properties": {}}
     },
     {
-        "name": "mailbox_list-mailboxes",
+        "name": "connectivity_mailbox_list-mailboxes",
         "description": "Lists all mailboxes on a network. Omit networkId to list the caller's own network. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         "input_schema": {
             "type": "object",
@@ -761,7 +766,7 @@ ECGRID_TOOLS = [
         }
     },
     {
-        "name": "partner_list-partners",
+        "name": "connectivity_partner_list-partners",
         "description": "Lists trading-partner interconnects for a mailbox or network. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         "input_schema": {
             "type": "object",
@@ -773,7 +778,7 @@ ECGRID_TOOLS = [
         }
     },
     {
-        "name": "partner_check-partner-config",
+        "name": "connectivity_partner_check-partner-config",
         "description": "Health-checks a trading-partner interconnect for setup completeness, traffic history, active IDs, and scheduled moves. Returns structured JSON with isHealthy and issues list.",
         "input_schema": {
             "type": "object",
@@ -782,7 +787,7 @@ ECGRID_TOOLS = [
         }
     },
     {
-        "name": "transaction_search-transactions",
+        "name": "connectivity_transaction_search-transactions",
         "description": "Searches EDI transactions by direction, type, date range, and view. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         "input_schema": {
             "type": "object",
@@ -797,7 +802,7 @@ ECGRID_TOOLS = [
         }
     },
     {
-        "name": "interchange_get-interchange-by-id",
+        "name": "connectivity_interchange_get-interchange-by-id",
         "description": "Returns the full detail of an EDI interchange including routing, status, raw ISA header, and carrying parcel IDs. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         "input_schema": {
             "type": "object",
@@ -806,7 +811,7 @@ ECGRID_TOOLS = [
         }
     },
     {
-        "name": "parcel_get-parcel-by-id",
+        "name": "connectivity_parcel_get-parcel-by-id",
         "description": "Returns the full detail of a parcel including status, routing, and the interchange manifest. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         "input_schema": {
             "type": "object",
@@ -815,7 +820,7 @@ ECGRID_TOOLS = [
         }
     },
     {
-        "name": "ecgrid-id_find-edi-ids",
+        "name": "connectivity_ecgrid-id_find-edi-ids",
         "description": "Finds ECGrid trading-partner ID records by wire EDI identifier or description substring. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         "input_schema": {
             "type": "object",
@@ -907,7 +912,7 @@ var ecgridTools = new List<Tool>
 {
     new Tool
     {
-        Name = "hello-world",
+        Name = "connectivity_system_hello-world",
         Description = "Verifies the ECGrid connection and returns the user's identity, auth level, network ID, and mailbox ID. Returns structured JSON.",
         InputSchema = new InputSchema
         {
@@ -920,13 +925,13 @@ var ecgridTools = new List<Tool>
     },
     new Tool
     {
-        Name = "user_get-user-me",
+        Name = "connectivity_user_get-user-me",
         Description = "Returns the identity, auth level, network, and mailbox of the current API key holder. Returns structured JSON.",
         InputSchema = new InputSchema { Type = "object", Properties = new Dictionary<string, Property>() }
     },
     new Tool
     {
-        Name = "mailbox_list-mailboxes",
+        Name = "connectivity_mailbox_list-mailboxes",
         Description = "Lists all mailboxes on a network. Omit networkId to list the caller's own network. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         InputSchema = new InputSchema
         {
@@ -939,7 +944,7 @@ var ecgridTools = new List<Tool>
     },
     new Tool
     {
-        Name = "partner_list-partners",
+        Name = "connectivity_partner_list-partners",
         Description = "Lists trading-partner interconnects for a mailbox or network. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         InputSchema = new InputSchema
         {
@@ -954,7 +959,7 @@ var ecgridTools = new List<Tool>
     },
     new Tool
     {
-        Name = "transaction_search-transactions",
+        Name = "connectivity_transaction_search-transactions",
         Description = "Searches EDI transactions by direction, type, date range, and view. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         InputSchema = new InputSchema
         {
@@ -972,7 +977,7 @@ var ecgridTools = new List<Tool>
     },
     new Tool
     {
-        Name = "interchange_get-interchange-by-id",
+        Name = "connectivity_interchange_get-interchange-by-id",
         Description = "Returns full detail of an EDI interchange including routing, status, raw ISA header, and parcel IDs. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         InputSchema = new InputSchema
         {
@@ -986,7 +991,7 @@ var ecgridTools = new List<Tool>
     },
     new Tool
     {
-        Name = "parcel_get-parcel-by-id",
+        Name = "connectivity_parcel_get-parcel-by-id",
         Description = "Returns full detail of a parcel including status, routing, and interchange manifest. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         InputSchema = new InputSchema
         {
@@ -1013,7 +1018,7 @@ async Task<string> Chat(List<Message> history, string userMessage)
 
     var response = await anthropicClient.Messages.GetClaudeMessageAsync(new MessageParameters
     {
-        Model = AnthropicModels.Claude35Sonnet,
+        Model = "claude-sonnet-4-6",
         MaxTokens = 1024,
         System = new List<SystemMessage> { new SystemMessage(SystemPrompt) },
         Tools = ecgridTools,
@@ -1042,7 +1047,7 @@ async Task<string> Chat(List<Message> history, string userMessage)
 
         var final = await anthropicClient.Messages.GetClaudeMessageAsync(new MessageParameters
         {
-            Model = AnthropicModels.Claude35Sonnet,
+            Model = "claude-sonnet-4-6",
             MaxTokens = 1024,
             System = new List<SystemMessage> { new SystemMessage(SystemPrompt) },
             Tools = ecgridTools,
@@ -1125,7 +1130,7 @@ const ECGRID_TOOLS = [
   {
     type: "function",
     function: {
-      name: "hello-world",
+      name: "connectivity_system_hello-world",
       description: "Verifies the ECGrid connection and returns the user's identity, auth level, network ID, and mailbox ID. Returns structured JSON.",
       parameters: {
         type: "object",
@@ -1136,7 +1141,7 @@ const ECGRID_TOOLS = [
   {
     type: "function",
     function: {
-      name: "mailbox_list-mailboxes",
+      name: "connectivity_mailbox_list-mailboxes",
       description: "Lists all mailboxes on a network. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
       parameters: {
         type: "object",
@@ -1147,7 +1152,7 @@ const ECGRID_TOOLS = [
   {
     type: "function",
     function: {
-      name: "transaction_search-transactions",
+      name: "connectivity_transaction_search-transactions",
       description: "Searches EDI transactions by direction, type, date range, and view. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
       parameters: {
         type: "object",
@@ -1231,7 +1236,7 @@ ECGRID_TOOLS = [
     {
         "type": "function",
         "function": {
-            "name": "hello-world",
+            "name": "connectivity_system_hello-world",
             "description": "Verifies the ECGrid connection and returns the user's identity, auth level, network ID, and mailbox ID. Returns structured JSON.",
             "parameters": {
                 "type": "object",
@@ -1242,7 +1247,7 @@ ECGRID_TOOLS = [
     {
         "type": "function",
         "function": {
-            "name": "mailbox_list-mailboxes",
+            "name": "connectivity_mailbox_list-mailboxes",
             "description": "Lists all mailboxes on a network. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
             "parameters": {
                 "type": "object",
@@ -1253,7 +1258,7 @@ ECGRID_TOOLS = [
     {
         "type": "function",
         "function": {
-            "name": "transaction_search-transactions",
+            "name": "connectivity_transaction_search-transactions",
             "description": "Searches EDI transactions by direction, type, date range, and view. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
             "parameters": {
                 "type": "object",
@@ -1335,21 +1340,21 @@ var ecgrid = new EcGridMcpClient(Environment.GetEnvironmentVariable("ECGRID_API_
 var ecgridTools = new List<ChatTool>
 {
     ChatTool.CreateFunctionTool(
-        functionName: "hello-world",
+        functionName: "connectivity_system_hello-world",
         functionDescription: "Verifies the ECGrid connection and returns the user's identity, auth level, network ID, and mailbox ID. Returns structured JSON.",
         functionParameters: BinaryData.FromString("""
             {"type":"object","properties":{"name":{"type":"string","description":"Optional display name"}}}
             """)
     ),
     ChatTool.CreateFunctionTool(
-        functionName: "mailbox_list-mailboxes",
+        functionName: "connectivity_mailbox_list-mailboxes",
         functionDescription: "Lists all mailboxes on a network. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         functionParameters: BinaryData.FromString("""
             {"type":"object","properties":{"networkId":{"type":"integer","description":"Optional — defaults to caller's home network"}}}
             """)
     ),
     ChatTool.CreateFunctionTool(
-        functionName: "transaction_search-transactions",
+        functionName: "connectivity_transaction_search-transactions",
         functionDescription: "Searches EDI transactions by direction, type, date range, and view. Returns structured JSON. Also renders an interactive UI component in compatible AI clients.",
         functionParameters: BinaryData.FromString("""
             {"type":"object","properties":{"type":{"type":"string"},"direction":{"type":"string"},"networkId":{"type":"integer"},"mailboxId":{"type":"integer"},"view":{"type":"string"}},"required":["type","direction"]}
