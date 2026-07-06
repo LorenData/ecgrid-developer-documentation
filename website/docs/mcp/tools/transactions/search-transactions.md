@@ -49,6 +49,10 @@ Any (scoped to caller's APIKey)
 | `request.pageNo` | integer \| null | No | 1-based page number applied to each directional leg. Defaults to 1. |
 | `request.recordsPerPage` | integer \| null | No | Records per page per leg, 1..1000. Defaults to 100. Direction `Both` can return up to twice this. |
 
+:::note View-specific pagination behaviour
+The `Blocked`, `Pending`, and `NoRoute` interchange views scan the entire date window — `pageNo` and `recordsPerPage` are ignored. An over-large window returns `partial: true`; narrow the date range and retry. The `PendingDownload` and `DeliveryError` parcel views query live state; dates and paging are also ignored for those views.
+:::
+
 ## Response
 
 Returns the applied `filters` (re-send with an adjusted `pageNo` to paginate), a `rows` array of matching transactions, per-leg totals, and a `totalRecords` count. An empty `rows` array means no matches — this is a successful outcome, not an error.
