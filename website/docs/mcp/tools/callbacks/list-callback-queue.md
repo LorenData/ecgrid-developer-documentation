@@ -35,7 +35,7 @@ Returns `count` plus a `queue` array of delivery attempt records; each entry car
 
 ```json
 {
-  "count": 3,
+  "count": 2,
   "queue": [
     {
       "callBackQueueId": 99010,
