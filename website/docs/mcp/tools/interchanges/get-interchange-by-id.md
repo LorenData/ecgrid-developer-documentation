@@ -51,23 +51,25 @@ Returns the interchange's identification, routing, current status, EDI identity,
   "from": {
     "networkId": 7,
     "networkName": "ECGrid Production",
-    "mailboxId": 142,
-    "mailboxName": "acme-prod@example.com"
+    "mailboxId": 142
   },
   "to": {
     "networkId": 7,
     "networkName": "ECGrid Production",
-    "mailboxId": 200,
-    "mailboxName": "buyer-prod@retailer.com"
+    "mailboxId": 200
   },
   "header": "ISA*00*          *00*          *ZZ*ACMECORP       *ZZ*BUYERCORP      *260701*1030*^*00501*000012345*0*P*>~",
   "tpFrom": {
+    "ecgridId": 6928311,
     "qualifier": "ZZ",
-    "id": "ACMECORP"
+    "id": "ACMECORP",
+    "description": "Acme Shipping"
   },
   "tpTo": {
+    "ecgridId": 5040122,
     "qualifier": "ZZ",
-    "id": "BUYERCORP"
+    "id": "BUYERCORP",
+    "description": "Beta Retail"
   },
   "parcelIds": [987654321],
   "parcelCount": 1
@@ -91,16 +93,20 @@ Returns the interchange's identification, routing, current status, EDI identity,
 | `from.networkId` | integer | Network ID of the sending party |
 | `from.networkName` | string | Network name of the sending party |
 | `from.mailboxId` | integer | Mailbox ID of the sending party |
-| `from.mailboxName` | string | Mailbox name of the sending party |
 | `to.networkId` | integer | Network ID of the receiving party |
 | `to.networkName` | string | Network name of the receiving party |
 | `to.mailboxId` | integer | Mailbox ID of the receiving party |
-| `to.mailboxName` | string | Mailbox name of the receiving party |
 | `header` | string | Raw EDI envelope header segment (ISA for X12, UNB for EDIFACT) |
-| `tpFrom.qualifier` | string | EDI qualifier of the sending trading partner |
-| `tpFrom.id` | string | EDI ID of the sending trading partner |
+| `tpFrom` | object \| null | Sender trading-partner EDI identity. Null if not resolved. |
+| `tpFrom.ecgridId` | integer | ECGrid ID of the sending trading partner |
+| `tpFrom.qualifier` | string | EDI qualifier of the sending trading partner (e.g. `ZZ`) |
+| `tpFrom.id` | string | EDI identifier of the sending trading partner |
+| `tpFrom.description` | string | Human-readable label for the sending trading partner |
+| `tpTo` | object \| null | Recipient trading-partner EDI identity. Null if not resolved. |
+| `tpTo.ecgridId` | integer | ECGrid ID of the receiving trading partner |
 | `tpTo.qualifier` | string | EDI qualifier of the receiving trading partner |
-| `tpTo.id` | string | EDI ID of the receiving trading partner |
+| `tpTo.id` | string | EDI identifier of the receiving trading partner |
+| `tpTo.description` | string | Human-readable label for the receiving trading partner |
 | `parcelIds` | array&lt;integer&gt; | List of parcel IDs that contain this interchange |
 | `parcelCount` | integer | Number of parcels that contain this interchange |
 
@@ -128,5 +134,7 @@ Returns the interchange's identification, routing, current status, EDI identity,
 
 ## See Also
 
-- [get-parcel-by-id](../parcels/get-parcel-by-id.md) — look up the parcel that carried this interchange
+- [list-inbox-interchanges](./list-inbox-interchanges.md) — list inbound interchanges for a mailbox
+- [list-outbox-interchanges](./list-outbox-interchanges.md) — list outbound interchanges for a mailbox
 - [get-document-counts-by-status](./get-document-counts-by-status.md) — count interchanges by status over a date range
+- [get-parcel-by-id](../parcels/get-parcel-by-id.md) — look up the parcel that carried this interchange

@@ -15,14 +15,77 @@ Technical reference for developers calling the ECGrid MCP Server directly over H
 
 ## HTTP Endpoints
 
-| Method | Path | Purpose |
-|---|---|---|
-| `POST` | `/mcp` | JSON-RPC 2.0 entry point — `initialize`, `tools/list`, `tools/call` |
-| `GET` | `/mcp` | Server-sent event stream for server-initiated notifications |
-| `GET` | `/health/live` | Liveness probe — `200 {"status":"healthy"}` if the process is running |
-| `GET` | `/health/ready` | Readiness probe — `200` when healthy, `503` when not ready |
+### MCP Protocol
 
-Health probes are anonymous and exempt from rate limiting. POST body size is capped at **64 KB**.
+| Method | Path | Auth | Purpose |
+|---|---|---|---|
+| `POST` | `/mcp` | Required | JSON-RPC 2.0 entry point — `initialize`, `tools/list`, `tools/call` |
+| `GET` | `/mcp` | Required | Server-sent event stream for server-initiated notifications |
+
+POST body size is capped at **64 KB**.
+
+### Discovery Endpoints
+
+These endpoints are anonymous, CORS-enabled, and exempt from rate limiting. Useful for building integrations, displaying tool catalogs, or configuring MCP clients programmatically.
+
+| Method | Path | Content-Type | Purpose |
+|---|---|---|---|
+| `GET` | `/.well-known/mcp` | `application/json` | MCP discovery metadata — spec version, server info, capabilities, auth methods, rate limits, and links to tools.json and server-card.json |
+| `GET` | `/.well-known/mcp/server-card.json` | `application/json` | Server card — full metadata including a summary list of every registered tool |
+| `GET` | `/tools.json` | `application/json` | Tools registry — ordered list of all tools with name, description, and full input schema |
+| `GET` | `/llms.txt` | `text/plain` | LLM guidance file — plain-text description of the server for LLM-based discovery |
+| `GET` | `/` | `text/html` | Server landing page |
+| `GET` | `/tools` | `text/html` | Interactive tools browser |
+
+**`/.well-known/mcp` example response:**
+```json
+{
+  "spec_version": "2026-01-24",
+  "server_name": "ECGrid MCP Server",
+  "server_version": "1.2.0",
+  "endpoints": { "streamable_http": "https://mcp.ecgrid.io/mcp" },
+  "capabilities": { "tools": true, "resources": true, "prompts": true, "sampling": false },
+  "authentication": {
+    "required": true,
+    "methods": ["api_key"],
+    "api_key": {
+      "header": "X-APIKey",
+      "description": "ECGrid API key — obtain from https://api.ecgridos.io/"
+    }
+  },
+  "rate_limits": { "requests_per_minute": 100 },
+  "documentation": "https://api.ecgridos.io/",
+  "tools_list": "https://mcp.ecgrid.io/tools.json",
+  "server_card": "https://mcp.ecgrid.io/.well-known/mcp/server-card.json"
+}
+```
+
+**`/tools.json` example response:**
+```json
+{
+  "server": {
+    "name": "ECGrid MCP Server",
+    "version": "1.2.0",
+    "generatedAt": "2026-07-07T12:00:00.0000000Z"
+  },
+  "tools": [
+    {
+      "name": "connectivity_interchange_get-interchange-by-id",
+      "description": "Look up a single EDI interchange by its numeric interchange ID...",
+      "inputSchema": { ... }
+    }
+  ]
+}
+```
+
+### Health Probes
+
+| Method | Path | Auth | Purpose |
+|---|---|---|---|
+| `GET` | `/health/live` | None | Liveness probe — `200 {"status":"healthy"}` if the process is running |
+| `GET` | `/health/ready` | None | Readiness probe — `200` when healthy, `503` when not ready |
+
+Health probes are anonymous and exempt from rate limiting.
 
 ## Required Headers
 
@@ -140,8 +203,6 @@ GET https://mcp.ecgrid.io/health/live
 GET https://mcp.ecgrid.io/health/ready
 # → 200 healthy/degraded, 503 not ready
 ```
-
-No authentication required. Exempt from rate limiting.
 
 ## MCP Inspector
 
