@@ -1,11 +1,12 @@
+---
+title: get-status-list
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: get-status-list tool reference - Greg Kolinski
 */}
----
-title: get-status-list
----
 
 # get-status-list
 

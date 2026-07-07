@@ -1,12 +1,13 @@
+---
+title: Other AI Platforms
+sidebar_position: 8
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: Other AI platforms page - Greg Kolinski
 */}
----
-title: Other AI Platforms
-sidebar_position: 8
----
 
 # Other AI Platforms
 

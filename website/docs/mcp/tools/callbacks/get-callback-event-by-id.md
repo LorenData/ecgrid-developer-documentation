@@ -1,12 +1,13 @@
+---
+title: get-callback-event-by-id
+sidebar_position: 1
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: get-callback-event-by-id tool reference - Greg Kolinski
 */}
----
-title: get-callback-event-by-id
-sidebar_position: 1
----
 
 # get-callback-event-by-id
 

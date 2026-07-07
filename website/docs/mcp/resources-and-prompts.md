@@ -1,12 +1,13 @@
+---
+title: Resources & Prompts
+sidebar_position: 7
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: MCP resources and prompts reference - Greg Kolinski
 */}
----
-title: Resources & Prompts
-sidebar_position: 7
----
 
 # Resources & Prompts
 

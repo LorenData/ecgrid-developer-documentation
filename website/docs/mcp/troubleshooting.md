@@ -1,12 +1,13 @@
+---
+title: Troubleshooting
+sidebar_position: 9
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: MCP troubleshooting page - Greg Kolinski
 */}
----
-title: Troubleshooting
-sidebar_position: 9
----
 
 # Troubleshooting
 

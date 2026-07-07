@@ -1,11 +1,12 @@
+---
+title: test-partner-delivery
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: test-partner-delivery tool reference - Greg Kolinski
 */}
----
-title: test-partner-delivery
----
 
 # test-partner-delivery
 

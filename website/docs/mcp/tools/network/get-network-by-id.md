@@ -1,11 +1,12 @@
+---
+title: get-network-by-id
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: get-network-by-id tool reference - Greg Kolinski
 */}
----
-title: get-network-by-id
----
 
 # get-network-by-id
 

@@ -1,12 +1,13 @@
+---
+title: Protocol Reference
+sidebar_position: 4
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: MCP protocol reference - Greg Kolinski
 */}
----
-title: Protocol Reference
-sidebar_position: 4
----
 
 # Protocol Reference
 

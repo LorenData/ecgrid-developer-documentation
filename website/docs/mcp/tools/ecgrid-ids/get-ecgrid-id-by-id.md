@@ -1,11 +1,12 @@
+---
+title: get-ecgrid-id-by-id
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: get-ecgrid-id-by-id tool reference - Greg Kolinski
 */}
----
-title: get-ecgrid-id-by-id
----
 
 # get-ecgrid-id-by-id
 

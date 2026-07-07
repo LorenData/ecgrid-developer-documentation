@@ -1,11 +1,12 @@
+---
+title: list-comms
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: list-comms tool reference - Greg Kolinski
 */}
----
-title: list-comms
----
 
 # list-comms
 

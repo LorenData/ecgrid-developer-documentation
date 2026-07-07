@@ -1,11 +1,12 @@
+---
+title: get-partner-by-id
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: get-partner-by-id tool reference - Greg Kolinski
 */}
----
-title: get-partner-by-id
----
 
 # get-partner-by-id
 

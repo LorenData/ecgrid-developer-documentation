@@ -1,12 +1,13 @@
+---
+title: list-carbon-copies
+sidebar_position: 2
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: list-carbon-copies tool reference - Greg Kolinski
 */}
----
-title: list-carbon-copies
-sidebar_position: 2
----
 
 # list-carbon-copies
 

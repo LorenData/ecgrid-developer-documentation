@@ -1,11 +1,12 @@
+---
+title: get-parcel-by-id
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: get-parcel-by-id tool reference - Greg Kolinski
 */}
----
-title: get-parcel-by-id
----
 
 # get-parcel-by-id
 

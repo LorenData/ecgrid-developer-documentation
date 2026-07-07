@@ -1,11 +1,12 @@
+---
+title: check-ftp-access
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: check-ftp-access tool reference - Greg Kolinski
 */}
----
-title: check-ftp-access
----
 
 # check-ftp-access
 

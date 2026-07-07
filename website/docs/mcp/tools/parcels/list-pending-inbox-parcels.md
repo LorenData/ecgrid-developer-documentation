@@ -1,11 +1,12 @@
+---
+title: list-pending-inbox-parcels
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: list-pending-inbox-parcels stub - Greg Kolinski
 */}
----
-title: list-pending-inbox-parcels
----
 
 # list-pending-inbox-parcels
 

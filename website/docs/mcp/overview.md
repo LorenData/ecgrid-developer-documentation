@@ -1,12 +1,13 @@
+---
+title: MCP Overview
+sidebar_position: 1
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: Initial MCP section overview - Greg Kolinski
 */}
----
-title: MCP Overview
-sidebar_position: 1
----
 
 # ECGrid MCP
 

@@ -1,12 +1,13 @@
+---
+title: Tools Overview
+sidebar_position: 1
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: MCP tools overview - Greg Kolinski
 */}
----
-title: Tools Overview
-sidebar_position: 1
----
 
 # Tools Reference
 

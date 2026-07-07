@@ -1,12 +1,13 @@
+---
+title: Authentication
+sidebar_position: 3
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: MCP authentication reference - Greg Kolinski
 */}
----
-title: Authentication
-sidebar_position: 3
----
 
 # Authentication
 

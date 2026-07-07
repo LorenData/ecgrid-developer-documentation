@@ -1,11 +1,12 @@
+---
+title: get-document-counts-by-status
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: get-document-counts-by-status tool reference - Greg Kolinski
 */}
----
-title: get-document-counts-by-status
----
 
 # get-document-counts-by-status
 

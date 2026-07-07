@@ -1,12 +1,13 @@
+---
+title: Quick Start
+sidebar_position: 2
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: Initial MCP quick start - Greg Kolinski
 */}
----
-title: Quick Start
-sidebar_position: 2
----
 
 # Quick Start
 

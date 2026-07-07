@@ -1,12 +1,13 @@
+---
+title: Cursor, Windsurf & Others
+sidebar_position: 2
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: Cursor/Windsurf connection guide - Greg Kolinski
 */}
----
-title: Cursor, Windsurf & Others
-sidebar_position: 2
----
 
 # Cursor, Windsurf & Other MCP Tools
 

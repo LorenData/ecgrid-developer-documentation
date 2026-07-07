@@ -1,11 +1,12 @@
+---
+title: get-version
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: get-version tool reference - Greg Kolinski
 */}
----
-title: get-version
----
 
 # get-version
 

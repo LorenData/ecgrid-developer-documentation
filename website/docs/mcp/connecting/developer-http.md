@@ -1,12 +1,13 @@
+---
+title: Direct HTTP (Developers)
+sidebar_position: 3
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: Developer HTTP connection guide - Greg Kolinski
 */}
----
-title: Direct HTTP (Developers)
-sidebar_position: 3
----
 
 # Direct HTTP Connection
 

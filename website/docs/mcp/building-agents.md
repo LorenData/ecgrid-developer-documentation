@@ -1,13 +1,14 @@
+---
+title: Building Agents
+sidebar_position: 6
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: Building agents guide - Greg Kolinski
 2026-07-06: Fix tool names (connectivity_ prefix), add IHttpClientFactory note, fix model to claude-sonnet-4-6 - Greg Kolinski
 */}
----
-title: Building Agents
-sidebar_position: 6
----
 
 # Building Agents
 

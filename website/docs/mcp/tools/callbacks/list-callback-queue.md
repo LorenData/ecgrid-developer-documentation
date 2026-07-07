@@ -1,12 +1,13 @@
+---
+title: list-callback-queue
+sidebar_position: 4
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: list-callback-queue tool reference - Greg Kolinski
 */}
----
-title: list-callback-queue
-sidebar_position: 4
----
 
 # list-callback-queue
 

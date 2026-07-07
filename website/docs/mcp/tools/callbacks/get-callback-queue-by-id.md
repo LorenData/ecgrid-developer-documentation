@@ -1,12 +1,13 @@
+---
+title: get-callback-queue-by-id
+sidebar_position: 2
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: get-callback-queue-by-id tool reference - Greg Kolinski
 */}
----
-title: get-callback-queue-by-id
-sidebar_position: 2
----
 
 # get-callback-queue-by-id
 

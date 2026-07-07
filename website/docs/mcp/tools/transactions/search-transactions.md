@@ -1,12 +1,13 @@
+---
+title: search-transactions
+sidebar_position: 1
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: search-transactions tool reference - Greg Kolinski
 */}
----
-title: search-transactions
-sidebar_position: 1
----
 
 # search-transactions
 

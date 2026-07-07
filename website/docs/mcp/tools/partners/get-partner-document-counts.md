@@ -1,11 +1,12 @@
+---
+title: get-partner-document-counts
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: get-partner-document-counts tool reference - Greg Kolinski
 */}
----
-title: get-partner-document-counts
----
 
 # get-partner-document-counts
 

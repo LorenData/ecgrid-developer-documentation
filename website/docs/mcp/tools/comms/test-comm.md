@@ -1,11 +1,12 @@
+---
+title: test-comm
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: test-comm tool reference - Greg Kolinski
 */}
----
-title: test-comm
----
 
 # test-comm
 

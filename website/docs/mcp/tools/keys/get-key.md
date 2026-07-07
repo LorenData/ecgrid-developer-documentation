@@ -1,12 +1,13 @@
+---
+title: get-key
+sidebar_position: 1
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: get-key tool reference - Greg Kolinski
 */}
----
-title: get-key
-sidebar_position: 1
----
 
 # get-key
 

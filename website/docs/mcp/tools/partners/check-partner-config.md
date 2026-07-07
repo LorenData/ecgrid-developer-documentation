@@ -1,11 +1,12 @@
+---
+title: check-partner-config
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: check-partner-config tool reference - Greg Kolinski
 */}
----
-title: check-partner-config
----
 
 # check-partner-config
 

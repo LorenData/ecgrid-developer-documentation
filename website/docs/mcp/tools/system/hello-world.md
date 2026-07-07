@@ -1,11 +1,12 @@
+---
+title: hello-world
+---
+
 {/*
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: hello-world tool reference - Greg Kolinski
 */}
----
-title: hello-world
----
 
 # hello-world
 
