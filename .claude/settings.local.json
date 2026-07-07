@@ -9,7 +9,31 @@
       "WebFetch(domain:simplify.ecgrid.com)",
       "WebFetch(domain:ecgrid.com)",
       "WebFetch(domain:globalproductaccess.com)",
-      "Bash(taskkill /F /IM node.exe)"
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(curl -s \"http://ecgrid.com\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git checkout *)",
+      "Bash(git -C \"E:\\\\LD_Code\\\\ECGrid Developer Documentation Portal\" branch --show-current)",
+      "Bash(git -C \"E:\\\\LD_Code\\\\ECGrid Developer Documentation Portal\" add website/docs/mcp/tools/)",
+      "Bash(git -C 'E:\\\\LD_Code\\\\ECGrid Developer Documentation Portal' commit -m ' *)",
+      "Bash(git commit *)",
+      "Bash(git *)",
+      "Bash(grep -n \"^#### \\\\`\" website/docs/changelog/mcp-release-notes.md)",
+      "Bash(sed -i 's/#### `hello-world`/#### `connectivity_system_hello-world`/g' website/docs/changelog/mcp-release-notes.md)",
+      "Bash(sed -i 's/#### `get-version`/#### `connectivity_system_get-version`/g' website/docs/changelog/mcp-release-notes.md)",
+      "Bash(sed -i 's/#### `get-status-list`/#### `connectivity_system_get-status-list`/g' website/docs/changelog/mcp-release-notes.md)",
+      "Bash(sed -i 's/#### `interchange_/#### `connectivity_interchange_/g' website/docs/changelog/mcp-release-notes.md)",
+      "Bash(sed -i 's/#### `transaction_/#### `connectivity_transaction_/g' website/docs/changelog/mcp-release-notes.md)",
+      "Bash(grep -n \"#### \\\\`\" \"E:\\\\LD_Code\\\\ECGrid Developer Documentation Portal\\\\website\\\\docs\\\\changelog\\\\mcp-release-notes.md\")",
+      "Bash(xargs grep *)",
+      "Bash(find *)",
+      "WebSearch",
+      "WebFetch(domain:developers.openai.com)",
+      "WebFetch(domain:help.openai.com)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }
