@@ -4,6 +4,7 @@
 // 2026-05-08: Logo-forward hero, ECGrid palette accents, Roboto Condensed - Greg Kolinski
 // 2026-05-12: Add Transformation API card, hero badge/button, quick link - Greg Kolinski
 // 2026-05-12: Add Catalog API card, hero badge/button, quick link - Greg Kolinski
+// 2026-07-06: Add MCP card, hero badge/button, quick link, and badge/card variants - Greg Kolinski
 
 import type { ReactNode } from 'react';
 import clsx from 'clsx';
@@ -53,6 +54,9 @@ function Hero() {
           <a className="button button--outline button--lg" href="https://globalproductaccess.com/swagger/index.html" target="_blank" rel="noopener noreferrer">
             Data Sync & Catalog API
           </a>
+          <Link className="button button--outline button--lg" to="/docs/mcp/overview">
+            ECGrid MCP
+          </Link>
         </div>
 
         <p className={styles.heroBadge}>
@@ -60,6 +64,7 @@ function Hero() {
           <span className={styles.soapPill}>ECGridOS SOAP v4.1 — Established</span>
           <span className={styles.transformPill}>Simplify v1 — Active</span>
           <span className={styles.catalogPill}>Catalog v1 — New</span>
+          <span className={styles.mcpPill}>ECGrid MCP — New</span>
         </p>
       </div>
 
@@ -73,7 +78,7 @@ function Hero() {
 
 type ApiCardProps = {
   badge: string;
-  badgeVariant: 'active' | 'legacy' | 'new' | 'catalog';
+  badgeVariant: 'active' | 'legacy' | 'new' | 'catalog' | 'mcp';
   title: string;
   description: string;
   bullets: string[];
@@ -87,12 +92,14 @@ function ApiCard({ badge, badgeVariant, title, description, bullets, to, href, l
     badgeVariant === 'active'  ? styles.cardActive :
     badgeVariant === 'new'     ? styles.cardNew :
     badgeVariant === 'catalog' ? styles.cardCatalog :
+    badgeVariant === 'mcp'     ? styles.cardMcp :
     styles.cardLegacy;
 
   const badgeVariantClass =
     badgeVariant === 'legacy'  ? styles.badgeLegacy :
     badgeVariant === 'new'     ? styles.badgeNew :
     badgeVariant === 'catalog' ? styles.badgeCatalog :
+    badgeVariant === 'mcp'     ? styles.badgeMcp :
     undefined;
 
   return (
@@ -174,6 +181,20 @@ const apiCards: ApiCardProps[] = [
     ],
     href: 'https://globalproductaccess.com/swagger/index.html',
     linkLabel: 'Catalog API Reference →',
+  },
+  {
+    badge: 'New',
+    badgeVariant: 'mcp',
+    title: 'ECGrid MCP',
+    description: 'Connect any MCP-compatible AI tool directly to your ECGrid account. Natural language access to your network, mailboxes, trading partners, and transactions — no custom integration code.',
+    bullets: [
+      '41 tools across 13 categories',
+      'Claude Desktop, Cursor, Windsurf, and any HTTP agent',
+      'X-APIKey authentication · mcp.ecgrid.io',
+      'Interactive UI components in Claude Desktop and Claude.ai',
+    ],
+    to: '/docs/mcp/overview',
+    linkLabel: 'MCP Reference →',
   },
 ];
 
@@ -258,6 +279,7 @@ const navCards: NavCardProps[] = [
 const quickLinks = [
   { label: 'Quick Start — REST', to: '/docs/getting-started/quick-start-rest' },
   { label: 'Quick Start — SOAP', to: '/docs/getting-started/quick-start-soap' },
+  { label: 'Quick Start — MCP', to: '/docs/mcp/quick-start' },
   { label: 'Authentication & API Keys', to: '/docs/getting-started/authentication' },
   { label: 'Poll Inbound Files', to: '/docs/common-operations/poll-inbound-files' },
   { label: 'Upload EDI Files', to: '/docs/common-operations/upload-a-file' },

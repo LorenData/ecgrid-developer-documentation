@@ -1,7 +1,8 @@
 /* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: ECGrid branded homepage styles - Greg Kolinski
    | 2026-05-08: Apply ECGrid UI Standards palette, logo-forward hero, section accents - Greg Kolinski
    | 2026-05-12: Add Transformation API card variant (cardNew/badgeNew/newPill) - Greg Kolinski
-   | 2026-05-12: Add Catalog API card variant (cardCatalog/badgeCatalog/catalogPill) - Greg Kolinski */
+   | 2026-05-12: Add Catalog API card variant (cardCatalog/badgeCatalog/catalogPill) - Greg Kolinski
+   | 2026-07-06: Add MCP card variant (cardMcp/badgeMcp/mcpPill) - Greg Kolinski */
 
 /* ---------------------------------------------------------------
    ECGrid palette — local aliases
@@ -104,7 +105,8 @@
 .restPill,
 .soapPill,
 .transformPill,
-.catalogPill {
+.catalogPill,
+.mcpPill {
   display: inline-block;
   font-size: 0.7rem;
   font-weight: 700;
@@ -135,6 +137,12 @@
   background: rgba(1, 79, 110, 0.3); /* Teal tint */
   color: #a3bcc4;
   border: 1px solid rgba(1, 79, 110, 0.6);
+}
+
+.mcpPill {
+  background: rgba(242, 101, 34, 0.25); /* ECGrid Orange tint */
+  color: #F26522;
+  border: 1px solid rgba(242, 101, 34, 0.5);
 }
 
 /* ---------------------------------------------------------------
@@ -209,6 +217,11 @@
   border-left-color: #014f6e;
 }
 
+/* MCP card — ECGrid Orange accent */
+.cardMcp {
+  border-top: 4px solid #F26522;
+}
+
 .card:hover {
   box-shadow: 0 4px 20px rgba(35, 55, 70, 0.12);
   border-color: var(--ifm-color-emphasis-300);
@@ -228,6 +241,10 @@
 
 .cardCatalog:hover {
   border-left-color: #014f6e;
+}
+
+.cardMcp:hover {
+  border-top-color: #F26522;
 }
 
 .badge {
@@ -259,6 +276,11 @@
 .badge.badgeCatalog {
   background: #014f6e; /* ECGrid Teal */
   color: white;
+}
+
+.badge.badgeMcp {
+  background: #F26522; /* ECGrid Orange */
+  color: #fff;
 }
 
 .cardTitle {

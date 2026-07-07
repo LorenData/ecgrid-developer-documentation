@@ -9,6 +9,7 @@
 // 2026-05-13: Fix typo in repo name — documention → documentation (baseUrl, editUrl, GitHub links) - Greg Kolinski
 // 2026-05-13: Revert url/baseUrl to GitHub Pages with corrected repo name spelling - Greg Kolinski
 // 2026-05-14: Switch to custom domain api.ecgridos.io; add CNAME; set baseUrl to / - Greg Kolinski
+// 2026-07-06: Add MCP navbar item, footer Documentation entry, and footer Live References entry - Greg Kolinski
 
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
@@ -120,6 +121,12 @@ const config: Config = {
         },
         {
           type: "docSidebar",
+          sidebarId: "mcpSidebar",
+          position: "left",
+          label: "MCP",
+        },
+        {
+          type: "docSidebar",
           sidebarId: "commonOpsSidebar",
           position: "left",
           label: "Common Operations",
@@ -156,6 +163,7 @@ const config: Config = {
             { label: "Getting Started", to: "/docs/getting-started/platform-overview" },
             { label: "REST API", to: "/docs/rest-api/overview" },
             { label: "SOAP API", to: "/docs/soap-api/overview" },
+            { label: "MCP", to: "/docs/mcp/overview" },
             {
               label: "Common Operations",
               to: "/docs/common-operations/overview",
@@ -181,6 +189,10 @@ const config: Config = {
             {
                 label: "Data Sync and Catalog Swagger UI",
               href: "https://globalproductaccess.com/swagger/index.html",
+            },
+            {
+              label: "ECGrid MCP Server",
+              href: "https://mcp.ecgrid.io",
             },
           ],
         },
