@@ -45,7 +45,7 @@ A subset of tools additionally render an **interactive UI component** in compati
 
 ### New Tools
 
-#### `interchange_get-interchange-by-id`
+#### `connectivity_interchange_get-interchange-by-id`
 
 Look up a single EDI interchange (X12 ISA...IEA or EDIFACT UNB...UNZ envelope) by its numeric interchange ID. Returns routing, status, EDI identity, raw ISA header, and the list of parcel IDs carrying it.
 
@@ -60,7 +60,7 @@ Look up a single EDI interchange (X12 ISA...IEA or EDIFACT UNB...UNZ envelope) b
 
 ---
 
-#### `transaction_search-transactions`
+#### `connectivity_transaction_search-transactions`
 
 Search EDI transactions the way the Customer Portal Transactions page does — by direction, type (Interchange or File), date window, ECGrid ID or qualifier+EDI ID filters, and view. Use for portal-style traffic lookup, monitoring, and troubleshooting.
 
@@ -125,7 +125,7 @@ Prompts are guided multi-step sequences exposed by the server. They do not appea
 
 ### New Tools
 
-#### `callback_get-callback-event-by-id`
+#### `connectivity_callback_get-callback-event-by-id`
 
 Look up a single callback (webhook) event registration by its numeric ID, including its recent delivery/retry queue. Returns registration config (URL, direction, frequency, maxCalls, status, httpAuthType) and queue entries with per-attempt delivery logs.
 
@@ -139,7 +139,7 @@ Look up a single callback (webhook) event registration by its numeric ID, includ
 
 ---
 
-#### `callback_get-callback-queue-by-id`
+#### `connectivity_callback_get-callback-queue-by-id`
 
 Look up a single callback delivery/retry queue entry by its numeric queue ID. Returns attempt status, calls remaining, next call time, delivery log, and a lite reference to the parent callback event.
 
@@ -152,7 +152,7 @@ Look up a single callback delivery/retry queue entry by its numeric queue ID. Re
 
 ---
 
-#### `callback_list-callback-events`
+#### `connectivity_callback_list-callback-events`
 
 List all callback registrations under a specific (networkId, mailboxId) pair. Returns registration config for each entry; delivery queue data is not embedded — use `callback_get-callback-event-by-id` for queue detail.
 
@@ -167,7 +167,7 @@ List all callback registrations under a specific (networkId, mailboxId) pair. Re
 
 ---
 
-#### `callback_list-callback-queue`
+#### `connectivity_callback_list-callback-queue`
 
 List the callback delivery/retry queue for a mailbox. `pending` view returns attempts awaiting delivery; `failed` view returns errored attempts within a lookback window.
 
@@ -183,7 +183,7 @@ List the callback delivery/retry queue for a mailbox. `pending` view returns att
 
 ---
 
-#### `carbon-copy_get-carbon-copy-by-id`
+#### `connectivity_carbon-copy_get-carbon-copy-by-id`
 
 Look up a single carbon copy routing rule by its numeric ID. Returns the four endpoint summaries (originalFrom, originalTo, ccFrom, ccTo), GS envelope filters, transaction set filter, status, and timestamps.
 
@@ -196,7 +196,7 @@ Look up a single carbon copy routing rule by its numeric ID. Returns the four en
 
 ---
 
-#### `carbon-copy_list-carbon-copies`
+#### `connectivity_carbon-copy_list-carbon-copies`
 
 List carbon copy routing rules. Scoped to a specific (networkId, mailboxId) pair, or across the full APIKey when both are omitted. Optional ECGrid ID filters narrow to rules involving a specific sender or receiver.
 
@@ -211,7 +211,7 @@ List carbon copy routing rules. Scoped to a specific (networkId, mailboxId) pair
 
 ---
 
-#### `key_get-key`
+#### `connectivity_key_get-key`
 
 Fetch a single ECGrid key/value record by its exact key name, object class, and visibility scope.
 
@@ -227,7 +227,7 @@ Fetch a single ECGrid key/value record by its exact key name, object class, and 
 
 ---
 
-#### `key_list-keys`
+#### `connectivity_key_list-keys`
 
 List all key/value records attached to an ECGrid system object across all visibility levels. Use to discover what keys exist on an object — for example, FTP setup keys on a mailbox.
 
@@ -241,7 +241,7 @@ List all key/value records attached to an ECGrid system object across all visibi
 
 ---
 
-#### `comm_find-comms`
+#### `connectivity_comm_find-comms`
 
 Find communication channel records by wire identifier (e.g. an AS2 ID or FTP login) for a given protocol type, without needing to know the owning mailbox first. Use to answer "which mailbox owns this AS2 ID?"
 
@@ -259,7 +259,7 @@ Find communication channel records by wire identifier (e.g. an AS2 ID or FTP log
 
 ### New Tools
 
-#### `parcel_get-parcel-by-id`
+#### `connectivity_parcel_get-parcel-by-id`
 
 Look up a single parcel by its numeric parcel ID. Returns full parcel detail including identification, status, routing, and the interchange manifest with per-interchange status.
 
@@ -274,7 +274,7 @@ Look up a single parcel by its numeric parcel ID. Returns full parcel detail inc
 
 ---
 
-#### `parcel_list-pending-inbox-parcels`
+#### `connectivity_parcel_list-pending-inbox-parcels`
 
 List parcels currently sitting in the inbox awaiting download, scoped to a network and mailbox. Use to answer "what is pending for this mailbox right now?"
 
@@ -288,7 +288,7 @@ List parcels currently sitting in the inbox awaiting download, scoped to a netwo
 
 ---
 
-#### `parcel_list-inbox-parcels`
+#### `connectivity_parcel_list-inbox-parcels`
 
 List inbound parcels by date range for a mailbox.
 
@@ -303,7 +303,7 @@ List inbound parcels by date range for a mailbox.
 
 ---
 
-#### `parcel_list-outbox-parcels`
+#### `connectivity_parcel_list-outbox-parcels`
 
 List outbound parcels by date range for a mailbox.
 
@@ -324,7 +324,7 @@ List outbound parcels by date range for a mailbox.
 
 ### New Tools
 
-#### `partner_check-partner-config`
+#### `connectivity_partner_check-partner-config`
 
 Health-check a single interconnect (trading-partner relationship) for completeness and correctness. Runs four checks: setup complete, traffic has flowed, both ECGrid IDs active, and whether either ID has a scheduled future-dated move.
 
@@ -337,7 +337,7 @@ Health-check a single interconnect (trading-partner relationship) for completene
 
 ---
 
-#### `comm_check-ftp-access`
+#### `connectivity_comm_check-ftp-access`
 
 Diagnose why an (S)FTP connection to ECGrid is being refused. Reads FTP setup keys on the mailbox or network and reports account configuration, ECGrid user lockout and session state, and optional IP allowlist check.
 
@@ -352,7 +352,7 @@ Diagnose why an (S)FTP connection to ECGrid is being refused. Reads FTP setup ke
 
 ---
 
-#### `comm_get-comm-by-id`
+#### `connectivity_comm_get-comm-by-id`
 
 Look up a single communication channel by its numeric comm ID. Includes SSL/TLS certificate inspection with computed validity status and days until expiry.
 
@@ -365,7 +365,7 @@ Look up a single communication channel by its numeric comm ID. Includes SSL/TLS 
 
 ---
 
-#### `comm_list-comms`
+#### `connectivity_comm_list-comms`
 
 List communication channels registered under a specific (networkId, mailboxId) pair for one transport protocol. Set `withCerts: true` to include certificate validity and expiry data across all channels.
 
@@ -381,7 +381,7 @@ List communication channels registered under a specific (networkId, mailboxId) p
 
 ---
 
-#### `comm_test-comm`
+#### `connectivity_comm_test-comm`
 
 Actively test whether ECGrid can deliver to a customer's own configured AS2 or FTP channel by sending a throwaway test parcel and reading the delivery status. Non-blocking and two-step: call without `parcelId` to initiate, then pass the returned `parcelId` to poll.
 
@@ -396,7 +396,7 @@ Actively test whether ECGrid can deliver to a customer's own configured AS2 or F
 
 ---
 
-#### `ecgrid-id_get-ecgrid-id-by-id`
+#### `connectivity_ecgrid-id_get-ecgrid-id-by-id`
 
 Look up a single trading-partner ID record by its internal numeric ECGrid ID.
 
@@ -411,7 +411,7 @@ Look up a single trading-partner ID record by its internal numeric ECGrid ID.
 
 ---
 
-#### `ecgrid-id_find-edi-ids`
+#### `connectivity_ecgrid-id_find-edi-ids`
 
 Find trading-partner ID records by wire-level EDI identifier string (X12 ISA06/ISA08) or by description substring. Use to resolve an inbound EDI ID to its owning mailbox and network, or to look up partners by name.
 
@@ -430,7 +430,7 @@ Find trading-partner ID records by wire-level EDI identifier string (X12 ISA06/I
 
 ---
 
-#### `ecgrid-id_list-ecgrid-ids-by-mailbox`
+#### `connectivity_ecgrid-id_list-ecgrid-ids-by-mailbox`
 
 List all trading-partner ID records registered under a specific mailbox. Returns the full roster of EDI IDs, qualifiers, statuses, and use types.
 
@@ -447,7 +447,7 @@ List all trading-partner ID records registered under a specific mailbox. Returns
 
 ---
 
-#### `partner_test-partner-delivery`
+#### `connectivity_partner_test-partner-delivery`
 
 Actively test whether EDI delivery works across an interconnect by sending a throwaway test parcel through the grid and reading its delivery status. Non-blocking and two-step: call without `parcelId` to initiate, then pass the returned `parcelId` to poll.
 
@@ -466,7 +466,7 @@ Actively test whether EDI delivery works across an interconnect by sending a thr
 
 ### New Tools
 
-#### `interchange_get-document-counts-by-status`
+#### `connectivity_interchange_get-document-counts-by-status`
 
 Count EDI documents (interchanges) processed over a date range (max 30 days), grouped by caller-side ECGrid ID and split by direction (FROM/TO), with a per-status histogram inside each direction. Use for status-distribution count questions — not for listing or identifying individual interchanges.
 
@@ -481,7 +481,7 @@ Count EDI documents (interchanges) processed over a date range (max 30 days), gr
 
 ---
 
-#### `partner_get-partner-document-counts`
+#### `connectivity_partner_get-partner-document-counts`
 
 Report how many interchanges one specific ECGrid ID exchanged with each of its trading partners over a date range (max 30 days), with byte volumes. Results ranked by total interchanges descending.
 
@@ -502,7 +502,7 @@ Report how many interchanges one specific ECGrid ID exchanged with each of its t
 
 ### New Tools
 
-#### `network_get-network-by-id`
+#### `connectivity_network_get-network-by-id`
 
 Look up a single ECGrid network by its numeric network ID.
 
@@ -515,7 +515,7 @@ Look up a single ECGrid network by its numeric network ID.
 
 ---
 
-#### `mailbox_get-mailbox-by-id`
+#### `connectivity_mailbox_get-mailbox-by-id`
 
 Look up a single mailbox by its numeric mailbox ID.
 
@@ -530,7 +530,7 @@ Look up a single mailbox by its numeric mailbox ID.
 
 ---
 
-#### `mailbox_list-mailboxes`
+#### `connectivity_mailbox_list-mailboxes`
 
 List every mailbox in a network. Omit `networkId` to list the caller's own network.
 
@@ -545,7 +545,7 @@ List every mailbox in a network. Omit `networkId` to list the caller's own netwo
 
 ---
 
-#### `mailbox_get-mailbox-by-name`
+#### `connectivity_mailbox_get-mailbox-by-name`
 
 Look up mailboxes inside a network by name or email substring. Both `networkId` and `name` are required — there is no all-networks mode.
 
@@ -559,7 +559,7 @@ Look up mailboxes inside a network by name or email substring. Both `networkId` 
 
 ---
 
-#### `partner_get-partner-by-id`
+#### `connectivity_partner_get-partner-by-id`
 
 Look up a single interconnect (trading-partner relationship) by its numeric interconnect ID.
 
@@ -574,7 +574,7 @@ Look up a single interconnect (trading-partner relationship) by its numeric inte
 
 ---
 
-#### `partner_list-partners`
+#### `connectivity_partner_list-partners`
 
 List interconnects (trading-partner relationships) with optional filtering by ECGrid ID pair, status, network, mailbox, and traffic recency.
 
@@ -593,7 +593,7 @@ List interconnects (trading-partner relationships) with optional filtering by EC
 
 ---
 
-#### `user_get-user-by-id`
+#### `connectivity_user_get-user-by-id`
 
 Look up a single ECGrid user by their numeric user ID.
 
@@ -606,7 +606,7 @@ Look up a single ECGrid user by their numeric user ID.
 
 ---
 
-#### `user_get-user-by-login`
+#### `connectivity_user_get-user-by-login`
 
 Look up a single ECGrid user by their login name or email address.
 
@@ -619,7 +619,7 @@ Look up a single ECGrid user by their login name or email address.
 
 ---
 
-#### `user_get-user-me`
+#### `connectivity_user_get-user-me`
 
 Return the session and profile record for the caller — the user identity behind the current APIKey. Use for connectivity verification, auth level inspection, and session diagnostics.
 
@@ -631,7 +631,7 @@ Return the session and profile record for the caller — the user identity behin
 
 ---
 
-#### `user_list-users`
+#### `connectivity_user_list-users`
 
 List ECGrid users matching supplied filters, scoped to network, mailbox, or name substring. Supports a `lockedOut` post-filter to surface locked-out accounts. At least one scope filter (networkId, mailboxId, or name) is required.
 
@@ -651,7 +651,7 @@ List ECGrid users matching supplied filters, scoped to network, mailbox, or name
 
 ### New Tools
 
-#### `hello-world`
+#### `connectivity_system_hello-world`
 
 Verifies your connection and returns your authenticated ECGrid identity. Use this to confirm your API key is valid and your integration is working.
 
@@ -664,7 +664,7 @@ Verifies your connection and returns your authenticated ECGrid identity. Use thi
 
 ---
 
-#### `get-version`
+#### `connectivity_system_get-version`
 
 Return the ECGrid REST API and ECGridOS backend version strings. Use for smoke tests and integration diagnostics.
 
@@ -676,7 +676,7 @@ Return the ECGrid REST API and ECGridOS backend version strings. Use for smoke t
 
 ---
 
-#### `get-status-list`
+#### `connectivity_system_get-status-list`
 
 Return the complete ECGrid status-code catalog — maps every numeric status code to its meaning, qualifier, and severity level. Use to resolve status codes seen on parcels or interchanges. Results are cached per caller.
 
