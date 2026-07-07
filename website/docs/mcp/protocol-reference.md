@@ -26,7 +26,7 @@ POST body size is capped at **64 KB**.
 
 ### Discovery Endpoints
 
-These endpoints are anonymous, CORS-enabled, and exempt from rate limiting. Useful for building integrations, displaying tool catalogs, or configuring MCP clients programmatically.
+These endpoints are anonymous and CORS-enabled. Useful for building integrations, displaying tool catalogs, or configuring MCP clients programmatically.
 
 | Method | Path | Content-Type | Purpose |
 |---|---|---|---|
@@ -85,7 +85,7 @@ These endpoints are anonymous, CORS-enabled, and exempt from rate limiting. Usef
 | `GET` | `/health/live` | None | Liveness probe — `200 {"status":"healthy"}` if the process is running |
 | `GET` | `/health/ready` | None | Readiness probe — `200` when healthy, `503` when not ready |
 
-Health probes are anonymous and exempt from rate limiting.
+Health probes are anonymous.
 
 ## Required Headers
 

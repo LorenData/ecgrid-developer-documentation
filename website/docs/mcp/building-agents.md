@@ -277,7 +277,7 @@ GET https://mcp.ecgrid.io/health/live   →  200 if process is up
 GET https://mcp.ecgrid.io/health/ready  →  200 if ready, 503 if not
 ```
 
-No authentication required. Both probes are exempt from rate limiting. Call `/health/ready` before your first `initialize` to avoid initializing against an unavailable server.
+No authentication required. Call `/health/ready` before your first `initialize` to avoid initializing against an unavailable server.
 
 ## Available Tools
 
