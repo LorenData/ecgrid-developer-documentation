@@ -13,10 +13,10 @@ Tool: Claude Code (Anthropic)
 
 There are two ways to use ECGrid capabilities in ChatGPT, depending on your goal.
 
-| Approach | What it gives you | Works today |
-|---|---|---|
-| **Custom GPT** (Actions) | Full ECGrid REST API inside a purpose-built GPT | ✅ Yes |
-| **ChatGPT Apps** (native MCP) | ECGrid MCP tools in any ChatGPT conversation | ⚠️ Pending OAuth support |
+| Approach | What it gives you |
+|---|---|
+| **Custom GPT** (Actions) | Full ECGrid REST API inside a purpose-built GPT |
+| **OpenAI Responses API** | Programmatic ECGrid MCP tool access for developers building apps |
 
 ---
 
@@ -98,31 +98,7 @@ For the full endpoint list, see the [ECGrid REST API reference](../../rest-api/o
 
 ---
 
-## Option 2 — ChatGPT Apps (Native MCP)
-
-ChatGPT has native MCP support in **Developer Mode**, available on the web interface and Windows desktop for Pro, Plus, Business, and Enterprise accounts. This would allow ECGrid MCP tools (`connectivity_interchange_list-inbox-interchanges`, etc.) to appear natively in any ChatGPT conversation.
-
-### Current Limitation
-
-ChatGPT's native MCP connector authenticates via OAuth or `Authorization: Bearer` token. The ECGrid MCP server currently requires an `X-APIKey` header. Bearer/OAuth support is on the ECGrid MCP roadmap — until it ships, the native connector cannot authenticate.
-
-### When It Becomes Available
-
-When ECGrid MCP adds Bearer support, the setup will be:
-
-1. In ChatGPT web: **Profile → Settings → Apps** → toggle **Developer Mode** on → **Add App**
-2. Enter the ECGrid MCP server URL: `https://mcp.ecgrid.io/mcp`
-3. Complete the authentication flow with your ECGrid API credentials
-
-ChatGPT will discover all 41 Connectivity tools automatically via the MCP `tools/list` call.
-
-:::info Check back
-Watch the [MCP Release Notes](../../changelog/mcp-release-notes.md) for the announcement when Bearer/OAuth support ships.
-:::
-
----
-
-## Option 3 — OpenAI Responses API (Developers)
+## Option 2 — OpenAI Responses API (Developers)
 
 If you are building an application using the OpenAI Responses API, you can connect it directly to the ECGrid MCP server by passing `X-APIKey` as a custom header. Headers are supplied per-request alongside the tool configuration.
 

@@ -15,7 +15,7 @@ The ECGrid MCP Server uses the open MCP standard. Any AI tool or platform that s
 
 ## ChatGPT
 
-ChatGPT has a dedicated setup guide covering Custom GPT Actions (works today via the ECGrid REST API OpenAPI spec) and native MCP via ChatGPT Apps (pending ECGrid Bearer/OAuth support).
+ChatGPT has a dedicated setup guide covering Custom GPT Actions (via the ECGrid REST API OpenAPI spec) and the OpenAI Responses API for developers.
 
 See [Connect ChatGPT to ECGrid](./connecting/chatgpt.md).
 
