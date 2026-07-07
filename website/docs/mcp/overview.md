@@ -27,7 +27,7 @@ The Model Context Protocol is an open standard that lets AI tools connect to ext
 | Protocol | MCP over HTTP (JSON-RPC 2.0) |
 | MCP Version | `2024-11-05` |
 | Authentication | `X-APIKey` header (your ECGrid API key) |
-| Tools | 36 tools across 13 categories |
+| Tools | 41 tools across 13 categories |
 
 ## Who This Is For
 

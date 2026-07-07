@@ -188,7 +188,7 @@ const apiCards: ApiCardProps[] = [
     title: 'ECGrid MCP',
     description: 'Connect any MCP-compatible AI tool directly to your ECGrid account. Natural language access to your network, mailboxes, trading partners, and transactions — no custom integration code.',
     bullets: [
-      '36 tools across 13 categories',
+      '41 tools across 13 categories',
       'Claude Desktop, Cursor, Windsurf, and any HTTP agent',
       'X-APIKey authentication · mcp.ecgrid.io',
       'Interactive UI components in Claude Desktop and Claude.ai',

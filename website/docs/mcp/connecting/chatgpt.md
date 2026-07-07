@@ -7,7 +7,11 @@ sidebar_position: 3
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-07: ChatGPT connection guide - Greg Kolinski
+2026-07-07: Add JavaScript tab to Responses API example - Greg Kolinski
 */}
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Connect ChatGPT to ECGrid
 
@@ -102,6 +106,9 @@ For the full endpoint list, see the [ECGrid REST API reference](../../rest-api/o
 
 If you are building an application using the OpenAI Responses API, you can connect it directly to the ECGrid MCP server by passing `X-APIKey` as a custom header. Headers are supplied per-request alongside the tool configuration.
 
+<Tabs groupId="lang">
+<TabItem value="python" label="Python">
+
 ```python
 from openai import OpenAI
 
@@ -125,6 +132,36 @@ response = client.responses.create(
 
 print(response.output_text)
 ```
+
+</TabItem>
+<TabItem value="javascript" label="JavaScript">
+
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI(); // uses OPENAI_API_KEY from environment
+
+const response = await client.responses.create({
+  model: "gpt-4o",
+  tools: [
+    {
+      type: "mcp",
+      server_label: "ecgrid",
+      server_url: "https://mcp.ecgrid.io/mcp",
+      headers: {
+        "X-APIKey": "YOUR_ECGRID_API_KEY",
+      },
+      require_approval: "never",
+    },
+  ],
+  input: "List the pending parcels in mailbox 142 on network 7",
+});
+
+console.log(response.output_text);
+```
+
+</TabItem>
+</Tabs>
 
 :::caution Headers per request
 The Responses API does not store headers between requests. Supply `X-APIKey` in the `headers` field on every call.

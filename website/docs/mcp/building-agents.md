@@ -10,6 +10,9 @@ Tool: Claude Code (Anthropic)
 2026-07-06: Fix tool names (connectivity_ prefix), add IHttpClientFactory note, fix model to claude-sonnet-4-6 - Greg Kolinski
 */}
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Building Agents
 
 Guide for developers building AI-powered features — chatbots, agents, or automated workflows — that call ECGrid services via the MCP Server.
@@ -304,11 +307,14 @@ The server currently provides tools across these categories:
 
 All tools return structured JSON data. The interactive UI component column identifies which tools additionally render a visual widget in compatible AI clients — this does not affect agent code or HTTP integrations.
 
-## Complete Example — C#
+## Complete Example
 
 :::note Production Pattern
-This example uses `new HttpClient()` for clarity. In production .NET applications, inject `HttpClient` via `IHttpClientFactory` to avoid socket exhaustion under load.
+The C# example uses `new HttpClient()` for clarity. In production .NET applications, inject `HttpClient` via `IHttpClientFactory` to avoid socket exhaustion under load.
 :::
+
+<Tabs groupId="lang">
+<TabItem value="csharp" label="C#">
 
 ```csharp
 using System.Net.Http;
@@ -381,7 +387,8 @@ var result = await client.CallToolAsync("connectivity_system_hello-world",
 Console.WriteLine(result);
 ```
 
-## Complete Example — JavaScript
+</TabItem>
+<TabItem value="javascript" label="JavaScript">
 
 ```javascript
 class EcGridMcpClient {
@@ -446,7 +453,8 @@ const result = await client.callTool("connectivity_system_hello-world",
 console.log(result);
 ```
 
-## Complete Example — Python
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import httpx
@@ -507,6 +515,9 @@ result = client.call_tool("connectivity_system_hello-world", {"request": {"name"
 print(result)
 ```
 
+</TabItem>
+</Tabs>
+
 ## Testing Your Agent
 
 **MCP Inspector** — use the official inspector tool to explore tools interactively before writing code:
@@ -559,7 +570,10 @@ All tools return structured JSON data. Present results in plain language — nev
 For unfamiliar ECGrid terms, consult the Glossary resource before responding.
 ```
 
-### JavaScript — Minimal Chat Loop
+### Minimal Chat Loop
+
+<Tabs groupId="lang">
+<TabItem value="javascript" label="JavaScript">
 
 ```javascript
 import Anthropic from "@anthropic-ai/sdk";
@@ -731,7 +745,8 @@ console.log(await chat(history, "Are there any transactions retrying right now?"
 // → "Yes — there are currently 6 outbound interchanges in E3010 Delay: Interchange Retry status ..."
 ```
 
-### Python — Minimal Chat Loop
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import os
@@ -894,7 +909,8 @@ print(chat(history, "Are there any transactions retrying right now?"))
 # → "Yes — there are currently 6 outbound interchanges in E3010 Delay: Interchange Retry status ..."
 ```
 
-### C# — Minimal Chat Loop
+</TabItem>
+<TabItem value="csharp" label="C#">
 
 ```csharp
 using System;
@@ -1079,6 +1095,9 @@ Console.WriteLine(await Chat(conversationHistory, "Are there any transactions re
 // → "Yes — there are currently 6 outbound interchanges in E3010 Delay: Interchange Retry status ..."
 ```
 
+</TabItem>
+</Tabs>
+
 > This example uses the [Anthropic.SDK](https://www.nuget.org/packages/Anthropic.SDK) NuGet package. Install with: `dotnet add package Anthropic.SDK`
 
 ### Key Points
@@ -1118,7 +1137,8 @@ When building the tool registry from `tools/list`, map `inputSchema` to `paramet
 
 The ECGrid client from earlier in this guide is unchanged. Only the LLM call and tool handling differ.
 
-**JavaScript:**
+<Tabs groupId="lang">
+<TabItem value="javascript" label="JavaScript">
 
 ```javascript
 import OpenAI from "openai";
@@ -1222,7 +1242,8 @@ await ecgrid.initialize();
 console.log(await chat(history, "What is my ECGrid auth level?"));
 ```
 
-**Python:**
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import os
@@ -1326,7 +1347,8 @@ ecgrid.initialize()
 print(chat(history, "What is my ECGrid auth level?"))
 ```
 
-**C#:**
+</TabItem>
+<TabItem value="csharp" label="C#">
 
 ```csharp
 using System;
@@ -1409,6 +1431,9 @@ var conversationHistory = new List<ChatMessage>();
 await ecgrid.InitializeAsync();
 Console.WriteLine(await Chat(conversationHistory, "What is my ECGrid auth level?"));
 ```
+
+</TabItem>
+</Tabs>
 
 > This example uses the [OpenAI .NET SDK](https://www.nuget.org/packages/OpenAI). Install with: `dotnet add package OpenAI`
 
