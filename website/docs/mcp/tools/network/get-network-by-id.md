@@ -107,5 +107,5 @@ Returns the network profile including name, lifecycle and run status, primary co
 
 ## See Also
 
-- [list-mailboxes](../mailboxes/list-mailboxes.md) — list all mailboxes on a network
-- [get-user-me](../users/get-user-me.md) — check your own networkId
+- [list-mailboxes](../mailboxes/list-mailboxes) — list all mailboxes on a network
+- [get-user-me](../users/get-user-me) — check your own networkId

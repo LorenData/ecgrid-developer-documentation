@@ -128,4 +128,4 @@ A successful response returns your ECGrid login name, auth level, and network ID
 
 ## Troubleshooting
 
-See the [Troubleshooting](../troubleshooting.md) page for a full table of error causes and fixes.
+See the [Troubleshooting](../troubleshooting) page for a full table of error causes and fixes.

@@ -83,4 +83,4 @@ Console.WriteLine(result);
 ## See Also
 
 - [Protocol Reference](../protocol-reference.md) — full SSE format, two-step parse, error codes
-- [Building Agents](../building-agents.md) — chat loop patterns, multi-LLM examples
+- [Building Agents](../building-agents) — chat loop patterns, multi-LLM examples

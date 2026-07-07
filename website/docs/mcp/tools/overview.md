@@ -18,19 +18,19 @@ Call `tools/list` at startup to get the current complete tool list with full inp
 
 | Category | Tools | Interactive UI |
 |---|---|---|
-| [System](./system/) | `hello-world`, `get-version`, `get-status-list` | — |
-| [Users](./users/) | `get-user-me`, `get-user-by-id`, `get-user-by-login`, `list-users` | — |
-| [Network](./network/) | `get-network-by-id` | — |
-| [Mailboxes](./mailboxes/) | `get-mailbox-by-id`, `list-mailboxes`, `get-mailbox-by-name` | `get-mailbox-by-id`, `list-mailboxes` |
-| [ECGrid IDs](./ecgrid-ids/) | `get-ecgrid-id-by-id`, `find-edi-ids`, `list-ecgrid-ids-by-mailbox` | All three |
-| [Partners](./partners/) | `get-partner-by-id`, `list-partners`, `check-partner-config`, `test-partner-delivery`, `get-partner-document-counts` | `get-partner-by-id`, `list-partners` |
-| [Comms](./comms/) | `get-comm-by-id`, `list-comms`, `find-comms`, `test-comm`, `check-ftp-access` | — |
-| [Parcels](./parcels/) | `get-parcel-by-id` (+ 3 coming soon) | `get-parcel-by-id` |
-| [Interchanges](./interchanges/) | `get-interchange-by-id`, `get-document-counts-by-status` | `get-interchange-by-id` |
-| [Transactions](./transactions/) | `search-transactions` | `search-transactions` |
-| [Callbacks](./callbacks/) | `get-callback-event-by-id`, `get-callback-queue-by-id`, `list-callback-events`, `list-callback-queue` | — |
-| [Carbon Copies](./carbon-copies/) | `get-carbon-copy-by-id`, `list-carbon-copies` | — |
-| [Keys](./keys/) | `get-key`, `list-keys` | — |
+| [System](./system/hello-world) | `hello-world`, `get-version`, `get-status-list` | — |
+| [Users](./users/get-user-me) | `get-user-me`, `get-user-by-id`, `get-user-by-login`, `list-users` | — |
+| [Network](./network/get-network-by-id) | `get-network-by-id` | — |
+| [Mailboxes](./mailboxes/get-mailbox-by-id) | `get-mailbox-by-id`, `list-mailboxes`, `get-mailbox-by-name` | `get-mailbox-by-id`, `list-mailboxes` |
+| [ECGrid IDs](./ecgrid-ids/get-ecgrid-id-by-id) | `get-ecgrid-id-by-id`, `find-edi-ids`, `list-ecgrid-ids-by-mailbox` | All three |
+| [Partners](./partners/get-partner-by-id) | `get-partner-by-id`, `list-partners`, `check-partner-config`, `test-partner-delivery`, `get-partner-document-counts` | `get-partner-by-id`, `list-partners` |
+| [Comms](./comms/get-comm-by-id) | `get-comm-by-id`, `list-comms`, `find-comms`, `test-comm`, `check-ftp-access` | — |
+| [Parcels](./parcels/get-parcel-by-id) | `get-parcel-by-id` (+ 3 coming soon) | `get-parcel-by-id` |
+| [Interchanges](./interchanges/get-interchange-by-id) | `get-interchange-by-id`, `get-document-counts-by-status` | `get-interchange-by-id` |
+| [Transactions](./transactions/search-transactions) | `search-transactions` | `search-transactions` |
+| [Callbacks](./callbacks/get-callback-event-by-id) | `get-callback-event-by-id`, `get-callback-queue-by-id`, `list-callback-events`, `list-callback-queue` | — |
+| [Carbon Copies](./carbon-copies/get-carbon-copy-by-id) | `get-carbon-copy-by-id`, `list-carbon-copies` | — |
+| [Keys](./keys/get-key) | `get-key`, `list-keys` | — |
 
 ## Response Modes
 

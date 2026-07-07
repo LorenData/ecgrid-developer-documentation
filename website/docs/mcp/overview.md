@@ -37,6 +37,6 @@ The Model Context Protocol is an open standard that lets AI tools connect to ext
 ## Next Steps
 
 - **New to MCP?** → [Quick Start](./quick-start.md)
-- **Setting up Claude Desktop?** → [Connect Your AI Tool](./connecting/claude-desktop.md)
-- **Building an agent?** → [Building Agents](./building-agents.md)
-- **Looking up a specific tool?** → [Tools Reference](./tools/overview.md)
+- **Setting up Claude Desktop?** → [Connect Your AI Tool](./connecting/claude-desktop)
+- **Building an agent?** → [Building Agents](./building-agents)
+- **Looking up a specific tool?** → [Tools Reference](./tools/overview)

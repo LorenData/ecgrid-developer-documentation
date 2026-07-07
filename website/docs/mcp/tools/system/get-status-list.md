@@ -69,5 +69,5 @@ Structured JSON — `count`, `codes` array (each: `code`, `qualifier`, `message`
 ## See Also
 
 - [Resources & Prompts](../../resources-and-prompts.md) — InterchangeStatus and ParcelStatus MCP Resources
-- [get-interchange-by-id](../interchanges/get-interchange-by-id.md)
-- [get-parcel-by-id](../parcels/get-parcel-by-id.md)
+- [get-interchange-by-id](../interchanges/get-interchange-by-id)
+- [get-parcel-by-id](../parcels/get-parcel-by-id)

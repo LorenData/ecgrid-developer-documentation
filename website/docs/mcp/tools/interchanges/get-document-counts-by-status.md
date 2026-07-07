@@ -158,4 +158,4 @@ Status codes in `byStatus` are raw numeric `InterchangeStatus` codes as string k
 ## See Also
 
 - [get-interchange-by-id](./get-interchange-by-id.md) — look up a single interchange by its numeric ID
-- [search-transactions](../transactions/search-transactions.md) — list individual interchanges by date range, direction, and view (pending, blocked, no-route)
+- [search-transactions](../transactions/search-transactions) — list individual interchanges by date range, direction, and view (pending, blocked, no-route)

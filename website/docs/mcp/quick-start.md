@@ -73,6 +73,6 @@ A successful response returns your ECGrid login name, auth level, network ID, an
 
 ## Need More Detail?
 
-- [Full Claude Desktop setup](./connecting/claude-desktop.md) — merge instructions, hidden folder tips, troubleshooting
-- [Cursor, Windsurf, and other tools](./connecting/cursor-windsurf.md)
-- [Direct HTTP connection (developers)](./connecting/developer-http.md)
+- [Full Claude Desktop setup](./connecting/claude-desktop) — merge instructions, hidden folder tips, troubleshooting
+- [Cursor, Windsurf, and other tools](./connecting/cursor-windsurf)
+- [Direct HTTP connection (developers)](./connecting/developer-http)
