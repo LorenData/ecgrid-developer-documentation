@@ -2,7 +2,7 @@
 
 ---
 title: JavaScript / Node.js
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # JavaScript / Node.js Examples

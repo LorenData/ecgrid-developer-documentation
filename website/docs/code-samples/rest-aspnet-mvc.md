@@ -1,6 +1,6 @@
 ---
-title: REST ASP.NET Core MVC Sample
-sidebar_position: 3
+title: Web Application
+sidebar_position: 7
 ---
 {/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Created REST ASP.NET Core MVC sample documentation page - Greg Kolinski */}
 

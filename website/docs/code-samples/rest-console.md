@@ -1,6 +1,6 @@
 ---
 title: REST Console Sample
-sidebar_position: 2
+sidebar_position: 6
 ---
 {/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Created REST Console sample documentation page - Greg Kolinski 
 | 2026-05-08: Add multi-language code tabs to REST console sample key patterns - Greg Kolinski

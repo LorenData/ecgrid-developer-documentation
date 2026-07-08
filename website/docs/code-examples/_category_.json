@@ -1,8 +1,0 @@
-{
-  "label": "Code Examples",
-  "position": 5,
-  "link": {
-    "type": "generated-index",
-    "description": "Working code examples for the ECGrid B2B REST API in C#, JavaScript, Java, and Python. Each page covers authentication and common operations you can copy directly into your project."
-  }
-}

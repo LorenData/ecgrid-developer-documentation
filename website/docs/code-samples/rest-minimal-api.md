@@ -1,6 +1,6 @@
 ---
-title: REST Minimal API Sample
-sidebar_position: 5
+title: Minimal API
+sidebar_position: 8
 ---
 {/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Created REST Minimal API sample documentation page - Greg Kolinski */}
 

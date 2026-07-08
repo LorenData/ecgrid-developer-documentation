@@ -1,6 +1,6 @@
 ---
-title: SOAP HttpClient Sample
-sidebar_position: 6
+title: SOAP — HttpClient
+sidebar_position: 10
 ---
 {/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Created SOAP HttpClient sample documentation page - Greg Kolinski 
 | 2026-05-08: Add multi-language code tabs to SOAP HttpClient sample key patterns - Greg Kolinski

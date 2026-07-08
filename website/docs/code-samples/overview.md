@@ -2,15 +2,20 @@
 title: Code Samples Overview
 sidebar_position: 1
 ---
-{/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Created Code Samples overview page - Greg Kolinski */}
+{/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Created Code Samples overview page - Greg Kolinski | 2026-07-08: Add language quick-starts section; update sample project table and titles; add GitHub samples link - Greg Kolinski */}
 
-# Code Samples Overview
+# Code Samples
 
-The ECGrid Developer Portal includes six .NET 10 sample projects under the `/samples` directory. Each project demonstrates a different integration pattern for the ECGrid REST or SOAP APIs.
+This section has two types of content:
 
-## Common Conventions
+- **Language quick-starts** (C#, JavaScript, Python, Java) — self-contained copy-paste snippets covering authentication, mailboxes, interchanges, callbacks, and error handling. Start here if you want to make your first API call in your language of choice.
+- **Sample projects** — full .NET 10 projects under `/samples` that demonstrate complete integration patterns (console polling loop, web application, background service, Minimal API proxy, and SOAP).
 
-All sample projects share the same foundational conventions:
+> Real, runnable sample projects for all supported languages will be published at [github.com/LorenData/ecgrid-samples](https://github.com/LorenData/ecgrid-samples). That repository is being built out — check back for updates.
+
+## Common Conventions (.NET samples)
+
+All .NET sample projects share the same foundational conventions:
 
 - **Framework:** .NET 10 (`net10.0`)
 - **JSON:** `System.Text.Json` — Newtonsoft.Json is never used
@@ -20,42 +25,35 @@ All sample projects share the same foundational conventions:
 
 ## Sample Projects
 
-| Project | Type | Demonstrates |
+| Project | Pattern | Demonstrates |
 |---|---|---|
-| `ECGrid-REST-dotnet10-Console` | Console (.NET 10) | Basic REST: login, inbox, download, confirm, upload |
-| `ECGrid-REST-dotnet10-AspNetCore-MVC` | ASP.NET Core MVC | Full MVC controller with ECGrid REST backend |
-| `ECGrid-REST-dotnet10-WorkerService` | Worker Service | Background polling loop with configurable interval |
-| `ECGrid-REST-dotnet10-MinimalAPI` | Minimal API | Lightweight proxy for key ECGrid endpoints |
-| `ECGrid-SOAP-dotnet10-Console-HttpClient` | Console (.NET 10) | Manual SOAP via HttpClient + XDocument |
-| `ECGrid-SOAP-dotnet10-Console-SvcUtil` | Console (.NET 10) | Type-safe SOAP via dotnet-svcutil proxy |
+| REST Console | Console (.NET 10) | Basic REST: inbox check, download, confirm, upload |
+| Web Application | ASP.NET Core MVC | MVC controller backed by ECGrid REST |
+| Minimal API | ASP.NET Core | Lightweight proxy for common ECGrid endpoints |
+| Background Service | Worker Service | Background polling loop with configurable interval |
+| SOAP — HttpClient | Console (.NET 10) | Manual SOAP envelope construction via HttpClient |
+| SOAP — SvcUtil | Console (.NET 10) | Type-safe SOAP via dotnet-svcutil proxy |
 
-## Prerequisites
+## Prerequisites (.NET samples)
 
-Before running any sample, ensure the following are in place:
-
-- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) installed
-- An active ECGrid API key (obtain from your ECGrid Network Administrator or the ECGrid portal)
-- **SOAP samples only:** `dotnet-svcutil` global tool for regenerating the service proxy
+- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
+- An active ECGrid API key (from your network administrator or portal)
+- **SOAP samples only:** `dotnet-svcutil` global tool
 
   ```bash
   dotnet tool install -g dotnet-svcutil
   ```
 
-## Setting Your API Key
-
-All REST samples read the API key from configuration. The recommended approach during local development is .NET user-secrets:
+## Setting Your API Key (.NET samples)
 
 ```bash
-# Run this once from within the sample project directory
+# Run from within the sample project directory
 dotnet user-secrets set "ECGrid:ApiKey" "your-key-here"
 ```
 
-Alternatively, set the environment variable directly:
+Or via environment variable:
 
 ```bash
-# Windows (Command Prompt)
-set ECGRID__APIKEY=your-key-here
-
 # Windows (PowerShell)
 $env:ECGRID__APIKEY = "your-key-here"
 
@@ -63,10 +61,10 @@ $env:ECGRID__APIKEY = "your-key-here"
 export ECGRID__APIKEY=your-key-here
 ```
 
-The double underscore (`__`) in the environment variable name is the .NET configuration hierarchy separator — it maps to `ECGrid:ApiKey` in `appsettings.json`.
+The double underscore (`__`) maps to `ECGrid:ApiKey` in `appsettings.json`.
 
 ## REST vs SOAP
 
-If you are starting a new integration, use the REST samples. The SOAP samples are provided for teams maintaining or migrating existing SOAP-based integrations.
+For new integrations use the REST samples. SOAP samples are for teams maintaining or migrating existing SOAP-based code.
 
-See [REST vs SOAP](../getting-started/rest-vs-soap.md) for a full comparison.
+See [REST vs SOAP](../getting-started/rest-vs-soap.md) for a comparison.

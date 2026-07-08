@@ -1,6 +1,6 @@
 ---
-title: SOAP SvcUtil Sample
-sidebar_position: 7
+title: SOAP — SvcUtil
+sidebar_position: 11
 ---
 {/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-05-07: Created SOAP SvcUtil sample documentation page - Greg Kolinski */}
 
