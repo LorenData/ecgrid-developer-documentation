@@ -12,9 +12,7 @@ Tool: Claude Code (Anthropic)
 
 List ECGrid interconnects (trading-partner relationships), scoped to what the caller's APIKey can see. Use for discovery: browsing partners on a network, finding all pending or suspended interconnects, listing every partner of one mailbox, or pulling every interconnect between two specific ECGrid IDs. To list the trading partners of a mailbox, call this tool with `mailboxId` set to that mailbox ID — it returns every interconnect for the mailbox in a single call. Omitting all filters returns every visible interconnect. This tool deliberately bypasses the response cache so results always reflect current state.
 
-:::info Interactive UI Component
-This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
-:::
+> ℹ️ **Interactive UI Component:** This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
 
 ## Tool Name
 

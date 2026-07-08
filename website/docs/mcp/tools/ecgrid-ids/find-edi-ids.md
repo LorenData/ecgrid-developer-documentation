@@ -12,9 +12,7 @@ Tool: Claude Code (Anthropic)
 
 Find ECGrid trading-partner ID records by EDI identifier string (the wire-level X12 ISA06/ISA08 value) or by a substring of the record description, with optional scope filters. Use when the caller has an EDI identifier string and wants to resolve it to the owning record — for example an inbound X12 envelope shows partner ID `7704344400` and they want to know which mailbox owns it — or when the caller knows a partner-name substring (e.g. `acme`) and wants matching records. Supply at least one of `id` or `description`. When `description` is supplied the backend routes to a description-based search and the `id`/`qualifier` filter is ignored. Returns a `count` and an `ediIds` array; an empty array (count = 0) is a successful outcome, NOT an error.
 
-:::info Interactive UI Component
-This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
-:::
+> ℹ️ **Interactive UI Component:** This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
 
 ## Tool Name
 

@@ -12,9 +12,7 @@ Tool: Claude Code (Anthropic)
 
 List ECGrid trading-partner ID records registered under a specific mailbox. Use to enumerate the roster of EDI IDs under a known mailbox — for example an operator wants every partner ID, qualifier, and status currently registered there. Only `mailboxId` is required: when `networkId` is omitted the tool resolves the owning network automatically. Supply `networkId` explicitly to skip that extra lookup when the network is already known. Returns a `count` and an `ecgridIds` array; an empty array (count = 0) means the mailbox has no registered EDI IDs matching the filter — a successful outcome, NOT NOT_FOUND.
 
-:::info Interactive UI Component
-This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
-:::
+> ℹ️ **Interactive UI Component:** This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
 
 ## Tool Name
 

@@ -110,9 +110,7 @@ Returns the channel profile including type, identifier, URL, security flags, rec
 | `isCurrentlyValid` | boolean | true when current date falls within notBefore–notAfter |
 | `daysUntilExpiry` | integer | Days remaining until notAfter; negative when already expired |
 
-:::note
-HTTP auth username/password and raw certificate bytes are deliberately not returned. To enumerate all channels under a mailbox use `connectivity_comm_list-comms`.
-:::
+> 📝 **Note:** HTTP auth username/password and raw certificate bytes are deliberately not returned. To enumerate all channels under a mailbox use `connectivity_comm_list-comms`.
 
 ## Example Call
 

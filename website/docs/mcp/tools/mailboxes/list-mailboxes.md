@@ -12,9 +12,7 @@ Tool: Claude Code (Anthropic)
 
 List every mailbox in one ECGrid network. Use to browse or enumerate a network's mailboxes when you do not have a name to search by (e.g. "show the mailboxes on network 7", or just "list my mailboxes"). `networkId` is optional: supply it to list a specific network; omit it to list the caller's own home network, resolved from the current session. There is no "all networks" mode — the result is always scoped to a single network. Returns an array of mailbox records (`mailboxes`) plus a `count`; the array may be empty when the network has no mailboxes.
 
-:::info Interactive UI Component
-This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
-:::
+> ℹ️ **Interactive UI Component:** This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
 
 ## Tool Name
 

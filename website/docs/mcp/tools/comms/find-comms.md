@@ -32,9 +32,9 @@ Any (scoped to caller's APIKey)
 | `request.useType` | string \| null | No | Optional use-type filter. Allowed values: `Undefined`, `Test`, `Production`, `TestAndProduction`. Default `TestAndProduction`. |
 | `request.privateKeyRequired` | boolean \| null | No | When `true`, only channels with a private key available are returned. Default `false` — unlike `list-comms` (which defaults true), a find by identifier should locate the channel regardless of private-key presence. |
 
-:::note Certificate inspection
-This endpoint has no `withCerts` flag, so certificate details are not controllable here. To review certificate validity, expiry, or issuer call `connectivity_comm_get-comm-by-id` (always returns certificates) or `connectivity_comm_list-comms` with `withCerts: true`.
-:::
+> 📝 **Certificate inspection**
+>
+> This endpoint has no `withCerts` flag, so certificate details are not controllable here. To review certificate validity, expiry, or issuer call `connectivity_comm_get-comm-by-id` (always returns certificates) or `connectivity_comm_list-comms` with `withCerts: true`.
 
 ## Response
 

@@ -12,9 +12,7 @@ Tool: Claude Code (Anthropic)
 
 Look up a single ECGrid interconnect (trading-partner relationship) by its numeric interconnect ID. Use when the caller already has the integer ID — for example from a previous `connectivity_partner_list-partners` result, a ticket, or an admin reference. Returns the interconnect's full profile: lifecycle timestamps, status, contact info, partner-side references and AS2 IDs, both trading-partner ECGrid ID summaries (TP1/TP2), and compact user references. Returns NOT_FOUND when no interconnect matches the ID. Results are limited to what the caller's APIKey can see.
 
-:::info Interactive UI Component
-This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
-:::
+> ℹ️ **Interactive UI Component:** This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
 
 ## Tool Name
 

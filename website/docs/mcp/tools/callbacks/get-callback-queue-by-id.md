@@ -13,9 +13,7 @@ Tool: Claude Code (Anthropic)
 
 Look up a single callback (webhook) delivery/retry queue entry by its numeric queue ID. A queue entry is one delivery attempt of a callback registration — it carries the attempt status, calls remaining, next-call time, the per-attempt delivery log, and a lite reference to the parent callback event. Use when the caller has a specific `callBackQueueId` — for example from `list-callback-queue` or the `queue` array of `get-callback-event-by-id` — and wants that one attempt's full detail. Returns NOT_FOUND when no queue entry matches the ID. Results are scoped to the caller's APIKey.
 
-:::caution ID type matters
-The argument to this tool is a **`callBackQueueId`** (a delivery-attempt ID), NOT a `callBackEventId` (a registration ID). Passing a `callBackEventId` here will return NOT_FOUND. To read a callback registration use `get-callback-event-by-id`; to list the queue across a mailbox use `list-callback-queue`.
-:::
+> ⚠️ **ID type matters:** The argument to this tool is a **`callBackQueueId`** (a delivery-attempt ID), NOT a `callBackEventId` (a registration ID). Passing a `callBackEventId` here will return NOT_FOUND. To read a callback registration use `get-callback-event-by-id`; to list the queue across a mailbox use `list-callback-queue`.
 
 ## Tool Name
 

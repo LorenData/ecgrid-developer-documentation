@@ -1,9 +1,9 @@
-{/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-06-17: Code examples section - Christian Nichols */}
-
 ---
 title: C#
 sidebar_position: 2
 ---
+
+{/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-06-17: Code examples section - Christian Nichols */}
 
 # C# Examples
 

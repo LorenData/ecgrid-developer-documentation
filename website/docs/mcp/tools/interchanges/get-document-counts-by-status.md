@@ -29,9 +29,7 @@ This tool supports two mutually exclusive input modes. `ecgridId` takes preceden
 | **Mode A** — ECGrid ID scoped | `request.ecgridId` | Resolves `(networkId, mailboxId)` automatically via the ECGrid ID lookup. Filters report rows to that single ECGrid ID. `customers[]` always has exactly one entry. Any `networkId` / `mailboxId` also sent are ignored. |
 | **Mode B** — Mailbox scoped | `request.networkId` + `request.mailboxId` | Calls the report directly without an ECGrid ID lookup. No row filtering — `customers[]` surfaces every distinct ECGrid ID active on the mailbox in the window. |
 
-:::note Network-only scope not supported
-The backend report requires a mailbox. Use Mode B with a specific `(networkId, mailboxId)` pair, or call this tool once per mailbox to cover a full network.
-:::
+> 📝 **Network-only scope not supported:** The backend report requires a mailbox. Use Mode B with a specific `(networkId, mailboxId)` pair, or call this tool once per mailbox to cover a full network.
 
 ## Parameters
 
@@ -106,9 +104,7 @@ Returns the resolved scope, the queried date range, a top-level total, and a `cu
 | `customers[].byDirection.to.total` | integer | Total inbound interchanges (TO this customer) |
 | `customers[].byDirection.to.byStatus` | object | Map of numeric status code → count for inbound interchanges |
 
-:::note Status code keys
-Status codes in `byStatus` are raw numeric `InterchangeStatus` codes as string keys — for example `"4000"` (Complete: CLOSED), `"4101"` (CANCELED), `"1101"` (Interchange Control-No mismatch). Zero-count status codes are omitted from the map.
-:::
+> 📝 **Status code keys:** Status codes in `byStatus` are raw numeric `InterchangeStatus` codes as string keys — for example `"4000"` (Complete: CLOSED), `"4101"` (CANCELED), `"1101"` (Interchange Control-No mismatch). Zero-count status codes are omitted from the map.
 
 ## Example Call — Mode A (ECGrid ID)
 

@@ -12,9 +12,7 @@ Tool: Claude Code (Anthropic)
 
 Look up a single EDI interchange by its numeric interchange ID and return its full detail. An interchange is one X12 ISA…IEA or EDIFACT UNB…UNZ envelope — the unit of EDI routing on ECGrid. A parcel is the physical container that carries one or more interchanges. Use when the caller has a numeric interchange ID and wants its routing, status, EDI identity, and envelope header. Returns NOT_FOUND when no interchange matches the ID. Results are scoped to the caller's APIKey — another tenant's interchange surfaces as NOT_FOUND.
 
-:::info Interactive UI Component
-This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
-:::
+> ℹ️ **Interactive UI Component:** This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
 
 ## Tool Name
 

@@ -13,9 +13,7 @@ Tool: Claude Code (Anthropic)
 
 Search EDI transactions the way the Customer Portal Transactions page does — one call covers direction, type (interchange envelopes or file parcels), a date window, ECGrid ID or qualifier+EDI-ID filters, and live box views for blocked, pending, no-route, pending-download, and delivery-error traffic.
 
-:::info Interactive UI Component
-This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
-:::
+> ℹ️ **Interactive UI Component:** This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
 
 ## Tool Name
 
@@ -50,9 +48,9 @@ Any (scoped to caller's APIKey)
 | `request.pageNo` | integer \| null | No | 1-based page number applied to each directional leg. Defaults to 1. |
 | `request.recordsPerPage` | integer \| null | No | Records per page per leg, 1..1000. Defaults to 100. Direction `Both` can return up to twice this. |
 
-:::note View-specific pagination behaviour
-The `Blocked`, `Pending`, and `NoRoute` interchange views scan the entire date window — `pageNo` and `recordsPerPage` are ignored. An over-large window returns `partial: true`; narrow the date range and retry. The `PendingDownload` and `DeliveryError` parcel views query live state; dates and paging are also ignored for those views.
-:::
+> 📝 **View-specific pagination behaviour**
+>
+> The `Blocked`, `Pending`, and `NoRoute` interchange views scan the entire date window — `pageNo` and `recordsPerPage` are ignored. An over-large window returns `partial: true`; narrow the date range and retry. The `PendingDownload` and `DeliveryError` parcel views query live state; dates and paging are also ignored for those views.
 
 ## Response
 

@@ -34,9 +34,9 @@ Any (scoped to caller's APIKey)
 | `request.useType` | string \| null | No | Optional use-type filter. Allowed values: `Undefined`, `Test`, `Production`, `TestAndProduction`. Default `TestAndProduction`. Unknown values are rejected as VALIDATION_ERROR. |
 | `request.privateKeyRequired` | boolean \| null | No | When `true`, only channels that have a private key available are returned. Default `true`. |
 
-:::tip Certificate inspection
-Set `withCerts: true` to inspect certificate validity, expiry, and issuer across all channels in a mailbox. Without this flag the `certificates` array is empty and cert-validity questions cannot be answered. For a single channel's certificate details, `connectivity_comm_get-comm-by-id` always returns certificates without any flag.
-:::
+> 💡 **Certificate inspection**
+>
+> Set `withCerts: true` to inspect certificate validity, expiry, and issuer across all channels in a mailbox. Without this flag the `certificates` array is empty and cert-validity questions cannot be answered. For a single channel's certificate details, `connectivity_comm_get-comm-by-id` always returns certificates without any flag.
 
 ## Response
 

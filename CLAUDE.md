@@ -759,6 +759,8 @@ These ENUMs appear across many endpoints. Define them in `docs/appendix/enums.md
 - Do not commit, push, or merge to any branch — that is a human responsibility per Loren Data AI Use Policy §7.2
 - Do not use `new HttpClient()` directly in production sample code — use `IHttpClientFactory`
 - Do not reference WCF `system.serviceModel` web.config patterns — this is .NET 10 only
+- Do not use `:::caution`, `:::tip`, `:::note`, `:::info`, or `:::warning` admonitions in `.md` files — they require MDX processing that is unreliable unless the file has explicit `import` statements. Use Markdown blockquotes instead: `> ⚠️ **Title:** content` for caution/warning, `> 💡 **Title:** content` for tip, `> 📝 **Title:** content` for note/info.
+- Do not generate Docusaurus-style admonitions (Docusaurus Info, Danger, etc.) without ensuring the file has the required MDX imports and syntax
 
 ---
 
@@ -826,6 +828,19 @@ For Markdown files:
 <!-- AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | YYYY-MM-DD: description - developer name -->
 ```
 
+> **IMPORTANT: Frontmatter order**
+> In Docusaurus Markdown files, the YAML frontmatter MUST come before the attribution comment. The correct order is:
+> ```markdown
+> ---
+> title: Page Title
+> sidebar_position: N
+> ---
+> {/* AI Attribution — Loren Data AI Use Policy §8.2 | ... */}
+>
+> # Page content
+> ```
+> If the attribution comment appears before the `---`, it will render as literal text on the page. Always place frontmatter first.
+
 For C# files:
 ```csharp
 // ------------------------------------------------------------
@@ -870,3 +885,4 @@ If the developer says "skip attribution for this one," respect it without argume
 |---|---|---|
 | 2026-05-07 | Initial CLAUDE.md created. Full site plan, nav structure, page templates, ENUMs, coding conventions, and attribution automation merged from Loren Data Developer Handbook template. | Greg |
 | 2026-05-28 | Added repository URLs (Azure DevOps + GitHub dual-remote), developer onboarding pointer to README, Node.js version pin to Build & Deploy Notes. | Greg |
+| 2026-07-08 | Add frontmatter-before-attribution rule and no-admonitions rule to What to Avoid | Greg |

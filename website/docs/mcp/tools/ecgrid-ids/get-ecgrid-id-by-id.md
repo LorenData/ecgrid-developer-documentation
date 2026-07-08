@@ -12,9 +12,7 @@ Tool: Claude Code (Anthropic)
 
 Look up a single ECGrid trading-partner ID record by its numeric ECGrid ID (the internal int32 primary key). Use when the caller already has the integer ECGrid ID — for example from a previous `connectivity_partner_get-partner-by-id` result, a `connectivity_ecgrid-id_find-edi-ids` match, a ticket, or an admin reference. For lookup by the wire-level EDI identifier string (the value partners exchange in X12 ISA06/ISA08, paired with a qualifier such as `ZZ` or `01`) use `connectivity_ecgrid-id_find-edi-ids` instead. Returns NOT_FOUND when no record matches the integer ID. Results are scoped to the caller's APIKey.
 
-:::info Interactive UI Component
-This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
-:::
+> ℹ️ **Interactive UI Component:** This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
 
 ## Tool Name
 

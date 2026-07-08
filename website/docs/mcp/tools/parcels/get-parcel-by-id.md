@@ -12,9 +12,7 @@ Tool: Claude Code (Anthropic)
 
 Look up a single parcel by its numeric parcel ID and return its full detail. A parcel is the physical file container that carries one or more EDI interchanges through a mailbox. Use when the caller has a numeric parcel ID and wants the parcel's routing, identification, current status, and the interchanges inside it. Returns NOT_FOUND when no parcel matches the ID. Results are scoped to the caller's APIKey — another tenant's parcel surfaces as NOT_FOUND.
 
-:::info Interactive UI Component
-This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
-:::
+> ℹ️ **Interactive UI Component:** This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
 
 ## Tool Name
 

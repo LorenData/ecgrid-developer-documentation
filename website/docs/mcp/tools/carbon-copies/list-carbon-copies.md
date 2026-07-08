@@ -13,9 +13,7 @@ Tool: Claude Code (Anthropic)
 
 List carbon copy rules. A carbon copy rule duplicates EDI interchanges flowing from one trading-partner pair (originalFrom &rarr; originalTo) to a second "CC" destination pair (ccFrom &rarr; ccTo). Supply both `networkId` and `mailboxId` to scope the listing to one mailbox; omit both to list every rule visible to the caller's APIKey. Optional filters narrow results by original sender, original receiver, or active status. An empty result (count = 0) is a successful outcome — not NOT_FOUND. Results are scoped to the caller's APIKey. Not cached.
 
-:::caution Paired parameters
-`networkId` and `mailboxId` must be supplied **together** — passing only one is rejected as VALIDATION_ERROR. Either supply both to scope to a mailbox, or omit both to list across the entire APIKey.
-:::
+> ⚠️ **Paired parameters:** `networkId` and `mailboxId` must be supplied **together** — passing only one is rejected as VALIDATION_ERROR. Either supply both to scope to a mailbox, or omit both to list across the entire APIKey.
 
 ## Tool Name
 

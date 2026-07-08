@@ -12,9 +12,7 @@ Tool: Claude Code (Anthropic)
 
 Look up a single ECGrid mailbox by its numeric mailbox ID. Use when the caller already has the integer ID (e.g. from a previous tool result, a ticket, or an admin reference). Returns the mailbox's profile: name, lifecycle status, use-type, managed flag, the seven role-based contacts (owner, errors, interconnects, notices, reports, customer service, accounting), delivery and X12 envelope configuration, default AS2 ID, owner-side billing metadata, and audit timestamps. Returns NOT_FOUND when no mailbox matches the ID. Results are limited to what the caller's APIKey can see; another tenant's mailbox ID will surface as NOT_FOUND.
 
-:::info Interactive UI Component
-This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
-:::
+> ℹ️ **Interactive UI Component:** This tool renders a visual widget in Claude Desktop and Claude.ai alongside the AI's response.
 
 ## Tool Name
 

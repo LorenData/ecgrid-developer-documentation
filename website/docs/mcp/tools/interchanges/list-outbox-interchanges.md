@@ -13,9 +13,9 @@ Tool: Claude Code (Anthropic)
 
 List OUTBOUND EDI interchanges sent from a mailbox. An interchange is one X12 ISA…IEA or EDIFACT UNB…UNZ envelope — the unit of EDI routing on ECGrid. The default view is the historical **Archive** paginated within a date window. Set a view flag to switch views: `blocked` returns held interchanges; `pending` returns interchanges awaiting processing; `noRoute` returns interchanges with no delivery route (undeliverable). An empty result (`count = 0`) means no matches — not an error. Results are scoped to the caller's APIKey.
 
-:::info Use when...
-You want to audit sent EDI traffic or investigate stuck, undeliverable, or blocked outbound interchanges. For inbound use `list-inbox-interchanges`. For a single interchange's full detail use `get-interchange-by-id`.
-:::
+> ℹ️ **Use when...**
+>
+> You want to audit sent EDI traffic or investigate stuck, undeliverable, or blocked outbound interchanges. For inbound use `list-inbox-interchanges`. For a single interchange's full detail use `get-interchange-by-id`.
 
 ## Tool Name
 
@@ -44,13 +44,9 @@ Any (scoped to caller's APIKey)
 | `request.pending` | boolean | No | Switch to the PENDING view — interchanges awaiting processing. Default false. |
 | `request.noRoute` | boolean | No | Switch to the NO ROUTE view — outbound interchanges with no delivery route (undeliverable). Default false. Outbound only. |
 
-:::caution Date time zone
-Supply `timeZoneId` OR `utcOffsetMinutes` to interpret `beginDate`/`endDate` in a local time zone. Omitting both means the dates are treated as UTC. Supplying both is a VALIDATION_ERROR.
-:::
+> ⚠️ **Date time zone:** Supply `timeZoneId` OR `utcOffsetMinutes` to interpret `beginDate`/`endDate` in a local time zone. Omitting both means the dates are treated as UTC. Supplying both is a VALIDATION_ERROR.
 
-:::tip noRoute — outbound only
-The `noRoute` flag is unique to this tool. An interchange lands in the NoRoute view when ECGrid cannot find a delivery route to the recipient. Use `check-partner-config` to diagnose routing issues.
-:::
+> 💡 **noRoute — outbound only:** The `noRoute` flag is unique to this tool. An interchange lands in the NoRoute view when ECGrid cannot find a delivery route to the recipient. Use `check-partner-config` to diagnose routing issues.
 
 ## Response
 

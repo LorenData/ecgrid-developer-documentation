@@ -1,9 +1,9 @@
-{/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-06-17: Code examples section - Christian Nichols */}
-
 ---
 title: Java
 sidebar_position: 5
 ---
+
+{/* AI Attribution — Loren Data AI Use Policy §8.2 | Tool: Claude Code (Anthropic) | 2026-06-17: Code examples section - Christian Nichols */}
 
 # Java Examples
 

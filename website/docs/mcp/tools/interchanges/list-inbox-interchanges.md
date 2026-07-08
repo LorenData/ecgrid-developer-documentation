@@ -13,9 +13,9 @@ Tool: Claude Code (Anthropic)
 
 List INBOUND EDI interchanges received by a mailbox. An interchange is one X12 ISA…IEA or EDIFACT UNB…UNZ envelope — the unit of EDI routing on ECGrid. The default view is the historical **Archive** paginated within a date window. Set a view flag to switch views: `blocked` returns interchanges held from delivery; `pending` returns interchanges awaiting processing. An empty result (`count = 0`) means no matches — not an error. Results are scoped to the caller's APIKey.
 
-:::info Use when...
-You want to audit received EDI traffic or investigate stuck or blocked inbound interchanges. For outbound use `list-outbox-interchanges`. For a single interchange's full detail use `get-interchange-by-id`.
-:::
+> ℹ️ **Use when...**
+>
+> You want to audit received EDI traffic or investigate stuck or blocked inbound interchanges. For outbound use `list-outbox-interchanges`. For a single interchange's full detail use `get-interchange-by-id`.
 
 ## Tool Name
 
@@ -43,9 +43,7 @@ Any (scoped to caller's APIKey)
 | `request.blocked` | boolean | No | Switch to the BLOCKED view — interchanges held from delivery. Default false. Mutually exclusive with `pending`. |
 | `request.pending` | boolean | No | Switch to the PENDING view — interchanges awaiting processing. Default false. Mutually exclusive with `blocked`. |
 
-:::caution Date time zone
-Supply `timeZoneId` OR `utcOffsetMinutes` to interpret `beginDate`/`endDate` in a local time zone. Omitting both means the dates are treated as UTC. Supplying both is a VALIDATION_ERROR.
-:::
+> ⚠️ **Date time zone:** Supply `timeZoneId` OR `utcOffsetMinutes` to interpret `beginDate`/`endDate` in a local time zone. Omitting both means the dates are treated as UTC. Supplying both is a VALIDATION_ERROR.
 
 ## Response
 

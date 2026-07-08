@@ -10,9 +10,7 @@ Tool: Claude Code (Anthropic)
 
 # list-inbox-parcels
 
-:::caution Coming Soon
-This tool is in development and not yet available on the ECGrid MCP Server. This page will be updated when the tool ships. Use `tools/list` to confirm availability.
-:::
+> ⚠️ **Coming Soon:** This tool is in development and not yet available on the ECGrid MCP Server. This page will be updated when the tool ships. Use `tools/list` to confirm availability.
 
 List inbound parcels by date range for a mailbox.
 
