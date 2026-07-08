@@ -41,7 +41,7 @@ Call `tools/list` at startup to get the current complete tool list with full inp
 
 ## Other Product Groups
 
-The server also hosts **Translation** and **DataSync** product groups. These are separate licensed products with their own tool prefixes (`translation_` and `datasync_`). They are not documented here — contact Loren Data for access.
+The server also hosts **Translation** and **DataSync** product groups. These are separate licensed products with their own tool prefixes (`translation_` and `datasync_`).
 
 ## Future Tools
 

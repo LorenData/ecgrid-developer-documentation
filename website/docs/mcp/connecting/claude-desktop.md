@@ -17,9 +17,9 @@ Full setup guide for connecting the ECGrid MCP Server to Claude Desktop on macOS
 
 The fastest way — paste one of these prompts into Claude and let it handle the setup.
 
-:::caution Keep your API key out of the chat
-Treat your ECGrid API key like a password. The prompts below leave `YOUR_API_KEY_HERE` as a placeholder — **fill in your actual key directly in the config file**, not in the chat. Get your key from [api.ecgridos.io](https://api.ecgridos.io) → account settings.
-:::
+> ⚠️ **Keep your API key out of the chat**
+>
+> Treat your ECGrid API key like a password. The prompts below leave `YOUR_API_KEY_HERE` as a placeholder — **fill in your actual key directly in the config file**, not in the chat. Get your key from your ECGrid Portal → account settings.
 
 ### Option A — Claude Desktop (Fully Automated)
 
@@ -73,13 +73,9 @@ node --version
 
 You need **v18 or later**. Install from [nodejs.org](https://nodejs.org) if missing or too old.
 
-:::tip macOS — opening Terminal
-Press `Cmd + Space`, type `Terminal`, press Enter.
-:::
+> 💡 **macOS — opening Terminal:** Press `Cmd + Space`, type `Terminal`, press Enter.
 
-:::tip Windows — opening Command Prompt
-Press the Windows key, type `cmd`, press Enter.
-:::
+> 💡 **Windows — opening Command Prompt:** Press the Windows key, type `cmd`, press Enter.
 
 ### Step 2 — Find Your Config File
 
@@ -89,13 +85,9 @@ Manual paths:
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
-:::caution macOS — Library folder is hidden
-Use **Go** → **Go to Folder** (Cmd+Shift+G) and paste `~/Library/Application Support/Claude/`.
-:::
+> ⚠️ **macOS — Library folder is hidden:** Use **Go** → **Go to Folder** (Cmd+Shift+G) and paste `~/Library/Application Support/Claude/`.
 
-:::caution Windows — AppData folder is hidden
-Paste `%APPDATA%\Claude\` directly into the File Explorer address bar.
-:::
+> ⚠️ **Windows — AppData folder is hidden:** Paste `%APPDATA%\Claude\` directly into the File Explorer address bar.
 
 ### Step 3 — Add the Config Block
 

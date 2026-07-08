@@ -15,7 +15,7 @@ Connect the ECGrid MCP Server to your AI tool in four steps.
 
 ## Step 1 — Get Your ECGrid API Key
 
-Go to the [ECGrid Developer Portal](https://api.ecgridos.io/), log in, and copy your API key from account settings. This is the same key used for the REST and SOAP APIs — no new account needed.
+Go to your existing ECGrid Portal, log in, and copy your API key from account settings. This is the same key used for the REST and SOAP APIs — no new account needed.
 
 ## Step 2 — Check Node.js (Claude Desktop only)
 

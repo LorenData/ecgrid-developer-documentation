@@ -34,6 +34,7 @@ const config: Config = {
 
   onBrokenLinks: "warn",
   markdown: {
+    format: 'mdx',
     hooks: {
       onBrokenMarkdownLinks: "warn",
     },

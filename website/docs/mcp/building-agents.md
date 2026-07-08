@@ -19,7 +19,7 @@ Guide for developers building AI-powered features — chatbots, agents, or autom
 
 ## Prerequisites
 
-- An ECGrid API key — from the [ECGrid Developer Portal](https://api.ecgridos.io/)
+- An ECGrid API key — from your ECGrid Portal
 - Familiarity with HTTP and JSON
 - Any language or HTTP client — no SDK or Node.js required
 
@@ -1098,7 +1098,7 @@ Console.WriteLine(await Chat(conversationHistory, "Are there any transactions re
 </TabItem>
 </Tabs>
 
-> This example uses the [Anthropic.SDK](https://www.nuget.org/packages/Anthropic.SDK) NuGet package. Install with: `dotnet add package Anthropic.SDK`
+> This example uses the Anthropic.SDK.
 
 ### Key Points
 
@@ -1435,7 +1435,7 @@ Console.WriteLine(await Chat(conversationHistory, "What is my ECGrid auth level?
 </TabItem>
 </Tabs>
 
-> This example uses the [OpenAI .NET SDK](https://www.nuget.org/packages/OpenAI). Install with: `dotnet add package OpenAI`
+> This example uses the OpenAI SDK
 
 > For OpenAI API documentation including function calling and conversation management see [platform.openai.com/docs](https://platform.openai.com/docs).
 

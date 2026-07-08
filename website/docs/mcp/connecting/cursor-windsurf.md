@@ -57,7 +57,7 @@ Use the same server URL and header for any tool that supports remote MCP servers
 | Auth header | `X-APIKey: YOUR_API_KEY_HERE` |
 | Transport | HTTP (SSE response) |
 
-Config formats vary by tool version — check your tool's documentation. You can also paste the [ECGrid MCP Overview](../overview.md) into your AI and ask: *"How do I add this MCP server to [tool name]?"*
+Config formats vary by tool version — check your tool's documentation. You can also paste the [ECGrid MCP Overview URL](../overview.md) into your AI and ask: *"How do I add this MCP server to [tool name]?"*
 
 ## Verify the Connection
 
