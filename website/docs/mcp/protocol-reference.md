@@ -7,6 +7,7 @@ sidebar_position: 4
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: MCP protocol reference - Greg Kolinski
+2026-07-20: Update required headers for multi-credential model - Greg Kolinski
 */}
 
 # Protocol Reference
@@ -49,8 +50,11 @@ These endpoints are anonymous and CORS-enabled. Useful for building integrations
     "required": true,
     "methods": ["api_key"],
     "api_key": {
-      "header": "X-APIKey",
-      "description": "ECGrid API key — obtain from https://api.ecgridos.io/"
+      "headers": {
+        "X-Connectivity-API-Key": "ECGrid API key — obtain from https://api.ecgridos.io/",
+        "X-DataSync-API-Key": "GPA Personal Access Token (PAT)",
+        "X-Translation-API-Key": "Translation API key"
+      },
     }
   },
   "rate_limits": { "requests_per_minute": 100 },
@@ -89,15 +93,23 @@ Health probes are anonymous.
 
 ## Required Headers
 
-Every POST to `/mcp` requires:
+Every POST to `/mcp` requires `Content-Type`, `Accept`, and at least one credential header:
 
 ```
 Content-Type: application/json
 Accept: application/json, text/event-stream
-X-APIKey: YOUR_API_KEY_HERE
+X-Connectivity-API-Key: YOUR_API_KEY_HERE
 ```
 
-Omitting or incorrectly setting `Accept` returns `406 Not Acceptable`.
+Supply a header for each product you want to use. A single request can carry multiple credential headers:
+
+```
+X-Connectivity-API-Key: YOUR_CONNECTIVITY_KEY
+X-DataSync-API-Key: YOUR_GPA_PAT
+X-Translation-API-Key: YOUR_TRANSLATION_KEY
+```
+
+Omitting or incorrectly setting `Accept` returns `406 Not Acceptable`. Sending no recognized credential returns `401`.
 
 ## Response Format — Server-Sent Events
 
@@ -209,5 +221,5 @@ GET https://mcp.ecgrid.io/health/ready
 Use the official [MCP Inspector](https://github.com/modelcontextprotocol/inspector) to explore tools interactively:
 
 ```bash
-npx @modelcontextprotocol/inspector "https://mcp.ecgrid.io/mcp" --header "X-APIKey:YOUR_API_KEY_HERE"
+npx @modelcontextprotocol/inspector "https://mcp.ecgrid.io/mcp" --header "X-Connectivity-API-Key:YOUR_API_KEY_HERE"
 ```

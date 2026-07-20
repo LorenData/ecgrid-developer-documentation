@@ -7,6 +7,7 @@ sidebar_position: 1
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: Initial MCP section overview - Greg Kolinski
+2026-07-20: Update auth/tool count for multi-credential model - Greg Kolinski
 */}
 
 # ECGrid MCP
@@ -26,8 +27,17 @@ The Model Context Protocol is an open standard that lets AI tools connect to ext
 | Server URL | `https://mcp.ecgrid.io/mcp` |
 | Protocol | MCP over HTTP (JSON-RPC 2.0) |
 | MCP Version | `2024-11-05` |
-| Authentication | `X-APIKey` header (your ECGrid API key) |
-| Tools | 41 tools across 13 categories |
+
+## Products
+
+One connection to `https://mcp.ecgrid.io/mcp` can carry credentials for multiple products simultaneously. Supply the header for each product you want to use.
+
+| Product | Auth Header | Credential | Tools |
+|---|---|---|---|
+| ECGrid Connectivity | `X-Connectivity-API-Key` | ECGrid API key | 37 tools across 13 categories |
+| GPA (DataSync) | `X-DataSync-API-Key` | GPA Personal Access Token (PAT) | 5 tools across 3 categories |
+| Translation | `X-Translation-API-Key` | Translation API key | Coming soon |
+
 
 ## Who This Is For
 

@@ -8,6 +8,7 @@ AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: Building agents guide - Greg Kolinski
 2026-07-06: Fix tool names (connectivity_ prefix), add IHttpClientFactory note, fix model to claude-sonnet-4-6 - Greg Kolinski
+2026-07-20: Update auth headers for multi-credential model; convert admonitions to blockquotes - Greg Kolinski
 */}
 
 import Tabs from '@theme/Tabs';
@@ -30,13 +31,11 @@ Guide for developers building AI-powered features — chatbots, agents, or autom
 | Base URL | `https://mcp.ecgrid.io/mcp` |
 | Protocol | MCP over HTTP (JSON-RPC 2.0) |
 | MCP Version | `2024-11-05` |
-| Auth Header | `X-APIKey: YOUR_API_KEY_HERE` |
+| Auth Header | `X-Connectivity-API-Key: YOUR_API_KEY_HERE` (or `X-DataSync-API-Key` / `X-Translation-API-Key` for those products) |
 | Content-Type | `application/json` |
 | Accept Header | `application/json, text/event-stream` (required — 406 without it) |
 
-:::caution API Key Security
-In all code examples in this guide, `YOUR_API_KEY_HERE` is a placeholder. In production, load your API key from an environment variable or a secrets manager — never hard-code it in source files, and never pass it through a chat conversation. The key should only appear in your application's runtime environment or config file.
-:::
+> ⚠️ **Credential Security.** In all code examples in this guide, `YOUR_API_KEY_HERE` is a placeholder. In production, load your credential from an environment variable or a secrets manager — never hard-code it in source files, and never pass it through a chat conversation. The credential should only appear in your application's runtime environment or config file.
 
 ## Response Format
 
@@ -63,13 +62,9 @@ body text → split lines → find "data: ..." → strip "data: " → JSON.parse
 
 All code examples in this guide implement this pattern. MCP-compatible AI tools handle SSE automatically — this only affects developers making direct HTTP calls.
 
-:::tip New to SSE?
-Server-Sent Events is a standard W3C protocol for streaming data over HTTP. The [MDN SSE reference](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) covers the full format spec, `event:` and `data:` line structure, reconnection behavior, and client implementations. The [WHATWG SSE spec](https://html.spec.whatwg.org/multipage/server-sent-events.html) is the authoritative technical reference.
-:::
+> 💡 **New to SSE?** Server-Sent Events is a standard W3C protocol for streaming data over HTTP. The [MDN SSE reference](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) covers the full format spec, `event:` and `data:` line structure, reconnection behavior, and client implementations. The [WHATWG SSE spec](https://html.spec.whatwg.org/multipage/server-sent-events.html) is the authoritative technical reference.
 
-:::note Note on `"` in raw output
-When reading the raw SSE stream, quote characters inside string values appear as `"` rather than `"`. This is standard HTML-safe encoding and is expected — both forms are valid JSON and decode identically. Parse with any JSON library and the values will read correctly.
-:::
+> 📝 **Note on `"` in raw output.** When reading the raw SSE stream, quote characters inside string values appear as `"` rather than `"`. This is standard HTML-safe encoding and is expected — both forms are valid JSON and decode identically. Parse with any JSON library and the values will read correctly.
 
 ### Tool Result Structure
 
@@ -138,7 +133,7 @@ Send `initialize` once at agent startup. Confirm the `protocolVersion` matches `
 POST https://mcp.ecgrid.io/mcp
 Content-Type: application/json
 Accept: application/json, text/event-stream
-X-APIKey: YOUR_API_KEY_HERE
+X-Connectivity-API-Key: YOUR_API_KEY_HERE
 ```
 
 ```json
@@ -240,7 +235,7 @@ Application-level errors return a standard JSON-RPC error object:
 | Code | Meaning | Agent Action |
 |---|---|---|
 | `400` | Malformed JSON or invalid JSON-RPC | Fix the request structure |
-| `401` | Missing or invalid API key | Check `X-APIKey` header |
+| `401` | Missing or invalid credential | Check credential header (`X-Connectivity-API-Key`, `X-DataSync-API-Key`, or `X-Translation-API-Key`) |
 | `406` | Missing or invalid `Accept` header | Set `Accept: application/json, text/event-stream` |
 | `413` | Request body over 64 KB | Reduce payload size |
 | `415` | Body is not JSON | Set `Content-Type: application/json` |
@@ -309,9 +304,7 @@ All tools return structured JSON data. The interactive UI component column ident
 
 ## Complete Example
 
-:::note Production Pattern
-The C# example uses `new HttpClient()` for clarity. In production .NET applications, inject `HttpClient` via `IHttpClientFactory` to avoid socket exhaustion under load.
-:::
+> 📝 **Production Pattern.** The C# example uses `new HttpClient()` for clarity. In production .NET applications, inject `HttpClient` via `IHttpClientFactory` to avoid socket exhaustion under load.
 
 <Tabs groupId="lang">
 <TabItem value="csharp" label="C#">
@@ -330,7 +323,7 @@ public class EcGridMcpClient
     public EcGridMcpClient(string apiKey)
     {
         _http = new HttpClient();
-        _http.DefaultRequestHeaders.Add("X-APIKey", apiKey);
+        _http.DefaultRequestHeaders.Add("X-Connectivity-API-Key", apiKey);
         _http.DefaultRequestHeaders.Add("Accept", "application/json, text/event-stream"); // required by server
     }
 
@@ -404,7 +397,7 @@ class EcGridMcpClient {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json, text/event-stream", // required by server
-        "X-APIKey": this.apiKey,
+        "X-Connectivity-API-Key": this.apiKey,
       },
       body: JSON.stringify(payload),
     });
@@ -466,7 +459,7 @@ class EcGridMcpClient:
         self.headers = {
             "Content-Type": "application/json",
             "Accept": "application/json, text/event-stream",  # required by server
-            "X-APIKey": api_key,
+            "X-Connectivity-API-Key": api_key,
         }
         self._request_id = 0
 
@@ -523,7 +516,7 @@ print(result)
 **MCP Inspector** — use the official inspector tool to explore tools interactively before writing code:
 
 ```bash
-npx @modelcontextprotocol/inspector "https://mcp.ecgrid.io/mcp" --header "X-APIKey:YOUR_API_KEY_HERE"
+npx @modelcontextprotocol/inspector "https://mcp.ecgrid.io/mcp" --header "X-Connectivity-API-Key:YOUR_API_KEY_HERE"
 ```
 
 This opens a browser UI to browse tools, inspect schemas, and call them manually. Note that the MCP Inspector renders structured JSON responses only — interactive UI components are available exclusively in Claude Desktop and Claude.ai.

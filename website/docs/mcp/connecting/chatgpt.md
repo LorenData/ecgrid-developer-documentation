@@ -8,6 +8,7 @@ AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-07: ChatGPT connection guide - Greg Kolinski
 2026-07-07: Add JavaScript tab to Responses API example - Greg Kolinski
+2026-07-20: Update auth headers; convert admonitions to blockquotes - Greg Kolinski
 */}
 
 import Tabs from '@theme/Tabs';
@@ -59,11 +60,9 @@ After importing the schema, click **Authentication** and configure:
 | Authentication type | `API Key` |
 | API key | Your ECGrid API key |
 | Auth type | `Custom` |
-| Custom header name | `X-APIKey` |
+| Custom header name | `X-Connectivity-API-Key` |
 
-:::caution Keep your API key secure
-Enter your API key in the Authentication dialog — never paste it into the GPT's instructions or the schema. OpenAI stores it encrypted and does not expose it in the GPT configuration UI.
-:::
+> ⚠️ **Keep your API key secure.** Enter your API key in the Authentication dialog — never paste it into the GPT's instructions or the schema. OpenAI stores it encrypted and does not expose it in the GPT configuration UI.
 
 ### Step 4 — Set Instructions (Optional)
 
@@ -104,7 +103,7 @@ For the full endpoint list, see the [ECGrid REST API reference](../../rest-api/o
 
 ## Option 2 — OpenAI Responses API (Developers)
 
-If you are building an application using the OpenAI Responses API, you can connect it directly to the ECGrid MCP server by passing `X-APIKey` as a custom header. Headers are supplied per-request alongside the tool configuration.
+If you are building an application using the OpenAI Responses API, you can connect it directly to the ECGrid MCP server by passing `X-Connectivity-API-Key` as a custom header. Headers are supplied per-request alongside the tool configuration. Add `X-DataSync-API-Key` or `X-Translation-API-Key` to the same `headers` object if you use those products.
 
 <Tabs groupId="lang">
 <TabItem value="python" label="Python">
@@ -122,7 +121,7 @@ response = client.responses.create(
             "server_label": "ecgrid",
             "server_url": "https://mcp.ecgrid.io/mcp",
             "headers": {
-                "X-APIKey": "YOUR_ECGRID_API_KEY"
+                "X-Connectivity-API-Key": "YOUR_ECGRID_API_KEY"
             },
             "require_approval": "never"
         }
@@ -149,7 +148,7 @@ const response = await client.responses.create({
       server_label: "ecgrid",
       server_url: "https://mcp.ecgrid.io/mcp",
       headers: {
-        "X-APIKey": "YOUR_ECGRID_API_KEY",
+        "X-Connectivity-API-Key": "YOUR_ECGRID_API_KEY",
       },
       require_approval: "never",
     },
@@ -163,11 +162,9 @@ console.log(response.output_text);
 </TabItem>
 </Tabs>
 
-:::caution Headers per request
-The Responses API does not store headers between requests. Supply `X-APIKey` in the `headers` field on every call.
-:::
+> ⚠️ **Headers per request.** The Responses API does not store headers between requests. Supply your credential header(s) in the `headers` field on every call.
 
-The Responses API path gives you programmatic access to all 41 ECGrid MCP tools with the full tool schema, resources, and prompts.
+The Responses API path gives you programmatic access to all ECGrid MCP tools with the full tool schema, resources, and prompts.
 
 ---
 
@@ -175,5 +172,5 @@ The Responses API path gives you programmatic access to all 41 ECGrid MCP tools 
 
 - [Authentication](../authentication.md) — ECGrid API key format and how to obtain one
 - [Claude Desktop](./claude-desktop.md) — connect Claude Desktop for the full MCP experience including UI components
-- [Tools Reference](../tools/overview.md) — all 41 ECGrid MCP tools
+- [Tools Reference](../tools/overview.md) — all ECGrid MCP tools by product
 - [ECGrid REST API](../../rest-api/overview.md) — full REST reference used by the Custom GPT Actions path

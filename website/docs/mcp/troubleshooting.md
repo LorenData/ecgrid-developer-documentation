@@ -7,13 +7,14 @@ sidebar_position: 9
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: MCP troubleshooting page - Greg Kolinski
+2026-07-20: Update credential header references for multi-credential model - Greg Kolinski
 */}
 
 # Troubleshooting
 
 | Problem | Likely Cause | Fix |
 |---|---|---|
-| `401 Unauthorized` | Invalid or missing API key | Verify `X-APIKey` value — no spaces around the colon |
+| `401 Unauthorized` | Invalid or missing credential | Verify your credential header — `X-Connectivity-API-Key`, `X-DataSync-API-Key`, or `X-Translation-API-Key` — no spaces around the colon |
 | `406 Not Acceptable` | Missing or incorrect `Accept` header | Set `Accept: application/json, text/event-stream` on every request |
 | `429 Too Many Requests` | Per-IP rate limit hit | Wait 60 seconds and retry — check `Retry-After` header |
 | `503 Service Unavailable` | Server concurrency cap reached | Wait 1 second and retry — this is transient |

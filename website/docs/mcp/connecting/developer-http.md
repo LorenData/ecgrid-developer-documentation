@@ -8,6 +8,7 @@ AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: Developer HTTP connection guide - Greg Kolinski
 2026-07-07: Add JavaScript and Python examples, convert to tabs - Greg Kolinski
+2026-07-20: Update auth headers for multi-credential model - Greg Kolinski
 */}
 
 import Tabs from '@theme/Tabs';
@@ -23,7 +24,7 @@ Call the ECGrid MCP Server directly over HTTP from any language or framework. No
 |---|---|
 | URL | `https://mcp.ecgrid.io/mcp` |
 | Protocol | MCP over HTTP (JSON-RPC 2.0) |
-| Auth | `X-APIKey: YOUR_API_KEY_HERE` |
+| Auth | `X-Connectivity-API-Key: YOUR_API_KEY_HERE` (or `X-DataSync-API-Key` / `X-Translation-API-Key`) |
 | Accept | `application/json, text/event-stream` (required — 406 without it) |
 | Response format | Server-Sent Events (SSE) |
 
@@ -33,7 +34,7 @@ Call the ECGrid MCP Server directly over HTTP from any language or framework. No
 curl -s -X POST https://mcp.ecgrid.io/mcp \
   -H "Content-Type: application/json" \
   -H "Accept: application/json, text/event-stream" \
-  -H "X-APIKey: YOUR_API_KEY_HERE" \
+  -H "X-Connectivity-API-Key: YOUR_API_KEY_HERE" \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"connectivity_system_hello-world","arguments":{"request":{"name":"Test"}}}}'
 ```
 
@@ -58,7 +59,7 @@ using System.Text;
 using System.Text.Json;
 
 var client = new HttpClient();
-client.DefaultRequestHeaders.Add("X-APIKey", "YOUR_API_KEY_HERE");
+client.DefaultRequestHeaders.Add("X-Connectivity-API-Key", "YOUR_API_KEY_HERE");
 client.DefaultRequestHeaders.Add("Accept", "application/json, text/event-stream");
 
 var baseUrl = "https://mcp.ecgrid.io/mcp";
@@ -103,7 +104,7 @@ async function post(payload) {
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json, text/event-stream",
-      "X-APIKey": API_KEY,
+      "X-Connectivity-API-Key": API_KEY,
     },
     body: JSON.stringify(payload),
   });
@@ -138,7 +139,7 @@ BASE_URL = "https://mcp.ecgrid.io/mcp"
 HEADERS = {
     "Content-Type": "application/json",
     "Accept": "application/json, text/event-stream",
-    "X-APIKey": "YOUR_API_KEY_HERE",
+    "X-Connectivity-API-Key": "YOUR_API_KEY_HERE",
 }
 
 def post(payload: dict) -> dict:

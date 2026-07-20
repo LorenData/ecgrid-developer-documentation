@@ -7,6 +7,7 @@ sidebar_position: 1
 AI Attribution — Loren Data AI Use Policy §8.2
 Tool: Claude Code (Anthropic)
 2026-07-06: Claude Desktop connection guide - Greg Kolinski
+2026-07-20: Update auth headers for multi-credential model - Greg Kolinski
 */}
 
 # Connect Claude Desktop
@@ -40,11 +41,11 @@ I want to connect the ECGrid MCP server to Claude Desktop. Please set it up for 
 6. After I update the key, ask me to fully restart Claude Desktop
 7. After I restart, test the connection by running: Test the ECGrid MCP connection
 
-The ECGrid MCP server URL is https://mcp.ecgrid.io/mcp. Authentication uses the X-APIKey header. The mcpServers block to add is:
+The ECGrid MCP server URL is https://mcp.ecgrid.io/mcp. Authentication uses the X-Connectivity-API-Key header (or X-DataSync-API-Key / X-Translation-API-Key for those products). The mcpServers block to add is:
 {
   "ecgrid-mcp": {
     "command": "npx",
-    "args": ["-y","mcp-remote","https://mcp.ecgrid.io/mcp","--header","X-APIKey:YOUR_API_KEY_HERE","--transport","http-only"]
+    "args": ["-y","mcp-remote","https://mcp.ecgrid.io/mcp","--header","X-Connectivity-API-Key:YOUR_API_KEY_HERE","--transport","http-only"]
   }
 }
 ```
@@ -56,7 +57,7 @@ After Claude finishes setup, open the config file and replace `YOUR_API_KEY_HERE
 Copy and paste into any Claude conversation for guided manual setup.
 
 ```
-I want to connect the ECGrid MCP server to Claude Desktop. Please guide me through setup step by step: check my OS, walk me through Node.js check/install, finding the config file, and adding the ECGrid MCP block. Use YOUR_API_KEY_HERE as the placeholder — I will fill in my actual key directly in the config file. Server URL: https://mcp.ecgrid.io/mcp, auth header: X-APIKey.
+I want to connect the ECGrid MCP server to Claude Desktop. Please guide me through setup step by step: check my OS, walk me through Node.js check/install, finding the config file, and adding the ECGrid MCP block. Use YOUR_API_KEY_HERE as the placeholder — I will fill in my actual key directly in the config file. Server URL: https://mcp.ecgrid.io/mcp, auth header: X-Connectivity-API-Key.
 ```
 
 ---
@@ -103,7 +104,7 @@ Manual paths:
         "mcp-remote",
         "https://mcp.ecgrid.io/mcp",
         "--header",
-        "X-APIKey:YOUR_API_KEY_HERE",
+        "X-Connectivity-API-Key:YOUR_API_KEY_HERE",
         "--transport",
         "http-only"
       ]

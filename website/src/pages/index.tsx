@@ -5,6 +5,7 @@
 // 2026-05-12: Add Transformation API card, hero badge/button, quick link - Greg Kolinski
 // 2026-05-12: Add Catalog API card, hero badge/button, quick link - Greg Kolinski
 // 2026-07-06: Add MCP card, hero badge/button, quick link, and badge/card variants - Greg Kolinski
+// 2026-07-20: Update MCP card bullets for multi-credential model (GPA DataSync) - Greg Kolinski
 
 import type { ReactNode } from 'react';
 import clsx from 'clsx';
@@ -186,11 +187,9 @@ const apiCards: ApiCardProps[] = [
     badge: 'New',
     badgeVariant: 'mcp',
     title: 'ECGrid MCP',
-    description: 'Connect any MCP-compatible AI tool directly to your ECGrid account. Natural language access to your network, mailboxes, trading partners, and transactions — no custom integration code.',
+    description: 'Connect any MCP-compatible AI tool directly to your ECGrid account. Natural language access to ECGrid Connectivity, GPA DataSync, and Translation services — one connection, every product.',
     bullets: [
-      '41 tools across 13 categories',
-      'Claude Desktop, Cursor, Windsurf, and any HTTP agent',
-      'X-APIKey authentication · mcp.ecgrid.io',
+      '37 Connectivity tools · 5 GPA DataSync tools · mcp.ecgrid.io',
       'Interactive UI components in Claude Desktop and Claude.ai',
     ],
     to: '/docs/mcp/overview',
