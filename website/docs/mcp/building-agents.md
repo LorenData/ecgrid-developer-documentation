@@ -79,7 +79,7 @@ The MCP protocol wraps the tool result as a JSON string inside `content[0].text`
     "content": [
       {
         "type": "text",
-        "text": "{\"message\":\"Hello, Greg...\",\"loginName\":\"...\"}"
+        "text": "{\"message\":\"Hello, John...\",\"loginName\":\"...\"}"
       }
     ]
   }
@@ -89,11 +89,11 @@ The MCP protocol wraps the tool result as a JSON string inside `content[0].text`
 **Step 2 — Parse `content[0].text` as JSON to get the structured data:**
 ```json
 {
-  "message": "Hello, Greg, from ECGrid MCP server.",
-  "loginName": "gkolinski@ld.com",
-  "authLevel": "TechOps",
-  "networkId": "47",
-  "mailboxId": "0",
+  "message": "Hello, John, from ECGrid MCP server.",
+  "loginName": "johnsmith@abc.com",
+  "authLevel": "NetworkAdmin",
+  "networkId": "900",
+  "mailboxId": "999999999",
   "serverTimeUtc": "2026-07-06T14:00:00Z"
 }
 ```

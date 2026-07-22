@@ -11,7 +11,7 @@ Tool: Claude Code (Anthropic)
 
 # list-catalog-products
 
-List the products that belong to one specific GPA catalog. Use when you have a catalog id (from [list-catalogs](./list-catalogs.md)) and want the products inside it. Supports the same paging, search, sort, and product filters as [list-products](./list-products.md), scoped to the given catalog.
+List the products that belong to one specific GPA catalog. Use when you have a catalog id (from [list-catalogs](./list-catalogs.md)) and want the products inside it. Supports the same paging, search, sort, and product filters as [list-products](../product/list-products.md), scoped to the given catalog.
 
 This lists products the caller **owns** within the catalog — it is not a buyer-facing browse of another company's catalog.
 
@@ -97,5 +97,5 @@ Returns a page of products plus pagination totals.
 ## See Also
 
 - [list-catalogs](./list-catalogs.md) — get a catalogId
-- [list-products](./list-products.md) — list all products across all catalogs
-- [get-product-details](./get-product-details.md) — get the full record for a single product
+- [list-products](../product/list-products.md) — list all products across all catalogs
+- [get-product-details](../product/get-product-details.md) — get the full record for a single product

@@ -11,7 +11,7 @@ Tool: Claude Code (Anthropic)
 
 # get-product-details
 
-Get the full detail of a single GPA (Global Product Access) product by its GUID id. Use when you already have a product id (from [list-products](./list-products.md) or [list-catalog-products](./list-catalog-products.md)) and want the complete record: SKU, name, description, pricing, currency, available quantity, and status.
+Get the full detail of a single GPA (Global Product Access) product by its GUID id. Use when you already have a product id (from [list-products](./list-products.md) or [list-catalog-products](../catalog/list-catalog-products.md)) and want the complete record: SKU, name, description, pricing, currency, available quantity, and status.
 
 Pass an optional `catalogId` to scope catalog data and price visibility to one catalog. Returns NOT_FOUND when no product matches the id or it is not visible to the caller.
 
@@ -96,4 +96,4 @@ Returns the full product record.
 ## See Also
 
 - [list-products](./list-products.md) — search and browse products to find a productId
-- [list-catalog-products](./list-catalog-products.md) — products scoped to one catalog
+- [list-catalog-products](../catalog/list-catalog-products.md) — products scoped to one catalog

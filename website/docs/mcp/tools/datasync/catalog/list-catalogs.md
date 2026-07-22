@@ -13,7 +13,7 @@ Tool: Claude Code (Anthropic)
 
 List catalogs in the GPA (Global Product Access) system for a company. Use to browse or search catalogs, find a specific catalog by name, or see product and subscriber counts per catalog. Supports paging, free-text search, sorting, and filters by name, description, status, and type.
 
-Company-scoped callers (CompanyAdmin / CompanyUser) are auto-scoped to their own company. Host / NetworkAdmin callers must pass `companyId` — use [list-companies](./list-companies.md) first to get the target company's id.
+Company-scoped callers (CompanyAdmin / CompanyUser) are auto-scoped to their own company. Host / NetworkAdmin callers must pass `companyId` — use [list-companies](../company/list-companies.md) first to get the target company's id.
 
 ## Tool Name
 
@@ -108,5 +108,5 @@ Returns a page of catalog records plus pagination totals.
 ## See Also
 
 - [list-catalog-products](./list-catalog-products.md) — list products within a specific catalog
-- [list-products](./list-products.md) — list all products for a company across all catalogs
-- [list-companies](./list-companies.md) — get a companyId (Host / NetworkAdmin)
+- [list-products](../product/list-products.md) — list all products for a company across all catalogs
+- [list-companies](../company/list-companies.md) — get a companyId (Host / NetworkAdmin)

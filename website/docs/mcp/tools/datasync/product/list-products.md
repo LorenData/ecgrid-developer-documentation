@@ -13,9 +13,9 @@ Tool: Claude Code (Anthropic)
 
 List products in the GPA (Global Product Access) system for a company. Use to browse or search a company's full product set across all catalogs — e.g. "show my products", "find products with SKU containing ABC", or page through the full catalog. Supports paging, free-text search, sorting, and product filters.
 
-To list products scoped to one catalog, use [list-catalog-products](./list-catalog-products.md). For the full detail of a single product, use [get-product-details](./get-product-details.md).
+To list products scoped to one catalog, use [list-catalog-products](../catalog/list-catalog-products.md). For the full detail of a single product, use [get-product-details](./get-product-details.md).
 
-Company-scoped callers (CompanyAdmin / CompanyUser) are auto-scoped. Host / NetworkAdmin callers must pass `companyId` — use [list-companies](./list-companies.md) first to get the target company's id.
+Company-scoped callers (CompanyAdmin / CompanyUser) are auto-scoped. Host / NetworkAdmin callers must pass `companyId` — use [list-companies](../company/list-companies.md) first to get the target company's id.
 
 ## Tool Name
 
@@ -114,5 +114,5 @@ Returns a page of product records plus pagination totals.
 ## See Also
 
 - [get-product-details](./get-product-details.md) — full record for a single product by id
-- [list-catalog-products](./list-catalog-products.md) — products scoped to one catalog
-- [list-catalogs](./list-catalogs.md) — browse available catalogs
+- [list-catalog-products](../catalog/list-catalog-products.md) — products scoped to one catalog
+- [list-catalogs](../catalog/list-catalogs.md) — browse available catalogs

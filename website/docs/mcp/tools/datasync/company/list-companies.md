@@ -80,5 +80,5 @@ Returns a list of companies, each with an id, name, and email address.
 
 ## See Also
 
-- [list-catalogs](./list-catalogs.md) — browse catalogs for a company
-- [list-products](./list-products.md) — browse products for a company
+- [list-catalogs](../catalog/list-catalogs.md) — browse catalogs for a company
+- [list-products](../product/list-products.md) — browse products for a company

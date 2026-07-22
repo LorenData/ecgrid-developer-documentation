@@ -57,9 +57,9 @@ Call `tools/list` at startup to get the current complete tool list with full inp
 
 | Category | Tools |
 |---|---|
-| [Company](./datasync/list-companies) | `list-companies` |
-| [Catalog](./datasync/list-catalogs) | `list-catalogs`, `list-catalog-products` |
-| [Product](./datasync/list-products) | `list-products`, `get-product-details` |
+| [Company](./datasync/company/list-companies) | `list-companies` |
+| [Catalog](./datasync/catalog/list-catalogs) | `list-catalogs`, `list-catalog-products` |
+| [Product](./datasync/product/list-products) | `list-products`, `get-product-details` |
 
 ---
 
