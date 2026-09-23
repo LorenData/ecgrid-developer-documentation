@@ -33,7 +33,20 @@
       "WebSearch",
       "WebFetch(domain:developers.openai.com)",
       "WebFetch(domain:help.openai.com)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:mcp.ecgrid.io)",
+      "Bash(curl *)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3000)",
+      "Bash(taskkill *)",
+      "Bash(cmd *)",
+      "Bash(powershell *)",
+      "Bash(python3 *)",
+      "Bash(awk '{print $1}')",
+      "Bash(node *)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(npm ci *)",
+      "Bash(xargs sed *)"
     ]
   }
 }

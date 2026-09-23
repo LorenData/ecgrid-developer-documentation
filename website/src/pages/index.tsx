@@ -30,7 +30,7 @@ function Hero() {
         <p className={styles.heroEyebrow}>ECGrid B2B Integration Platform</p>
 
         <Heading as="h1" className={styles.heroTitle}>
-          API-first EDI.<br />Build without limits.
+          API-first B2B.<br />Build without limits.
         </Heading>
 
         <p className={styles.heroSubtitle}>
